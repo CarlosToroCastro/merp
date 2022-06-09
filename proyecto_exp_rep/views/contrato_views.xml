@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<!-- Vista de Busqueda -->
+	<record id="ct_contrato_search_view" model="ir.ui.view">
+		<field name="name">ct.contrato.search</field>
+		<field name="model">ct.contrato</field>
+		<field name="arch" type="xml">
+			<search>
+				<field name="codigo" />
+				<field name="partner_id" />		
+			</search>
+		</field>
+	</record>
+
+
+
+<!-- Vista Lista -->
+	<record id="ct_contrato_tree_view" model="ir.ui.view">
+		<field name="name">ct.contrato.tree</field>
+		<field name="model">ct.contrato</field>
+		<field name="arch" type="xml">
+			<tree>
+				<field name="partner_id" />
+				<field name="codigo" />
+				<field name="fecha_inicio" />
+				<field name="state" />
+			</tree>
+		</field>
+	</record>
+
+
+	<!-- Vista Formulario -->
+	<record id="ct_circuito_form_view" model="ir.ui.view">
+		<field name="name">ct.contrato.form</field>
+		<field name="model">ct.contrato</field>
+		<field name="arch" type="xml">
+			<form>
+				<sheet>
+					<group>
+						<field name="partner_id" domain="[('is_company', '=', True), ('id', '!=', 1)]"/>
+						<field name="codigo" />
+						<field name="fecha_inicio" />
+						<field name="fecha_finalizacion" />
+						<field name="state" />
+						<field name="notas" />
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+
+	<!-- Accion del formulario -->
+	<record id="ct_contrato_action" model="ir.actions.act_window">
+		<field name="name">CONTRATO</field>
+		<field name="type">ir.actions.act_window</field>
+		<field name="res_model">ct.contrato</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+
+	<!-- menu de acceso -->
+	 <menuitem id="ct_contrato_menu" name="Contrato" parent="merp_config_menu" action="ct_contrato_action" />
+
+</odoo>
+	

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<!-- Acceso a Informacion Municipios -->
+	<menuitem id="res_city_menu" name="Ciudades" parent="contacts.menu_localisation" action="base_address_city.action_res_city_tree"/>
+
+
+	<!-- Menus Principales App -->
+	<menuitem id="merp_root_menu" name="Gestión de Proyectos" sequence="8" web_icon="proyecto_exp_rep,static/description/icon.png"/>
+	<menuitem id="merp_config_menu" name="Configuración" sequence="8" parent="merp_root_menu"/>
+
+
+
+</odoo>

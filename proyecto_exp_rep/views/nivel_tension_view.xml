@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<!-- Vista de Busqueda -->
+	<record id="ct_nivel_tension_search_view" model="ir.ui.view">
+		<field name="name">ct.nivel_tension.search</field>
+		<field name="model">ct.nivel_tension</field>
+		<field name="arch" type="xml">
+			<search>
+				<field name="name" />	
+				<field name="notas" />							
+			</search>
+		</field>
+
+	</record>
+
+	<!-- Vista Lista -->
+	<record id="ct_nivel_tension_tree_view" model="ir.ui.view">
+		<field name="name">ct.nivel_tension.tree</field>
+		<field name="model">ct.nivel_tension</field>
+		<field name="arch" type="xml">
+			<tree>
+				<field name="name" />	
+				<field name="notas" />
+			</tree>
+		</field>
+	</record>
+
+
+	<!-- Vista Formulario -->
+	<record id="ct_nivel_tension_form_view" model="ir.ui.view">
+		<field name="name">ct.nivel_tension.form</field>
+		<field name="model">ct.nivel_tension</field>
+		<field name="arch" type="xml">
+			<form>
+				<sheet>
+					<group>
+						<field name="name" />	
+						<field name="notas" />
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<!-- Accion del formulario -->
+	<record id="ct_nivel_tension_action" model="ir.actions.act_window">
+		<field name="name">NIVEL DE TENSIÓN</field>
+		<field name="type">ir.actions.act_window</field>
+		<field name="res_model">ct.nivel_tension</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+
+	<!-- menu de acceso -->
+	 <menuitem id="ct_nivel_tension_electrico_menu" name="Nivel nivel tension" parent="merp_config_menu" action="ct_nivel_tension_action" />
+
+</odoo>

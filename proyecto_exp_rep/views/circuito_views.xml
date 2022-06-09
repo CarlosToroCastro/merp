@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<!-- Vista de Busqueda -->
+	<record id="ct_circuito_search_view" model="ir.ui.view">
+		<field name="name">ct.circuito.search</field>
+		<field name="model">ct.circuito</field>
+		<field name="arch" type="xml">
+			<search>
+				<field name="name" />
+				<field name="codigo" />
+				<field name="subestacion_id" />								
+			</search>
+		</field>
+	</record>
+
+	<!-- Vista Lista -->
+	<record id="ct_circuito_tree_view" model="ir.ui.view">
+		<field name="name">ct.circuito.tree</field>
+		<field name="model">ct.circuito</field>
+		<field name="arch" type="xml">
+			<tree>
+				<field name="codigo" />
+				<field name="name" />
+				<field name="city_id" />
+				<field name="subestacion_id" />
+			</tree>
+		</field>
+	</record>	
+
+
+	<!-- Vista Formulario -->
+	<record id="ct_circuito_form_view" model="ir.ui.view">
+		<field name="name">ct.circuito.form</field>
+		<field name="model">ct.circuito</field>
+		<field name="arch" type="xml">
+			<form>
+				<sheet>
+					<group>
+						<field name="codigo" />
+						<field name="name" />
+						<field name="city_id" />
+						<field name="subestacion_id" />
+						<field name="notas" />
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<!-- Accion del formulario -->
+	<record id="ct_circuito_action" model="ir.actions.act_window">
+		<field name="name">Circuitos</field>
+		<field name="type">ir.actions.act_window</field>
+		<field name="res_model">ct.circuito</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+
+	<!-- menu de acceso -->
+	 <menuitem id="ct_circuito_menu" name="Circuito" parent="merp_config_menu" action="ct_circuito_action" />
+
+</odoo>

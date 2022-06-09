@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<!-- Vista de Busqueda -->
+	<record id="ct_subestacion_search_view" model="ir.ui.view">
+		<field name="name">ct.subestacion.search</field>
+		<field name="model">ct.subestacion</field>
+		<field name="arch" type="xml">
+			<search>
+				<field name="name" />
+				<field name="codigo" />								
+			</search>
+		</field>
+
+	</record>
+
+	<!-- Vista Lista -->
+	<record id="ct_subestacion_tree_view" model="ir.ui.view">
+		<field name="name">ct.subestacion.tree</field>
+		<field name="model">ct.subestacion</field>
+		<field name="arch" type="xml">
+			<tree>
+				<field name="codigo" />
+				<field name="name" />
+				<field name="city_id" />
+				<field name="direccion" />
+			</tree>
+		</field>
+	</record>
+
+
+	<!-- Vista Formulario -->
+	<record id="ct_subestacion_form_view" model="ir.ui.view">
+		<field name="name">ct.subestacion.form</field>
+		<field name="model">ct.subestacion</field>
+		<field name="arch" type="xml">
+			<form>
+				<sheet>
+					<group>
+						<field name="codigo" />
+						<field name="name" />
+						<field name="city_id" />
+						<field name="direccion" />
+						<field name="notas" />
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<!-- Accion del formulario -->
+	<record id="ct_subestacion_action" model="ir.actions.act_window">
+		<field name="name">SUBESTACIÓN</field>
+		<field name="type">ir.actions.act_window</field>
+		<field name="res_model">ct.subestacion</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+
+	<!-- menu de acceso -->
+	 <menuitem id="ct_subestacion_menu" name="Subestacion" parent="merp_config_menu" action="ct_subestacion_action" />
+
+</odoo>

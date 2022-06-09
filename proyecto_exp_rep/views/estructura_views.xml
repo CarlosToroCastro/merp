@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<!-- Vista de Busqueda -->
+	<record id="ct_estructura_search_view" model="ir.ui.view">
+		<field name="name">ct.estructura.search</field>
+		<field name="model">ct.estructura</field>
+		<field name="arch" type="xml">
+			<search>
+					<field name="name" />
+					<field name="descripcion" />
+					<field name="familia" />
+					<field name="tipo" />
+					<field name="nivel_tension_id" />							
+			</search>
+		</field>
+	</record>
+
+	<!-- Vista Lista -->
+	<record id="ct_estructura_tree_view" model="ir.ui.view">
+			<field name="name">ct.estructura.tree</field>
+			<field name="model">ct.estructura</field>
+			<field name="arch" type="xml">
+				<tree>
+						<field name="name" />
+						<field name="descripcion" />
+						<field name="familia" />
+						<field name="tipo" />
+						<field name="nivel_tension_id" />
+				</tree>
+			</field>
+	</record>
+
+
+	<!-- Vista Formulario -->
+	<record id="ct_etructura_form_view" model="ir.ui.view">
+			<field name="name">ct.estructura.form</field>
+			<field name="model">ct.estructura</field>
+			<field name="arch" type="xml">
+				<form>
+					<sheet>
+						<group>
+							<field name="name" />
+							<field name="descripcion" />
+							<field name="familia" />
+							<field name="tipo" />
+							<field name="nivel_tension_id" />
+						</group>
+
+						<group string="Materiales de estructura">
+						<field name="materiales_ids" nolabel="1">
+							<tree editable="bottom">
+								<field name="product_id" />
+								<field name="cantidad"	/>
+							</tree>
+						</field>
+						</group>
+					</sheet>
+				</form>
+			</field>
+	</record>
+
+
+	<!-- Accion del formulario -->
+	<record id="ct_estructura_action" model="ir.actions.act_window">
+			<field name="name">ESTRUCTURA</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">ct.estructura</field>
+			<field name="view_mode">tree,form</field>
+	</record>
+
+	
+	<!-- menu de acceso -->
+	 <menuitem id="ct_estructura_menu" name="Estructura" parent="merp_config_menu" action="ct_estructura_action" />
+
+</odoo>

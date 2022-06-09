@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<!-- Vista de Busqueda -->
+	<record id="ct_proyecto_search_view" model="ir.ui.view">
+		<field name="name">ct.proyecto.search</field>
+		<field name="model">ct.proyecto</field>
+		<field name="arch" type="xml">
+			<search>
+				<field name="name" />								
+			</search>
+		</field>
+
+	</record>
+
+	<!-- Vista Lista -->
+	<record id="ct_proyecto_tree_view" model="ir.ui.view">
+		<field name="name">ct.proyecto.tree</field>
+		<field name="model">ct.proyecto</field>
+		<field name="arch" type="xml">
+			<tree>
+				<field name="name" />
+				<field name="tipo_proyecto_id" />
+				<field name="direccion" optional="hide"/>
+				<field name="city_id" />
+				<field name="circuito_id" />
+			    <field name="nivel_tension_id" />
+			    <field name="fecha_diseño" optional="hide"/>
+			    <field name="fecha_replanteo" optional="hide"/>
+			    <field name="fecha_ejecucion" optional="hide"/>
+			    <field name="tipo_red" optional="hide"/>
+				<field name="notas" optional="hide"/>
+			</tree>
+		</field>
+	</record>
+
+	<!-- Vista Formulario -->
+	<record id="ct_proyecto_form_view" model="ir.ui.view">
+		<field name="name">ct.proyecto.form</field>
+		<field name="model">ct.proyecto</field>
+		<field name="arch" type="xml">
+			<form>
+				<sheet>
+					<group>
+							<field name="name" />
+							<field name="tipo_proyecto_id" />
+							<field name="direccion" />
+							<field name="city_id" />
+							<field name="circuito_id" options="{'no_create_edit': True, 'no_create': True}"/>
+							<field name="subestacion_id" attrs="{'invisible': [('circuito_id', '=', False)]}" />
+						    <field name="nivel_tension_id" />
+						    <field name="fecha_diseño" />
+						    <field name="fecha_replanteo" />
+						    <field name="fecha_ejecucion" />
+						    <field name="tipo_red" />
+							<field name="notas" />
+					</group>
+					<group string="Equipo de Trabajo">
+						<field name="personal_ids" nolabel="1">
+							<tree editable="bottom">
+								<field name="rol" />
+								<field name="partner_id" domain="[('parent_id', '!=', False), ('is_company', '=', False)]"/>
+								<field name="f_inicio" />
+								<field name="f_fin" />
+							</tree>
+						</field>
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<!-- Accion del formulario -->
+	<record id="ct_proyecto_action" model="ir.actions.act_window">
+		<field name="name">PROYECTO</field>
+		<field name="type">ir.actions.act_window</field>
+		<field name="res_model">ct.proyecto</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+
+	<!-- menu de acceso -->
+	 <menuitem id="ct_proyecto_menu" name="Proyecto" parent="merp_config_menu" action="ct_proyecto_action" />
+
+</odoo>
