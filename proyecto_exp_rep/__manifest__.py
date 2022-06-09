@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
 	'name': 'Expansión y Reposición',
-	'version': '0.0.1',
+	'version': '0.0.2',
 	'author': 'Carlos Julio Toro Castro',
 	'summary': 'Gestión de Proyectos en Sector Electrico',
 	'depends': ['base_address_city', 'product','contacts'],
