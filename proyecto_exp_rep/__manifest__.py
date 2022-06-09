@@ -8,6 +8,7 @@
 	'data': [
 		'security/ir.model.access.csv',				
 		'views/menu.xml',
+		'views/product_template_views.xml',
 		'views/tipo_proyecto_view.xml',
 		'views/nivel_tension_view.xml',
 		'views/subestacion_views.xml',

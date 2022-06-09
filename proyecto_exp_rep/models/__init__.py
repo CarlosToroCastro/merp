@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from . import res_city
+from . import product_template
 from . import estructura
 from . import proyecto
 from . import nivel_tension
