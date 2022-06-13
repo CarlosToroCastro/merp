@@ -52,6 +52,6 @@
 	</record>
 
 	<!-- menu de acceso -->
-	 <menuitem id="ct_nivel_tension_electrico_menu" name="Nivel nivel tension" parent="merp_config_menu" action="ct_nivel_tension_action" />
+	 <menuitem id="ct_nivel_tension_electrico_menu" name="Nivel de Tensión" parent="merp_config_menu" action="ct_nivel_tension_action" />
 
 </odoo>

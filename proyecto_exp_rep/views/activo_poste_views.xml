@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<!-- Vista de Busqueda -->
+	<record id="ct_activo_poste_search_view" model="ir.ui.view">
+		<field name="name">ct.activo_poste.search</field>
+		<field name="model">ct.activo_poste</field>
+		<field name="arch" type="xml">
+			<search>
+				<field name="tipo_activo_id" />
+				<field name="codigo" />		
+			</search>
+		</field>
+	</record>
+
+
+	<!-- Vista Formulario -->
+	<record id="ct_activo_poste_tree_view" model="ir.ui.view">
+		<field name="name">ct.activo_poste.tree</field>
+		<field name="model">ct.activo_poste</field>
+		<field name="arch" type="xml">
+			<tree>
+				<field name="tipo_activo_id" />
+				<field name="codigo" />
+				<field name="nodo" />
+				<field name="capacidad" optional="show"/>
+			</tree>
+		</field>
+	</record>
+
+
+
+	<!-- Vista Formulario -->
+	<record id="ct_activo_poste_form_view" model="ir.ui.view">
+		<field name="name">ct.activo_poste.form</field>
+		<field name="model">ct.activo_poste</field>
+		<field name="arch" type="xml">
+			<form>
+				<sheet>
+					<group>
+						<field name="tipo_activo_id" />
+						<field name="codigo" />
+						<field name="serie" />
+						<field name="nodo" />
+						<field name="capacidad" />
+						<field name="state" />
+						<field name="notas" />
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<!-- Accion del formulario -->
+	<record id="ct_activo_poste_action" model="ir.actions.act_window">
+		<field name="name">ACTIVO ELECTRICO</field>
+		<field name="type">ir.actions.act_window</field>
+		<field name="res_model">ct.activo_poste</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+
+<!-- menu de acceso -->
+	 <menuitem id="ct_activo_poste_menu" name="Activo Electrico en Poste" parent="merp_config_menu" action="ct_activo_poste_action" />
+
+</odoo>
+

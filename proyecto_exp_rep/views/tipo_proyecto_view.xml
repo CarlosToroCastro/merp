@@ -52,6 +52,6 @@
 	</record>
 
 	<!-- menu de acceso -->
-	 <menuitem id="ct_tipo_deproyecto_menu" name="Tipo de proyecto" parent="merp_config_menu" action="ct_tipo_proyecto_action" />
+	 <menuitem id="ct_tipo_deproyecto_menu" name="Tipo de Proyecto" parent="merp_config_menu" action="ct_tipo_proyecto_action" />
 
 </odoo>
