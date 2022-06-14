@@ -8,12 +8,12 @@ class ActivoRed(models.Model):
 	_description = 'Activos que corresponden a tramo de red'
 
 	tipo_cable_ids = fields.One2many('ct.tipo_cable','activo_red_id',string="Red" )
-	name = fields.Text('Nombre', required=True)
-	name2 = fields.Text('Tarea', required=True)
+	#name = fields.Text('Nombre', required=True)// el nombre sale del nodo
+	name = fields.Text('Tarea', required=True)
 	can_lineas = fields.Integer('Cantidad de lineas',required=True)
 	distancia = fields.Float('Distancia entre nodos',required=True)
-
-
+	accion = fields.Selection([('instalar', 'Instalar'), ('retirar', 'Retirar'),('retemplar', 'Retemplar') ], string='Acción')
+    
 
 
 class TipoCable(models.Model):
@@ -22,6 +22,7 @@ class TipoCable(models.Model):
 	_decription = 'Tipos de cable utilizadas para baja y media tensión'
 
 	activo_red_id = fields.Many2one('ct.activo_red', 'name')
-	name = fields.Char('Descripción corta del tipo de cable',required=True) 
+	name = fields.Char('Descripción corta del tipo de cable',required=True) # va en otra tabla
 	description = fields.Text('Descripcion completa del tipo de cable',required=True)	
 	notas = fields.Text('Observación')
+

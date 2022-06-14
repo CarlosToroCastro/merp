@@ -13,3 +13,4 @@ proyecto_exp_rep.access_ct_materiales_estructura,access_ct_materiales_estructura
 proyecto_exp_rep.access_ct_nodo,access_ct_nodo,proyecto_exp_rep.model_ct_nodo,base.group_user,1,1,1,0
 proyecto_exp_rep.access_ct_proyecto,access_ct_proyecto,proyecto_exp_rep.model_ct_proyecto,base.group_user,1,1,1,0
 proyecto_exp_rep.access_ct_proyecto_personal,access_ct_proyecto_personal,proyecto_exp_rep.model_ct_proyecto_personal,base.group_user,1,1,1,0
+proyecto_exp_rep.access_ct_nodo_mano_obra,access_ct_nodo_mano_obra,proyecto_exp_rep.model_ct_nodo_mano_obra,base.group_user,1,1,1,1

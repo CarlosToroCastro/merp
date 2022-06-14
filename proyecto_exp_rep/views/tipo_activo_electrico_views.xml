@@ -21,7 +21,8 @@
 		<field name="model">ct.tipo_activo_electrico</field>
 		<field name="arch" type="xml">
 			<tree>
-				<field name="name" />	
+				<field name="name" />
+				<field name="code" />	
 				<field name="notas" />
 			</tree>
 		</field>
@@ -36,6 +37,7 @@
 			<form>
 				<sheet>
 					<group>
+						<field name="code" />
 						<field name="name" />	
 						<field name="notas" />
 					</group>

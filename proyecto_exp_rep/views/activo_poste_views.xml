@@ -8,21 +8,21 @@
 		<field name="arch" type="xml">
 			<search>
 				<field name="tipo_activo_id" />
-				<field name="codigo" />		
+				<field name="name" />		
 			</search>
 		</field>
 	</record>
 
 
-	<!-- Vista Formulario -->
+	<!-- Vista Lista -->
 	<record id="ct_activo_poste_tree_view" model="ir.ui.view">
 		<field name="name">ct.activo_poste.tree</field>
 		<field name="model">ct.activo_poste</field>
 		<field name="arch" type="xml">
 			<tree>
 				<field name="tipo_activo_id" />
-				<field name="codigo" />
-				<field name="nodo" />
+				<field name="name" />
+				<field name="placa" />
 				<field name="capacidad" optional="show"/>
 			</tree>
 		</field>
@@ -39,9 +39,10 @@
 				<sheet>
 					<group>
 						<field name="tipo_activo_id" />
-						<field name="codigo" />
-						<field name="serie" />
-						<field name="nodo" />
+						<field name="code_tipo_activo" invisible="1" />
+						<field name="name" />
+						<field name="serie" attrs="{'invisible': [('code_tipo_activo', '!=', 'transformador')]}"/> 
+						<field name="placa" attrs="{'invisible': [('code_tipo_activo', '!=', 'transformador')]}"/>
 						<field name="capacidad" />
 						<field name="state" />
 						<field name="notas" />

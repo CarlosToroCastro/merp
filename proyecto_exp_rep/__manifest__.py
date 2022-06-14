@@ -18,6 +18,7 @@
 		'views/activo_poste_views.xml',
 		'views/tipo_proyecto_view.xml',
 		'views/proyecto_views.xml',
+		'views/nodo_views.xml',
 		
 	],
 	'installable': True,
