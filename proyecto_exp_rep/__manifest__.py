@@ -9,6 +9,7 @@
 		'security/ir.model.access.csv',				
 		'views/menu.xml',
 		'views/product_template_views.xml',
+		'views/rol_views.xml',
 		'views/nivel_tension_view.xml',
 		'views/subestacion_views.xml',
 		'views/circuito_views.xml',
@@ -17,8 +18,10 @@
 		'views/tipo_activo_electrico_views.xml',
 		'views/activo_poste_views.xml',
 		'views/tipo_proyecto_view.xml',
-		'views/proyecto_views.xml',
 		'views/nodo_views.xml',
+		'views/proyecto_views.xml',
+		'views/usuario_views.xml',
+		
 		
 	],
 	'installable': True,

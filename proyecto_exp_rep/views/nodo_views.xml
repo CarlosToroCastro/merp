@@ -22,55 +22,37 @@
 		<field name="arch" type="xml">
 			<tree>
 				<field name="name" />
+				<field name="gps_altura" optional="hide"/>
 				<field name="gps_latitud" optional="hide" />
 				<field name="gps_longitud" optional="hide"/>
-				<field name="gps_altura" optional="hide"/>
 				<field name="direccion" />
-			    <field name="notas" optional="hide"/>   
+				<field name="notas" optional="hide"/>   
 			</tree>
 		</field>
 	</record>	
 
-
-    <!-- Vista Formulario -->
+<!-- Vista Formulario -->
 	<record id="ct_proyecto_form_view" model="ir.ui.view">
 		<field name="name">ct.nodo.form</field>
 		<field name="model">ct.nodo</field>
 		<field name="arch" type="xml">
 			<form>
-				<header>
-					<button name="btn_replanteo" string="Pasar a Replanteo" type="object" />
-					<field name="state" widget="statusbar" />
-				</header>
 				<sheet>
 					<group>
 							<field name="name" />
+							<field name="gps_altura" />
 							<field name="gps_latitud" />
 							<field name="gps_longitud" />
-							<field name="gps_altura" />
 							<field name="direccion" />
-						    <field name="notas"/>
+							<field name="notas"/>
 					</group>
-					<group string="Activos">
+					<group string="Activos en Nodo">
 						<field name="activo_poste_ids" nolabel="1">
 							<tree editable="bottom">
-								<field name="tipo_activo_id" />
-								<field name="name"/>
-								<field name="serie" />
-								<field name="capacidad" />
-								<field name="notas" />
-								<field name="state" />
-							</tree>
-						</field>
-					</group>
-					<group string="Mano de Obra">
-						<field name="mano_obra_ids" nolabel="1" domain="[('state', '=', parent.state)]">
-							<tree editable="bottom">								
-								<field name="nodo_id" invisible="1"/>
-								<field name="state_nodo" invisible="0" />
-								<field name="product_id" />
-								<field name="cantidad" />
-								<field name="state" />
+									<field name="a_poste_id" />
+									<field name="name" />
+									<field name="state"/>
+									<field name="notes"/>
 							</tree>
 						</field>
 					</group>
@@ -80,7 +62,7 @@
 	</record>
 
 
-    <!-- Accion del formulario -->
+<!-- Accion del formulario -->
 	<record id="ct_nodo_action" model="ir.actions.act_window">
 		<field name="name">NODO</field>
 		<field name="type">ir.actions.act_window</field>

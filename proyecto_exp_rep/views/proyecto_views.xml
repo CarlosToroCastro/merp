@@ -24,11 +24,12 @@
 				<field name="direccion" optional="hide"/>
 				<field name="city_id" />
 				<field name="circuito_id" />
-			    <field name="nivel_tension_id" />
-			    <field name="fecha_diseño" optional="hide"/>
-			    <field name="fecha_replanteo" optional="hide"/>
-			    <field name="fecha_ejecucion" optional="hide"/>
-			    <field name="tipo_red" optional="hide"/>
+				<field name="nivel_tension_id" />
+				<field name="area" optional="hide"/>
+				<field name="fecha_diseño" optional="hide"/>
+				<field name="fecha_replanteo" optional="hide"/>
+				<field name="fecha_ejecucion" optional="hide"/>
+			
 				<field name="notas" optional="hide"/>
 			</tree>
 		</field>
@@ -43,22 +44,24 @@
 				<sheet>
 					<group>
 							<field name="name" />
-							<field name="tipo_proyecto_id" />
+							<field name="tipo_proyecto_id" options="{'no_create_edit': True, 'no_create': True}" />
 							<field name="direccion" />
-							<field name="city_id" />
+							<field name="city_id" options="{'no_create_edit': True, 'no_create': True}" />
 							<field name="circuito_id" options="{'no_create_edit': True, 'no_create': True}"/>
 							<field name="subestacion_id" attrs="{'invisible': [('circuito_id', '=', False)]}" />
-						    <field name="nivel_tension_id" />
-						    <field name="fecha_diseño" />
-						    <field name="fecha_replanteo" />
-						    <field name="fecha_ejecucion" />
-						    <field name="tipo_red" />
+							<field name="area" options="{'no_create_edit': True, 'no_create': True}"/>
+							<field name="nivel_tension_id" options="{'no_create_edit': True, 'no_create': True}" />
+							<field name="contrato_id" options="{'no_create_edit': True, 'no_create': True}" />
+							<field name="fecha_diseño" />
+							<field name="fecha_replanteo" />
+							<field name="fecha_ejecucion" />
+							
 							<field name="notas" />
 					</group>
 					<group string="Equipo de Trabajo">
 						<field name="personal_ids" nolabel="1">
 							<tree editable="bottom">
-								<field name="rol" />
+								<field name="rol" options="{'no_create_edit': True, 'no_create': True}"/>
 								<field name="partner_id" domain="[('parent_id', '!=', False), ('is_company', '=', False)]"/>
 								<field name="f_inicio" />
 								<field name="f_fin" />

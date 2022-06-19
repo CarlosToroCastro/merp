@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<!-- Vista de Busqueda -->
+	<record id="ct_usuario_search_view" model="ir.ui.view">
+		<field name="name">ct.usuario.search</field>
+		<field name="model">ct.usuario</field>
+		<field name="arch" type="xml">
+			<search>
+				<field name="name" />
+				<field name="addres" />
+				<field name="medidor" />
+				<field name="notas" />								
+			</search>
+		</field>
+	</record>
+
+	<!-- Vista Lista -->
+	<record id="ct_usuario_tree_view" model="ir.ui.view">
+		<field name="name">ct.usuario.tree</field>
+		<field name="model">ct.usuario</field>
+		<field name="arch" type="xml">
+			<tree>
+				<field name="name" />
+				<field name="addres" />
+				<field name="medidor" />
+				<field name="notas" />	
+			</tree>
+		</field>
+	</record>	
+
+
+	<!-- Vista Formulario -->
+	<record id="ct_usuario_form_view" model="ir.ui.view">
+		<field name="name">ct.usuario.form</field>
+		<field name="model">ct.usuario</field>
+		<field name="arch" type="xml">
+			<form>
+				<sheet>
+					<group>
+						<field name="name" />
+						<field name="addres" />
+						<field name="medidor" />
+						<field name="notas" />	
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<!-- Accion del formulario -->
+	<record id="ct_usuario_action" model="ir.actions.act_window">
+		<field name="name">Usuario</field>
+		<field name="type">ir.actions.act_window</field>
+		<field name="res_model">ct.usuario</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+
+	<!-- menu de acceso -->
+	 <menuitem id="ct_usuario_menu" name="Usuario" parent="merp_config_menu" action="ct_usuario_action" />
+
+</odoo>

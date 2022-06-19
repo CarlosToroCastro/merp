@@ -8,12 +8,15 @@ class ActivoRed(models.Model):
 	_description = 'Activos que corresponden a tramo de red'
 
 	tipo_cable_ids = fields.One2many('ct.tipo_cable','activo_red_id',string="Red" )
-	#name = fields.Text('Nombre', required=True)// el nombre sale del nodo
-	name = fields.Text('Tarea', required=True)
-	can_lineas = fields.Integer('Cantidad de lineas',required=True)
+	name = fields.Char('Nodo inicial',required=True)
+	name2 = fields.Char('Nodo Final', required=True)
+	tarea = fields.Text('Tarea', required=True)
 	distancia = fields.Float('Distancia entre nodos',required=True)
+
+
+	can_lineas = fields.Integer('Cantidad de lineas',required=True)
 	accion = fields.Selection([('instalar', 'Instalar'), ('retirar', 'Retirar'),('retemplar', 'Retemplar') ], string='Acción')
-    
+	
 
 
 class TipoCable(models.Model):

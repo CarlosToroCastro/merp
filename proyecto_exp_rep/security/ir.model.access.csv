@@ -1,5 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-proyecto_exp_rep.access_ct_subestacion,access_ct_subestacion,proyecto_exp_rep.model_ct_subestacion,base.group_user,1,1,1,0
+proyecto_exp_rep.access_ct_subestacion,access_ct_subestacion,proyecto_exp_rep.model_ct_subestacion,base.group_user,1,1,1,1
 proyecto_exp_rep.access_ct_circuito,access_ct_circuito,proyecto_exp_rep.model_ct_circuito,base.group_user,1,1,1,0
 proyecto_exp_rep.access_ct_nivel_tension,access_ct_nivel_tension,proyecto_exp_rep.model_ct_nivel_tension,base.group_user,1,1,1,0
 proyecto_exp_rep.access_ct_tipo_activo_electrico,access_ct_tipo_activo_electrico,proyecto_exp_rep.model_ct_tipo_activo_electrico,base.group_user,1,1,1,0
@@ -10,7 +10,13 @@ proyecto_exp_rep.access_ct_contrato,access_ct_contrato,proyecto_exp_rep.model_ct
 proyecto_exp_rep.access_ct_tipo_proyecto,access_ct_tipo_proyecto,proyecto_exp_rep.model_ct_tipo_proyecto,base.group_user,1,1,1,0
 proyecto_exp_rep.access_ct_estructura,access_ct_estructura,proyecto_exp_rep.model_ct_estructura,base.group_user,1,1,1,0
 proyecto_exp_rep.access_ct_materiales_estructura,access_ct_materiales_estructura,proyecto_exp_rep.model_ct_materiales_estructura,base.group_user,1,1,1,0
-proyecto_exp_rep.access_ct_nodo,access_ct_nodo,proyecto_exp_rep.model_ct_nodo,base.group_user,1,1,1,0
 proyecto_exp_rep.access_ct_proyecto,access_ct_proyecto,proyecto_exp_rep.model_ct_proyecto,base.group_user,1,1,1,0
 proyecto_exp_rep.access_ct_proyecto_personal,access_ct_proyecto_personal,proyecto_exp_rep.model_ct_proyecto_personal,base.group_user,1,1,1,0
-proyecto_exp_rep.access_ct_nodo_mano_obra,access_ct_nodo_mano_obra,proyecto_exp_rep.model_ct_nodo_mano_obra,base.group_user,1,1,1,1
+proyecto_exp_rep.access_ct_m_obra_a_poste,access_ct_m_obra_a_poste,proyecto_exp_rep.model_ct_m_obra_a_poste,base.group_user,1,1,1,0
+proyecto_exp_rep.access_ct_nodo,access_ct_nodo,proyecto_exp_rep.model_ct_nodo,base.group_user,1,1,1,0
+proyecto_exp_rep.access_ct_nodo_activo_poste,access_ct_nodo_activo_poste,proyecto_exp_rep.model_ct_nodo_activo_poste,base.group_user,1,1,1,0
+proyecto_exp_rep.access_ct_rol,access_ct_rol,proyecto_exp_rep.model_ct_rol,base.group_user,1,1,1,0
+proyecto_exp_rep.access_ct_tip_med,access_ct_tip_med,proyecto_exp_rep.model_ct_tip_med,base.group_user,1,1,1,0
+proyecto_exp_rep.access_ct_marca_med,access_ct_marca_med,proyecto_exp_rep.model_ct_marca_med,base.group_user,1,1,1,0
+proyecto_exp_rep.access_ct_medidor,access_ct_medidor,proyecto_exp_rep.model_ct_medidor,base.group_user,1,1,1,0
+proyecto_exp_rep.access_ct_usuario,access_ct_usuario,proyecto_exp_rep.model_ct_usuario,base.group_user,1,1,1,0

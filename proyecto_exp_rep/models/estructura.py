@@ -8,7 +8,7 @@ class Estructura(models.Model):
 	_description = 'Estructura'
 
      
-	name = fields.Text('Código de la estructura',required=True)
+	name = fields.Char('Código de la estructura',required=True)
 	descripcion = fields.Text('Descripción', required=True)
 	familia = fields.Char('Familia', required=True) #centro, bandera, semibandera, H....
 	tipo = fields.Selection([('retencion', 'Retención'), ('suspension', 'Suspensión')], string='Tipo Estructura',required=True)

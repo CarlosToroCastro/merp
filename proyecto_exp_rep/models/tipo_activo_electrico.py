@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+"""# -*- coding: utf-8 -*-
 
 from odoo import api, fields, models
 
@@ -15,4 +15,4 @@ class TipoAtivoElectrico(models.Model):
 	_sql_constraints = [
 		('tipo_activo_electrico_code_uniq', 'unique(code)', 'Informacion Repetida'),
 		('tipo_activo_electrico_name_uniq', 'unique(name)', 'Informacion Repetida')
-	]
+	]"""

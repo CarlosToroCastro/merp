@@ -39,13 +39,12 @@
 				<sheet>
 					<group>
 						<field name="tipo_activo_id" />
+						<field name="tarea" />
 						<field name="code_tipo_activo" invisible="1" />
 						<field name="name" />
 						<field name="serie" attrs="{'invisible': [('code_tipo_activo', '!=', 'transformador')]}"/> 
 						<field name="placa" attrs="{'invisible': [('code_tipo_activo', '!=', 'transformador')]}"/>
 						<field name="capacidad" />
-						<field name="state" />
-						<field name="notas" />
 					</group>
 				</sheet>
 			</form>

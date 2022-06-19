@@ -27,3 +27,5 @@ class Circuito(models.Model):
 	city_id = fields.Many2one('res.city', string='Municipio')
 	subestacion_id = fields.Many2one('ct.subestacion', string="Subestación", required=True)
 	notas = fields.Text('Observación')
+
+	

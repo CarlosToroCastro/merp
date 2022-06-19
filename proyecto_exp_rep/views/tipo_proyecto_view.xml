@@ -35,6 +35,7 @@
 			<form>
 				<sheet>
 					<group>
+						<field name="code" />
 						<field name="tipo_proyecto" />	
 						<field name="notas" />
 					</group>

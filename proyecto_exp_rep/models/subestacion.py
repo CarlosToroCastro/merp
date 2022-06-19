@@ -22,3 +22,8 @@ class Subestacion(models.Model):
 	city_id = fields.Many2one('res.city', string='Municipio', required=True)
 	direccion = fields.Char('Dirección')
 	notas = fields.Text('Observación')
+
+	_sql_constraints = [
+		('subestacion_code_uniq', 'unique(codigo)', 'Informacion Repetida'),
+		
+	]

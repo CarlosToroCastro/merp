@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<!-- Vista de Busqueda -->
+	<record id="ct_rol_view" model="ir.ui.view">
+		<field name="name">ct.rol.search</field>
+		<field name="model">ct.rol</field>
+		<field name="arch" type="xml">
+			<search>
+				<field name="name" />	
+				<field name="code" />						
+			</search>
+		</field>
+
+	</record>	
+
+
+<!-- Vista Lista -->
+	<record id="ct_rol_tree_view" model="ir.ui.view">
+		<field name="name">ct.rol.tree</field>
+		<field name="model">ct.rol</field>
+		<field name="arch" type="xml">
+			<tree>
+				<field name="code" />
+				<field name="name" />	
+				<field name="notas" />	
+			</tree>
+		</field>
+	</record>	
+
+
+	<!-- Vista Formulario -->
+	<record id="ct_rol_form_view" model="ir.ui.view">
+		<field name="name">ct.rol_electrico.form</field>
+		<field name="model">ct.rol</field>
+		<field name="arch" type="xml">
+			<form>
+				<sheet>
+					<group>
+						<field name="code" />
+						<field name="name" />	
+						<field name="notas" />		
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+
+	<!-- Accion del formulario -->
+	<record id="ct_rol_action" model="ir.actions.act_window">
+		<field name="name">ROL</field>
+		<field name="type">ir.actions.act_window</field>
+		<field name="res_model">ct.rol</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+	
+
+	<!-- menu de acceso -->
+	 <menuitem id="ct_rol_menu" name="Rol" parent="merp_config_menu" action="ct_rol_action" />
+
+</odoo>
