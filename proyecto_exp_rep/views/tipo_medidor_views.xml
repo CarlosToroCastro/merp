@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<!-- Vista de Busqueda -->
+	<record id="ct_tipo_medidor_search_view" model="ir.ui.view">
+		<field name="name">ct.tip_med.search</field>
+		<field name="model">ct.tip_med</field>
+		<field name="arch" type="xml">
+			<search>
+				<field name="code_inte" />	
+				<field name="name" />							
+			</search>
+		</field>
+
+	</record>
+
+	<!-- Vista Lista -->
+	<record id="ct_tipo_medidor_tree_view" model="ir.ui.view">
+		<field name="name">ct.tip_med.tree</field>
+		<field name="model">ct.tip_med</field>
+		<field name="arch" type="xml">
+			<tree>
+				<field name="code_inte" />	
+				<field name="name" />	
+			</tree>
+		</field>
+	</record>
+
+
+	<!-- Vista Formulario -->
+	<record id="ct_tipo_medidor_form_view" model="ir.ui.view">
+		<field name="name">ct.tip_med.form</field>
+		<field name="model">ct.tip_med</field>
+		<field name="arch" type="xml">
+			<form>
+				<sheet>
+					<group>
+							<field name="code_inte" />	
+							<field name="name" />	
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<!-- Accion del formulario -->
+	<record id="ct_tipo_medidor_action" model="ir.actions.act_window">
+		<field name="name">TIPO DE MEDIDOR</field>
+		<field name="type">ir.actions.act_window</field>
+		<field name="res_model">ct.tip_med</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+
+	<!-- menu de acceso -->
+	 <menuitem id="ct_tipo_medidor_menu" name="Tipo de Medidor" parent="merp_config_menu" action="ct_tipo_medidor_action" />
+
+</odoo>

@@ -18,20 +18,21 @@ class Nodo(models.Model):
 	#state = fields.Selection([('diseño', 'Diseño'), ('replanteo', 'Replanteo'), ('ejecucion', 'Ejecución')], default='diseño')
 
 
+
 class ActivoPosteNodo(models.Model):
 #realcion  entre activos y nodos. 
 	_name = 'ct.nodo.activo_poste'
 	_description = 'Activos que se encuentran en un nodo'
 
 
-	nodo1_id = fields.Many2one('ct.nodo', 'Nodo', required=True)
+	nodo1_id = fields.Many2one('ct.nodo', 'name', required=True)
 	a_poste_id = fields.Many2one('ct.activo_poste', 'Activo',  required=True)
-	name = fields.Char(related = 'a_poste_id.name')
-	state = fields.Selection([('nuevo', 'Nuevo'), ('reutilizado', 'Reutililizado'), ('Retirado', 'Retirado')], string='Estado')
+	tipo_activo_id = fields.Many2one(related='a_poste_id.tipo_activo_id')
+	
+	state = fields.Selection([('nuevo', 'Nuevo'), ('reutilizado', 'Reutililizado'), ('Retirado', 'Retirado')], string='Estado', required=True)
+	tarea = fields.Integer('Tarea', required=True)
 	notes = fields.Text('Observación')
 	m_obra_ids = fields.One2many('ct.m.obra_a.poste','a_poste_id',required=True)
-
-	#name_activoPoste = fields.Char(related='activoPoste_id.name')
 
 
 class MObraActivo(models.Model):
@@ -42,5 +43,5 @@ class MObraActivo(models.Model):
 
 
 	a_poste_id = fields.Many2one('ct.nodo.activo_poste', 'Activo', required=True)
-	product_id = fields.Many2one('product.template', 'Elemento', required=True)
+	product_id = fields.Many2one('product.template', 'Mano de obra', required=True)
 	cantidad = fields.Float('Cantidad', required=True)

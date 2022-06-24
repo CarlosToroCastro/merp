@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<!-- Vista de Busqueda -->
+	<record id="ct_medidor_search_view" model="ir.ui.view">
+		<field name="name">ct.medidor.search</field>
+		<field name="model">ct.medidor</field>
+		<field name="arch" type="xml">
+			<search>
+				<field name="name" />
+				<field name="marca_id" />
+				<field name="Tipo_Med_id" />	
+			</search>
+		</field>
+	</record>
+
+	<!-- Vista Lista -->
+	<record id="ct_medidor_tree_view" model="ir.ui.view">
+		<field name="name">ct.medidor.tree</field>
+		<field name="model">ct.medidor</field>
+		<field name="arch" type="xml">
+			<tree>
+				<field name="name" />
+				<field name="marca_id" />
+				<field name="Tipo_Med_id" />
+			</tree>
+		</field>
+	</record>	
+
+
+	<!-- Vista Formulario -->
+	<record id="ct_medidor_form_view" model="ir.ui.view">
+		<field name="name">ct.medidor.form</field>
+		<field name="model">ct.medidor</field>
+		<field name="arch" type="xml">
+			<form>
+				<sheet>
+					<group>
+						<field name="name" />
+						<field name="marca_id" options="{'no_create_edit': True, 'no_create': True}"/>
+						<field name="Tipo_Med_id" options="{'no_create_edit': True, 'no_create': True}"/>	
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<!-- Accion del formulario -->
+	<record id="ct_medidor_action" model="ir.actions.act_window">
+		<field name="name">Medidor</field>
+		<field name="type">ir.actions.act_window</field>
+		<field name="res_model">ct.medidor</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+
+	<!-- menu de acceso -->
+	 <menuitem id="ct_medidor_menu" name="Medidor" parent="merp_config_menu" action="ct_medidor_action" />
+
+</odoo>

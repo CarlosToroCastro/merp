@@ -42,7 +42,7 @@
 		<field name="arch" type="xml">
 			<form>
 				<sheet>
-					<group>
+					<group col="4">
 							<field name="name" />
 							<field name="tipo_proyecto_id" options="{'no_create_edit': True, 'no_create': True}" />
 							<field name="direccion" />
@@ -55,19 +55,29 @@
 							<field name="fecha_diseño" />
 							<field name="fecha_replanteo" />
 							<field name="fecha_ejecucion" />
-							
 							<field name="notas" />
+							<!--<field name="nodo_ids" invisible="1"/>-->
 					</group>
-					<group string="Equipo de Trabajo">
-						<field name="personal_ids" nolabel="1">
-							<tree editable="bottom">
-								<field name="rol" options="{'no_create_edit': True, 'no_create': True}"/>
-								<field name="partner_id" domain="[('parent_id', '!=', False), ('is_company', '=', False)]"/>
-								<field name="f_inicio" />
-								<field name="f_fin" />
-							</tree>
-						</field>
-					</group>
+
+					<notebook colspan="6" name="info_complementaria">
+						<page string="Equipo de Trabajo" name="equipo_trabajo">
+							<field name="personal_ids" nolabel="1">
+								<tree editable="bottom">
+									<field name="rol" options="{'no_create_edit': True, 'no_create': True}"/>
+									<field name="partner_id" domain="[('parent_id', '!=', False), ('is_company', '=', False)]"/>
+									<field name="f_inicio" />
+									<field name="f_fin" />
+								</tree>
+							</field>
+						</page>
+						<page string="Nodos" name="nodos">
+							<field name="nodo_ids" nolabel="1">
+								<field name="nodo_ids" />
+							</field>
+						</page>					
+
+					</notebook>					
+
 				</sheet>
 			</form>
 		</field>

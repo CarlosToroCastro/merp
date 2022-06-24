@@ -9,7 +9,7 @@
 			<search>
 				<field name="name" />
 				<field name="addres" />
-				<field name="medidor" />
+				<field name="medidor_id" />
 				<field name="notas" />								
 			</search>
 		</field>
@@ -23,7 +23,7 @@
 			<tree>
 				<field name="name" />
 				<field name="addres" />
-				<field name="medidor" />
+				<field name="medidor_id" />
 				<field name="notas" />	
 			</tree>
 		</field>
@@ -40,7 +40,7 @@
 					<group>
 						<field name="name" />
 						<field name="addres" />
-						<field name="medidor" />
+						<field name="medidor_id" />
 						<field name="notas" />	
 					</group>
 				</sheet>

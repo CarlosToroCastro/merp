@@ -11,11 +11,10 @@ class ActivoPoste(models.Model):
 	tipo_activo_id = fields.Many2one('ct.tipo_activo_electrico', string="Tipo Activo Eléctrico", required=True)
 	code_tipo_activo = fields.Char(related='tipo_activo_id.code')
 	name = fields.Char('Código', required=True)
-	tarea = fields.Integer('Tarea')
 	serie = fields.Char('Serie')
 	placa = fields.Char('Placa')
 	capacidad = fields.Char('Capacidad')
-	notas = fields.Text('Observación')
+	
 	
 	_sql_constraints = [
 		('activo_electrico_name_uniq', 'unique(name)', 'Información Repetida'),

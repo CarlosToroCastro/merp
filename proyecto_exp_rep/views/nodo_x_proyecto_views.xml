@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<!-- Vista de Busqueda -->
+	
+	<record id="ct_proyecto_nodo_search_view" model="ir.ui.view">
+		<field name="name">ct.proyecto_nodo.search</field>
+		<field name="model">ct.proyecto_nodo</field>
+		<field name="arch" type="xml">
+			<search>
+					<field name="nodo_id" />
+			</search>			
+		</field>
+	</record>
+
+	<!-- Vista Lista -->
+	<record id="ct_proyecto_nodo_tree_view" model="ir.ui.view">
+		<field name="name">ct.proyecto_nodo_poste.tree</field>
+		<field name="model">ct.proyecto_nodo</field>
+		<field name="arch" type="xml">
+			<tree>
+				<field name="nodo_id" />
+				<field name="direccion" />
+			</tree>
+		</field>
+	</record>	
+
+
+	<!-- Vista Formulario -->
+	<record id="ct_proyecto_nodo_view" model="ir.ui.view">
+		<field name="name">ct.proyecto_nodo.form</field>
+		<field name="model">ct.proyecto_nodo</field>
+		<field name="arch" type="xml">
+			<form>
+				<sheet>
+					<group string ="Nodos">
+						<field name="nodo_id" />
+						<field name="direccion" />
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<!-- Accion del formulario -->
+	<record id="ct_proyecto_nodo_action" model="ir.actions.act_window">
+		<field name="name">NODOS PROYECTO</field>
+		<field name="type">ir.actions.act_window</field>
+		<field name="res_model">ct.proyecto_nodo</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+
+	<!-- menu de acceso -->
+	 <menuitem id="ct_proyecto_nodo_menu" name="Nodos x proyecto" parent="merp_config_menu" action="ct_proyecto_nodo_action" />
+
+</odoo>

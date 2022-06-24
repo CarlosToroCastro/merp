@@ -32,28 +32,24 @@
 	</record>	
 
 <!-- Vista Formulario -->
-	<record id="ct_proyecto_form_view" model="ir.ui.view">
+	<record id="ct_nodo_form_view" model="ir.ui.view">
 		<field name="name">ct.nodo.form</field>
 		<field name="model">ct.nodo</field>
 		<field name="arch" type="xml">
 			<form>
 				<sheet>
-					<group>
+					<group string="Nodo">
 							<field name="name" />
 							<field name="gps_altura" />
 							<field name="gps_latitud" />
 							<field name="gps_longitud" />
 							<field name="direccion" />
 							<field name="notas"/>
+							<field name="activo_poste_ids" invisible="1"/>
 					</group>
-					<group string="Activos en Nodo">
+					<group string="Activo" >
 						<field name="activo_poste_ids" nolabel="1">
-							<tree editable="bottom">
-									<field name="a_poste_id" />
-									<field name="name" />
-									<field name="state"/>
-									<field name="notes"/>
-							</tree>
+							<field name="activo_poste_ids" />
 						</field>
 					</group>
 				</sheet>

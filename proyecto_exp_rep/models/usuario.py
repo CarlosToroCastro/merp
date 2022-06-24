@@ -32,8 +32,8 @@ class Medidor(models.Model):
 	_description = 'Caracteristicas del medidor'
 
 	name = fields.Char('Serie', required=True)
-	marca = fields.Many2one('ct.marca_med',string ='marca de medidor', required=True)
-	Tipo_Med = fields.Many2one('ct.tip_med',string ='Tipo de medidor', required=True)
+	marca_id = fields.Many2one('ct.marca_med',string ='Marca de medidor', required=True)
+	Tipo_Med_id = fields.Many2one('ct.tip_med',string ='Tipo de medidor', required=True)
 
 
 
@@ -47,4 +47,4 @@ class Usuario(models.Model):
 	name = fields.Char('Código NIU', required=True)
 	addres = fields.Char('Dirección', required=True)
 	notas = fields.Text('Observación')
-	medidor = fields.Many2one('ct.medidor', string='medidor', required=True)
+	medidor_id = fields.Many2one('ct.medidor', string='Medidor', required=True)

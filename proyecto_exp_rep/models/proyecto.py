@@ -35,11 +35,12 @@ class Proyecto(models.Model):
 	nivel_tension_id = fields.Many2one('ct.nivel_tension', string='Nivel tension',required=True)
 	contrato_id = fields.Many2one('ct.contrato', string='Contrato', required=True)
 	personal_ids = fields.One2many('ct.proyecto_personal', 'proyecto_id', string="Equipo de Trabajo")
-	fecha_diseño = fields.Date('Fecha inicio')
+	fecha_diseño = fields.Date('Fecha diseño')
 	fecha_replanteo = fields.Date('Fecha Replanteo')
 	fecha_ejecucion = fields.Date('Fecha Ejecución')
 	area = fields.Selection([('rural', 'Rural'), ('urbano', 'Urbano')], string='Área', required=True)
 	notas = fields.Text('Observación')
+	nodo_ids = fields.One2many('ct.proyecto_nodo', 'proyecto_id', string="Nodos")
 	#maniobras
 	#SEGUIMIENTO Y CONTROL 
 	#GPS
@@ -56,10 +57,20 @@ class ProyectoPersonal(models.Model):
 	_description = 'Personas que intervienen en el ciclo del proyecto'
 
 	proyecto_id = fields.Many2one('ct.proyecto', 'name')
-	rol = fields.Many2one('ct.rol', 'name')
+	rol = fields.Many2one('ct.rol', 'Rol')
 	partner_id = fields.Many2one('res.partner', 'Contacto')
 	f_inicio = fields.Date('Fecha de Inicio')
 	f_fin = fields.Date('Fecha de Fin')
+
+
+class ProyectoNodo(models.Model):
+
+	_name = 'ct.proyecto_nodo'
+	_description = 'Nodos incluidos en un proyecto'
+
+	proyecto_id = fields.Many2one('ct.proyecto', 'name')
+	nodo_id = fields.Many2one('ct.nodo', 'Nodo')
+	direccion = fields.Char(related="nodo_id.direccion")
 
 
 

@@ -20,3 +20,5 @@ proyecto_exp_rep.access_ct_tip_med,access_ct_tip_med,proyecto_exp_rep.model_ct_t
 proyecto_exp_rep.access_ct_marca_med,access_ct_marca_med,proyecto_exp_rep.model_ct_marca_med,base.group_user,1,1,1,0
 proyecto_exp_rep.access_ct_medidor,access_ct_medidor,proyecto_exp_rep.model_ct_medidor,base.group_user,1,1,1,0
 proyecto_exp_rep.access_ct_usuario,access_ct_usuario,proyecto_exp_rep.model_ct_usuario,base.group_user,1,1,1,0
+proyecto_exp_rep.access_ct_proyecto_nodo,access_ct_proyecto_nodo,proyecto_exp_rep.model_ct_proyecto_nodo,base.group_user,1,1,1,0
+proyecto_exp_rep.access_product_template_materiales,access_product_template_materiales,proyecto_exp_rep.model_product_template_materiales,base.group_user,1,1,1,1
