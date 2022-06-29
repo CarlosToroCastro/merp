@@ -25,8 +25,6 @@
 		'views/medidor_views.xml',
 		'views/usuario_views.xml',
 		'views/activo_x_nodo_views.xml',
-		'views/nodo_x_proyecto_views.xml',
-		
 	],
 	'installable': True,
 }

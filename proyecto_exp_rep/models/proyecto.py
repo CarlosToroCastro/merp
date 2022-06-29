@@ -8,7 +8,7 @@ class Rol(models.Model):
 	_name = 'ct.rol'
 	_description = 'Cargo que desempeñan las pesronas'
 
-	code = fields.Char('Cdigo interno', required=True)
+	code = fields.Char('Código interno', required=True)
 	name = fields.Char('Rol', required=True)
 	notas = fields.Char('Observación')
 
@@ -40,11 +40,11 @@ class Proyecto(models.Model):
 	fecha_ejecucion = fields.Date('Fecha Ejecución')
 	area = fields.Selection([('rural', 'Rural'), ('urbano', 'Urbano')], string='Área', required=True)
 	notas = fields.Text('Observación')
-	nodo_ids = fields.One2many('ct.proyecto_nodo', 'proyecto_id', string="Nodos")
+	nodo_ids = fields.One2many('ct.nodo', 'proyecto_id', string="Nodos")
 	#maniobras
 	#SEGUIMIENTO Y CONTROL 
 	#GPS
-
+    #NO CONFORMIDADES
 
 	_sql_constraints = [
 		('proyecto_name_uniq', 'unique(name)', 'El código del proyecto ya existe'),
@@ -63,14 +63,4 @@ class ProyectoPersonal(models.Model):
 	f_fin = fields.Date('Fecha de Fin')
 
 
-class ProyectoNodo(models.Model):
-
-	_name = 'ct.proyecto_nodo'
-	_description = 'Nodos incluidos en un proyecto'
-
-	proyecto_id = fields.Many2one('ct.proyecto', 'name')
-	nodo_id = fields.Many2one('ct.nodo', 'Nodo')
-	direccion = fields.Char(related="nodo_id.direccion")
-
-
-
+	

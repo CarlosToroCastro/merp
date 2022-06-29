@@ -15,6 +15,7 @@ class Nodo(models.Model):
 	direccion = fields.Char('Dirección', required=True)
 	notas = fields.Text('Observación')
 	activo_poste_ids = fields.One2many('ct.nodo.activo_poste','nodo1_id', string="Activos")
+	proyecto_id = fields.Many2one('ct.proyecto', 'name', required=True)
 	#state = fields.Selection([('diseño', 'Diseño'), ('replanteo', 'Replanteo'), ('ejecucion', 'Ejecución')], default='diseño')
 
 
@@ -28,7 +29,6 @@ class ActivoPosteNodo(models.Model):
 	nodo1_id = fields.Many2one('ct.nodo', 'name', required=True)
 	a_poste_id = fields.Many2one('ct.activo_poste', 'Activo',  required=True)
 	tipo_activo_id = fields.Many2one(related='a_poste_id.tipo_activo_id')
-	
 	state = fields.Selection([('nuevo', 'Nuevo'), ('reutilizado', 'Reutililizado'), ('Retirado', 'Retirado')], string='Estado', required=True)
 	tarea = fields.Integer('Tarea', required=True)
 	notes = fields.Text('Observación')
