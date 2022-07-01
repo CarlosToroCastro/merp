@@ -38,12 +38,12 @@
 			<form>
 				<sheet>
 					<group>
-						<field name="tipo_activo_id" />
+						<field name="tipo_activo_id" options="{'no_create_edit': True, 'no_create': True}" />
 						<field name="code_tipo_activo" invisible="1" />
 						<field name="name" />
 						<field name="serie" attrs="{'invisible': [('code_tipo_activo', '!=', 'transformador')]}"/> 
 						<field name="placa" attrs="{'invisible': [('code_tipo_activo', '!=', 'transformador')]}"/>
-						<field name="capacidad" />
+						<field name="capacidad" attrs="{'invisible': [('code_tipo_activo', '!=', 'transformador')]}"/>
 					</group>
 				</sheet>
 			</form>

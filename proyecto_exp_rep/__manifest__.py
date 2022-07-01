@@ -19,12 +19,14 @@
 		'views/activo_poste_views.xml',
 		'views/tipo_proyecto_views.xml',
 		'views/nodo_views.xml',
+		'views/seguimiento_control_views.xml',
 		'views/proyecto_views.xml',
 		'views/tipo_medidor_views.xml',
 		'views/marca_medidor_views.xml',
 		'views/medidor_views.xml',
 		'views/usuario_views.xml',
 		'views/activo_x_nodo_views.xml',
+		
 	],
 	'installable': True,
 }

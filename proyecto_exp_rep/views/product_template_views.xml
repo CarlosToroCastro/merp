@@ -11,19 +11,15 @@
         	</field>
 
             <xpath expr="//page[@name='general_information']" position="after">
-                 <page name="MER" string="M.E.R.">
+                 <page name="MERP" string="M.E.R.P.">
                     <group>
-                        <field name="nivel_tesion_id" widget="many2many_tags"/>
                         <field name="tipo_activo_id" />
                         <field name="tipo_obra_id" />                        
                     </group>
-                    <group string="Materiales">
-                        <field name="material_ids">
+                    <group string="Estructura">
+                        <field name="estructura_ids">
                             <tree editable="bottom">
-                                <field name="material_id" />
-                                <field name="cantidad" />
-                                <field name="ubicacion" />
-                                <field name="tipo" />
+                                <field name="estructura_id" />
                             </tree>
                         </field>
                     </group>
@@ -31,5 +27,4 @@
             </xpath>
         </field>
     </record>
-
 </odoo>

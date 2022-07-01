@@ -12,7 +12,7 @@ class Estructura(models.Model):
 	descripcion = fields.Text('Descripción', required=True)
 	familia = fields.Char('Familia', required=True) #centro, bandera, semibandera, H....
 	tipo = fields.Selection([('retencion', 'Retención'), ('suspension', 'Suspensión')], string='Tipo Estructura',required=True)
-	nivel_tension_id = fields.Many2one('ct.nivel_tension', string='Nivel tension',required=True)
+	nivel_tension_id = fields.Many2many('ct.nivel_tension', string='Nivel tensión', required=True)
 	materiales_ids = fields.One2many('ct.materiales_estructura', 'estructura_id', string="Material de la estructura")
 	
 	

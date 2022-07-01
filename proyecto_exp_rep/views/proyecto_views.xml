@@ -13,7 +13,7 @@
 
 	</record>
 
-	<!-- Vista Lista -->
+	<!-- Vista Lista  -->
 	<record id="ct_proyecto_tree_view" model="ir.ui.view">
 		<field name="name">ct.proyecto.tree</field>
 		<field name="model">ct.proyecto</field>
@@ -29,7 +29,6 @@
 				<field name="fecha_diseño" optional="hide"/>
 				<field name="fecha_replanteo" optional="hide"/>
 				<field name="fecha_ejecucion" optional="hide"/>
-			
 				<field name="notas" optional="hide"/>
 			</tree>
 		</field>
@@ -56,7 +55,6 @@
 							<field name="fecha_replanteo" />
 							<field name="fecha_ejecucion" />
 							<field name="notas" />
-							<!--<field name="nodo_ids" invisible="1"/>-->
 					</group>
 
 					<notebook colspan="6" name="info_complementaria">
@@ -74,7 +72,25 @@
 							<field name="nodo_ids" nolabel="1">
 								<field name="nodo_ids" />
 							</field>
-						</page>					
+						</page>
+
+						<page string="Seguimiento y Control" name="Visitas">
+							<field name="seg_cont_ids" nolabel="1">
+								<field name="seg_cont_ids" />
+							</field>
+						</page>	
+
+
+
+						<page string="Maniobras" name="maniobra">
+							<field name="maniobras_ids" nolabel="1">
+								<tree editable="bottom">
+									<field name="activo" />
+									<field name="accion" />
+									<field name="notas" />
+								</tree>
+							</field>
+						</page>
 
 					</notebook>					
 

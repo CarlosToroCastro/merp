@@ -5,11 +5,11 @@ from odoo import api, fields, models
 class NivelTension(models.Model):
 
 	_name = 'ct.nivel_tension'
-	_description = 'Nivel de Tensión' #ATC, PQR, Inversión, RP 
+	_description = 'Nivel de Tensión' 
 
 
 	code = fields.Char('Codigo Interno', required=True)
-	name = fields.Char('Nivel de Tensión', required=True) #ATC, PQR, Inversión, RP 	
+	name = fields.Char('Nivel de Tensión', required=True) 	
 	notas = fields.Text('Observación')
 	
 	_sql_constraints = [

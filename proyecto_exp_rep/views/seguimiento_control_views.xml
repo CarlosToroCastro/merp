@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<!-- Vista de Busqueda -->
+	<record id="ct_seguimiento_control_search_view" model="ir.ui.view">
+		<field name="name">ct.seguimiento_control.search</field>
+		<field name="model">ct.seguimiento_control</field>
+		<field name="arch" type="xml">
+			<search>
+				<field name="f_visita" />
+				<field name="notas" />							
+			</search>
+		</field>
+
+	</record>
+
+
+
+	<!-- Vista Lista -->
+	<record id="ct_seguimiento_control_tree_view" model="ir.ui.view">
+		<field name="name">ct.seguimiento_control.tree</field>
+		<field name="model">ct.seguimiento_control</field>
+		<field name="arch" type="xml">
+			<tree>
+				<field name="f_visita" />
+				<field name="notas" optional="hide"/>
+				<field name="notas1" optional="hide"/>
+				<field name="notas2" optional="hide"/> 
+			</tree>
+		</field>
+	</record>	
+
+<!-- Vista Formulario -->
+	<record id="ct_seguimiento_control_form_view" model="ir.ui.view">
+		<field name="name">ct.seguimiento_control.form</field>
+		<field name="model">ct.seguimiento_control</field>
+		<field name="arch" type="xml">
+			<form>
+				<sheet>
+					<group string="Seguimiento y control">
+							<field name="f_visita" />
+							<field name="notas" />
+							<field name="notas1" />
+							<field name="notas2" />
+								
+					</group>
+					<group string="Involucrados" >
+						<field name="personal_ids" nolabel="1">
+							<tree editable ="bottom">
+								<field name="partner_id" domain="[('parent_id', '!=', False), ('is_company', '=', False)]"/>
+								<field name="rol" />
+							</tree>
+						</field>
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+
+<!-- Accion del formulario -->
+	<record id="ct_seguimiento_control_action" model="ir.actions.act_window">
+		<field name="name">SEGUIMIENTO Y CONTROL</field>
+		<field name="type">ir.actions.act_window</field>
+		<field name="res_model">ct.seguimiento_control</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+
+	<!-- menu de acceso -->
+	 <menuitem id="ct_seguimiento_control_menu" name="Segumiento y control" parent="merp_config_menu" action="ct_seguimiento_control_action" />
+
+</odoo>
