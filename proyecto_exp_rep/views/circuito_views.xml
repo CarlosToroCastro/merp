@@ -39,8 +39,8 @@
 					<group>
 						<field name="codigo" />
 						<field name="name" />
-						<field name="city_id" />
-						<field name="subestacion_id" />
+						<field name="city_id" options="{'no_create_edit': True, 'no_create': True}"/>
+						<field name="subestacion_id" options="{'no_create_edit': True, 'no_create': True}"/>
 						<field name="notas" />
 					</group>
 				</sheet>

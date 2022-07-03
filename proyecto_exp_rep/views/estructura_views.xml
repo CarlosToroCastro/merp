@@ -44,7 +44,7 @@
 							<field name="descripcion" />
 							<field name="familia" />
 							<field name="tipo" />
-							<field name="nivel_tension_id" widget="many2many_tags"/>
+							<field name="nivel_tension_id" widget="many2many_tags"  options="{'no_create_edit': True, 'no_create': True}"/>
 						</group>
 
 						<group string="Materiales de estructura">

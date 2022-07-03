@@ -13,7 +13,7 @@ class ActivoPoste(models.Model):
 	name = fields.Char('Código', required=True)
 	serie = fields.Char('Serie')
 	placa = fields.Char('Placa')
-	capacidad = fields.Char('Capacidad')
+	capacidad = fields.Char('Potencia nominal')
 	
 	
 	_sql_constraints = [

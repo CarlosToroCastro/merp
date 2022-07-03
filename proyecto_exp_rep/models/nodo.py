@@ -9,7 +9,7 @@ class Nodo(models.Model):
 
 
 	name = fields.Char('Nodo', required=True)
-	gps_altura = fields.Float('Altura')
+	gps_altura = fields.Float('Altitud m.s.n.m')
 	gps_latitud = fields.Float('Latitud')
 	gps_longitud =fields.Float('Longitud')
 	direccion = fields.Char('Dirección', required=True)

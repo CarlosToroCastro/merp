@@ -13,7 +13,7 @@
             <xpath expr="//page[@name='general_information']" position="after">
                  <page name="MERP" string="M.E.R.P.">
                     <group>
-                        <field name="tipo_activo_id" />
+                        <field name="tipo_activo_id" widget="many2many_tags" />
                         <field name="tipo_obra_id" />                        
                     </group>
                     <group string="Estructura">

@@ -19,7 +19,8 @@
 		<field name="name">ct.nivel_tension.tree</field>
 		<field name="model">ct.nivel_tension</field>
 		<field name="arch" type="xml">
-			<tree>
+			<tree editable="bottom">
+				<field name="code"/>
 				<field name="name" />	
 				<field name="notas" />
 			</tree>
@@ -27,7 +28,7 @@
 	</record>
 
 
-	<!-- Vista Formulario -->
+	<!-- Vista Formulario 
 	<record id="ct_nivel_tension_form_view" model="ir.ui.view">
 		<field name="name">ct.nivel_tension.form</field>
 		<field name="model">ct.nivel_tension</field>
@@ -42,7 +43,7 @@
 				</sheet>
 			</form>
 		</field>
-	</record>
+	</record>-->
 
 	<!-- Accion del formulario -->
 	<record id="ct_nivel_tension_action" model="ir.actions.act_window">

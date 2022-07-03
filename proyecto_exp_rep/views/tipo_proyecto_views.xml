@@ -19,7 +19,8 @@
 		<field name="name">ct.tipo_proyecto.tree</field>
 		<field name="model">ct.tipo_proyecto</field>
 		<field name="arch" type="xml">
-			<tree>
+			<tree editable="bottom" >
+				<field name="code" />
 				<field name="tipo_proyecto" />	
 				<field name="notas" />
 			</tree>
@@ -27,7 +28,7 @@
 	</record>
 
 
-	<!-- Vista Formulario -->
+	<!-- Vista Formulario 
 	<record id="ct_tipo_proyecto_form_view" model="ir.ui.view">
 		<field name="name">ct.tipo_proyecto.form</field>
 		<field name="model">ct.tipo_proyecto</field>
@@ -42,7 +43,7 @@
 				</sheet>
 			</form>
 		</field>
-	</record>
+	</record>-->
 
 	<!-- Accion del formulario -->
 	<record id="ct_tipo_proyecto_action" model="ir.actions.act_window">

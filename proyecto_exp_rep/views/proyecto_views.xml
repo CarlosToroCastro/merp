@@ -48,7 +48,7 @@
 							<field name="city_id" options="{'no_create_edit': True, 'no_create': True}" />
 							<field name="circuito_id" options="{'no_create_edit': True, 'no_create': True}"/>
 							<field name="subestacion_id" attrs="{'invisible': [('circuito_id', '=', False)]}" />
-							<field name="area" options="{'no_create_edit': True, 'no_create': True}"/>
+							<field name="area" />
 							<field name="nivel_tension_id" options="{'no_create_edit': True, 'no_create': True}" />
 							<field name="contrato_id" options="{'no_create_edit': True, 'no_create': True}" />
 							<field name="fecha_diseño" />
