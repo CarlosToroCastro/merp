@@ -25,10 +25,10 @@ class TipoAtivoElectrico(models.Model):
 
 	_name = 'ct.tipo_activo_electrico'
 	_description = 'Ingresan los tipos de equipos electricos utilizados en MT y BT' 
-
 	
-	name = fields.Char('Nombre', required=True)
-	code = fields.Char('Codigo Interno', required=True) 	
+	code = fields.Char('Codigo Interno', required=True) 
+	name = fields.Char('Nombre', required=True)	
+	nivel_tension_id = fields.Many2many('ct.nivel_tension', string='Nivel Tensión',required=True)
 	notas = fields.Text('Observación')
 
 	_sql_constraints = [

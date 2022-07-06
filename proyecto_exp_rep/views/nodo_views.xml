@@ -45,7 +45,7 @@
 							<field name="gps_longitud" />
 							<field name="direccion" />
 							<field name="notas"/>
-							<field name="activo_poste_ids" invisible="1"/>
+							<!--<field name="activo_poste_ids" invisible="1"/>-->
 					</group>
 					<group string="Activo" >
 						<field name="activo_poste_ids" nolabel="1">

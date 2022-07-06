@@ -32,16 +32,18 @@ class ActivoPosteNodo(models.Model):
 	state = fields.Selection([('nuevo', 'Nuevo'), ('reutilizado', 'Reutililizado'), ('Retirado', 'Retirado')], string='Estado', required=True)
 	tarea = fields.Integer('Tarea', required=True)
 	notes = fields.Text('Observación')
-	m_obra_ids = fields.One2many('ct.m.obra_a.poste','a_poste_id',required=True)
+	product_ids = fields.One2many('product_activo','a_poste_id',required=True)
+	
 
 
-class MObraActivo(models.Model):
+class productActivo(models.Model):
 	#cantidad de mano de obra que se puede realizar en un activo.
 
-	_name = 'ct.m.obra_a.poste' 
-	_description = 'Mano de obra utilizada en un activo'
+	_name = 'product_activo' 
+	_description = 'Mano de obra y materiales que se utilizada en un activo'
 
 
 	a_poste_id = fields.Many2one('ct.nodo.activo_poste', 'Activo', required=True)
-	product_id = fields.Many2one('product.template', 'Mano de obra', required=True)
+	product_id = fields.Many2one('product.template',string='Producto', required=True)
 	cantidad = fields.Float('Cantidad', required=True)
+	tipo_product = fields.Selection([('mo', 'MO'), ('nuevo', 'Nuevo'), ('retirado', 'Retirado'),('reutilizado','Reutilizado')], required=True)
