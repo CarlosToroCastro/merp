@@ -9,7 +9,9 @@ from . import activo_poste
 from . import activo_red
 from . import contrato
 from . import tipo_proyecto
+from . import luminaria
 from . import estructura
 from . import nodo
 from . import proyecto
 from . import usuario
+

@@ -79,7 +79,6 @@ class SeguimientoControl(models.Model):
 
 
 
-
 class PersonalVisita(models.Model):
 
 	_name = 'ct.personal_visita'

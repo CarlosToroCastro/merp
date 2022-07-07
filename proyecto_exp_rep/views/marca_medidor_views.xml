@@ -19,7 +19,7 @@
 		<field name="name">ct.marca_med.tree</field>
 		<field name="model">ct.marca_med</field>
 		<field name="arch" type="xml">
-			<tree>
+			<tree editable="bottom">
 				<field name="code_inte" />	
 				<field name="name" />	
 			</tree>
@@ -27,7 +27,7 @@
 	</record>
 
 
-	<!-- Vista Formulario -->
+	<!-- Vista Formulario 
 	<record id="ct_marca_medidor_form_view" model="ir.ui.view">
 		<field name="name">ct.marca_med.form</field>
 		<field name="model">ct.marca_med</field>
@@ -41,7 +41,7 @@
 				</sheet>
 			</form>
 		</field>
-	</record>
+	</record>-->
 
 	<!-- Accion del formulario -->
 	<record id="ct_marca_medidor_action" model="ir.actions.act_window">

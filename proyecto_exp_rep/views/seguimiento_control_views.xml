@@ -47,8 +47,8 @@
 					<group string="Involucrados" >
 						<field name="personal_ids" nolabel="1">
 							<tree editable ="bottom">
-								<field name="partner_id" domain="[('parent_id', '!=', False), ('is_company', '=', False)]"/>
-								<field name="rol" />
+								<field name="partner_id" domain="[('parent_id', '!=', False), ('is_company', '=', False)]" options="{'no_create_edit': True, 'no_create': True}"/>
+								<field name="rol" options="{'no_create_edit': True, 'no_create': True}"/>
 							</tree>
 						</field>
 					</group>

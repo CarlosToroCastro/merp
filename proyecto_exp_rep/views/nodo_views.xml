@@ -38,20 +38,35 @@
 		<field name="arch" type="xml">
 			<form>
 				<sheet>
-					<group string="Nodo" col="4">
+					<group string="Nodo" col="6">
 							<field name="name" />
-							<field name="gps_altura" />
-							<field name="gps_latitud" />
 							<field name="gps_longitud" />
+							<field name="gps_latitud" />
+							<field name="gps_altura" />
 							<field name="direccion" />
 							<field name="notas"/>
 							<!--<field name="activo_poste_ids" invisible="1"/>-->
 					</group>
-					<group string="Activo" >
-						<field name="activo_poste_ids" nolabel="1">
-							<field name="activo_poste_ids" />
-						</field>
-					</group>
+
+					<notebook colspan="6" name="info_complementaria">
+						<page string="Activos" name="activos">
+							<field name="activo_poste_ids" nolabel="1">
+								<field name="activo_poste_ids" />
+							</field>
+						</page>
+						<page string="Luminaria" name="luminaria" >
+							<field name="luminaria_ids" nolabel="1">
+								<field name="luminaria_ids" />
+							</field>
+						</page>
+						<page string="Usuarios" name="usuarios" >
+							<field name="usuario_ids" nolabel="1">
+								<field name="usuario_ids" />
+							</field>
+						</page>
+
+					</notebook>
+					
 				</sheet>
 			</form>
 		</field>

@@ -20,7 +20,7 @@
 		<field name="name">ct.usuario.tree</field>
 		<field name="model">ct.usuario</field>
 		<field name="arch" type="xml">
-			<tree>
+			<tree editable="bottom">
 				<field name="name" />
 				<field name="addres" />
 				<field name="medidor_id" />
@@ -30,7 +30,7 @@
 	</record>	
 
 
-	<!-- Vista Formulario -->
+	<!-- Vista Formulario 
 	<record id="ct_usuario_form_view" model="ir.ui.view">
 		<field name="name">ct.usuario.form</field>
 		<field name="model">ct.usuario</field>
@@ -46,7 +46,7 @@
 				</sheet>
 			</form>
 		</field>
-	</record>
+	</record>-->
 
 	<!-- Accion del formulario -->
 	<record id="ct_usuario_action" model="ir.actions.act_window">

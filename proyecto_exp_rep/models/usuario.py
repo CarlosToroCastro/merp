@@ -48,3 +48,4 @@ class Usuario(models.Model):
 	addres = fields.Char('Dirección', required=True)
 	notas = fields.Text('Observación')
 	medidor_id = fields.Many2one('ct.medidor', string='Medidor', required=True)
+	nodo_id = fields.Many2one('ct.nodo', 'name', required=True)

@@ -26,6 +26,10 @@
 		'views/medidor_views.xml',
 		'views/usuario_views.xml',
 		'views/activo_x_nodo_views.xml',
+		'views/tipo_luminaria_views.xml',
+		'views/pot_luminaria_views.xml',
+		'views/luminaria_views.xml',
+
 		
 	],
 	'installable': True,
