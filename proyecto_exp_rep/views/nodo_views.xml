@@ -37,6 +37,11 @@
 		<field name="model">ct.nodo</field>
 		<field name="arch" type="xml">
 			<form>
+
+				<header>
+					<button name="btn_replanteo" string="Pasar a Replanteo" type="object"/>
+					<field name="state" widget="statusbar"/>
+				</header>
 				<sheet>
 					<group string="Nodo" col="6">
 							<field name="name" />
@@ -50,7 +55,7 @@
 
 					<notebook colspan="6" name="info_complementaria">
 						<page string="Activos" name="activos">
-							<field name="activo_poste_ids" nolabel="1">
+							<field name="activo_poste_ids" nolabel="1" domain="[('state', '=', 'replanteo')]">
 								<field name="activo_poste_ids" />
 							</field>
 						</page>

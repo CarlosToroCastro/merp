@@ -20,7 +20,7 @@ class MarcaMedi(models.Model):
 
 
 
-	code_inte = fields.Char('código interno', required=True)
+	code_inte = fields.Char('Código interno', required=True)
 	name = fields.Char('Marca de medidor', required=True)
 
 

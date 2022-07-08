@@ -3,26 +3,26 @@
 
 	<!-- Vista de Busqueda -->
 	
-	<record id="ct_nodo_activo_poste_search_view" model="ir.ui.view">
-		<field name="name">ct.nodo.activo_poste.search</field>
-		<field name="model">ct.nodo.activo_poste</field>
+	<record id="ct_nodo_activo_search_view" model="ir.ui.view">
+		<field name="name">ct.nodo_activo.search</field>
+		<field name="model">ct.nodo_activo</field>
 		<field name="arch" type="xml">
 			<search>
 					<field name="a_poste_id" />
-					<field name="state"/>
+					<field name="state1"/>
 					<field name= "tarea" />
 			</search>			
 		</field>
 	</record>
 
 	<!-- Vista Lista -->
-	<record id="ct_nodo_activo_poste_tree_view" model="ir.ui.view">
-		<field name="name">ct.nodo.activo_poste.tree</field>
-		<field name="model">ct.nodo.activo_poste</field>
+	<record id="ct_nodo_activo_tree_view" model="ir.ui.view">
+		<field name="name">ct.nodo_activo.tree</field>
+		<field name="model">ct.nodo_activo</field>
 		<field name="arch" type="xml">
 			<tree>
 				<field name="a_poste_id" />
-				<field name="state"/>
+				<field name="state1"/>
 				<field name= "tarea" />
 				<field name="notes"/>
 			</tree>
@@ -31,16 +31,16 @@
 
 
 	<!-- Vista Formulario -->
-	<record id="ct_nodo_activo_posteform_view" model="ir.ui.view">
-		<field name="name">ct.nodo.activo_poste.form</field>
-		<field name="model">ct.nodo.activo_poste</field>
+	<record id="ct_nodo_activo_form_view" model="ir.ui.view">
+		<field name="name">ct.nodo_activo.form</field>
+		<field name="model">ct.nodo_activo</field>
 		<field name="arch" type="xml">
 			<form>
 				<sheet>
 					<group string ="Activos">
 						<field name="a_poste_id" />
 						<field name="tipo_activo_id" />
-						<field name="state"/>
+						<field name="state1"/>
 						<field name= "tarea" />
 						<field name="notes"/>
 						<!--<field name="m_obra_ids" invisible="1"/> -->
@@ -54,7 +54,8 @@
 							</tree>
 						</field>
 					</group>
-					<group string="Material nuevo">
+
+				<!--	<group string="Material nuevo">
 						<field name="product_ids" nolabel="1">
 							<tree editable="buttom">
 								<field name ="product_id"   options="{'no_create_edit': True, 'no_create': True}"/>
@@ -81,20 +82,21 @@
 							</tree>
 						</field>
 					</group>
+				-->
 				</sheet>
 			</form>
 		</field>
 	</record>
 
 	<!-- Accion del formulario -->
-	<record id="ct_nodo_activo_poste_action" model="ir.actions.act_window">
+	<record id="ct_nodo_activo_action" model="ir.actions.act_window">
 		<field name="name">ACTIVOS NODO</field>
 		<field name="type">ir.actions.act_window</field>
-		<field name="res_model">ct.nodo.activo_poste</field>
+		<field name="res_model">ct.nodo_activo</field>
 		<field name="view_mode">tree,form</field>
 	</record>
 
 	<!-- menu de acceso -->
-	 <menuitem id="ct_nodo_activo_poste_menu" name="Activos x nodo" parent="merp_config_menu" action="ct_nodo_activo_poste_action" />
+	 <menuitem id="ct_nodo_activo_menu" name="Activos x nodo" parent="merp_config_menu" action="ct_nodo_activo_action" />
 
 </odoo>
