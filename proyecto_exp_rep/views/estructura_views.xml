@@ -50,7 +50,7 @@
 						<group string="Materiales de estructura">
 						<field name="materiales_ids" nolabel="1">
 							<tree editable="bottom">
-								<field name="product_id" domain="[('detailed_type', '!=', 'service')]" options="{'no_create_edit': True, 'no_create': True}" />
+								<field name="product_id" domain="[('detailed_type', '=', 'product')]" options="{'no_create_edit': True, 'no_create': True}" />
 								<field name="cantidad" />
 							</tree>
 						</field>

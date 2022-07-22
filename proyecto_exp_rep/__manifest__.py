@@ -17,6 +17,7 @@
 		'views/contrato_views.xml',
 		'views/tipo_activo_electrico_views.xml',
 		'views/activo_poste_views.xml',
+		#'views/activo_red_views.xml',
 		'views/tipo_proyecto_views.xml',
 		'views/nodo_views.xml',
 		'views/seguimiento_control_views.xml',
@@ -29,6 +30,7 @@
 		'views/tipo_luminaria_views.xml',
 		'views/pot_luminaria_views.xml',
 		'views/luminaria_views.xml',
+		'views/pot_trans_views.xml',
 
 		
 	],

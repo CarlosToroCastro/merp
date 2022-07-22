@@ -22,6 +22,7 @@
 		<field name="arch" type="xml">
 			<tree>
 				<field name="name" />
+				<field name="name2" /> 
 				<field name="gps_altura" optional="hide"/>
 				<field name="gps_latitud" optional="hide" />
 				<field name="gps_longitud" optional="hide"/>
@@ -39,18 +40,19 @@
 			<form>
 
 				<header>
-					<button name="btn_replanteo" string="Pasar a Replanteo" type="object"/>
-					<field name="state" widget="statusbar"/>
+					<button name="btn_replanteo" class="oe_highlight" string="Pasar a Replanteo" type="object" states="diseño"/>
+					<field name="state" widget="statusbar" options="{'clickable': True, 'fold_field': 'fold'}"/>
 				</header>
 				<sheet>
-					<group string="Nodo" col="6">
+					<group string="Nodo" col="4">
 							<field name="name" />
+							<field name="name2" attrs="{'invisible': [('tipo_activo_id', '!=', 'red')]}" />
 							<field name="gps_longitud" />
 							<field name="gps_latitud" />
 							<field name="gps_altura" />
 							<field name="direccion" />
 							<field name="notas"/>
-							<!--<field name="activo_poste_ids" invisible="1"/>-->
+							<field name="tipo_activo_id" />
 					</group>
 
 					<notebook colspan="6" name="info_complementaria">
@@ -59,12 +61,12 @@
 								<field name="activo_poste_ids" />
 							</field>
 						</page>
-						<page string="Luminaria" name="luminaria" >
+						<page string="Luminaria" name="luminaria" attrs="{'invisible': [('state', '!=', 'ejecucion')]}">
 							<field name="luminaria_ids" nolabel="1">
 								<field name="luminaria_ids" />
 							</field>
 						</page>
-						<page string="Usuarios" name="usuarios" >
+						<page string="Usuarios" name="usuarios" attrs="{'invisible': [('state', '!=', 'ejecucion')]}">
 							<field name="usuario_ids" nolabel="1">
 								<field name="usuario_ids" />
 							</field>

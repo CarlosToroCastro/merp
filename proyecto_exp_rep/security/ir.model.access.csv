@@ -14,7 +14,6 @@ proyecto_exp_rep.access_ct_proyecto,access_ct_proyecto,proyecto_exp_rep.model_ct
 proyecto_exp_rep.access_ct_proyecto_personal,access_ct_proyecto_personal,proyecto_exp_rep.model_ct_proyecto_personal,base.group_user,1,1,1,0
 proyecto_exp_rep.access_ct_nodo_activo,access_ct_nodo_activo,proyecto_exp_rep.model_ct_nodo_activo,base.group_user,1,1,1,1
 proyecto_exp_rep.access_ct_nodo,access_ct_nodo,proyecto_exp_rep.model_ct_nodo,base.group_user,1,1,1,1
-
 proyecto_exp_rep.access_ct_rol,access_ct_rol,proyecto_exp_rep.model_ct_rol,base.group_user,1,1,1,0
 proyecto_exp_rep.access_ct_tip_med,access_ct_tip_med,proyecto_exp_rep.model_ct_tip_med,base.group_user,1,1,1,0
 proyecto_exp_rep.access_ct_marca_med,access_ct_marca_med,proyecto_exp_rep.model_ct_marca_med,base.group_user,1,1,1,0
@@ -27,3 +26,8 @@ proyecto_exp_rep.access_product_template_estructura,access_product_template_estr
 proyecto_exp_rep.access_ct_tipo_lumi,access_ct_tipo_lumi,proyecto_exp_rep.model_ct_tipo_lumi,base.group_user,1,1,1,0
 proyecto_exp_rep.access_ct_pot_lumi,access_ct_pot_lumi,proyecto_exp_rep.model_ct_pot_lumi,base.group_user,1,1,1,0
 proyecto_exp_rep.access_ct_luminaria,access_ct_luminaria,proyecto_exp_rep.model_ct_luminaria,base.group_user,1,1,1,1
+proyecto_exp_rep.access_ct_product_activo,access_ct_product_activo,proyecto_exp_rep.model_ct_product_activo,base.group_user,1,1,1,1
+proyecto_exp_rep.access_product_activo,access_product_activo,proyecto_exp_rep.model_product_activo,base.group_user,1,1,1,1
+proyecto_exp_rep.access_ct_nodo_activo_poste,access_ct_nodo_activo_poste,proyecto_exp_rep.model_ct_nodo_activo_poste,base.group_user,1,1,1,1
+proyecto_exp_rep.access_ct_pot_trans,access_ct_pot_trans,proyecto_exp_rep.model_ct_pot_trans,base.group_user,1,1,1,1
+proyecto_exp_rep.access_ct_des_red,access_ct_des_red,proyecto_exp_rep.model_ct_des_red,base.group_user,1,1,1,1

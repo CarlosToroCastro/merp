@@ -23,7 +23,7 @@
 				<field name="tipo_activo_id" />
 				<field name="name" />
 				<field name="placa" />
-				<field name="capacidad" optional="show"/>
+				<field name="potencia" optional="show"/>
 			</tree>
 		</field>
 	</record>
@@ -43,7 +43,9 @@
 						<field name="name" />
 						<field name="serie" attrs="{'invisible': [('code_tipo_activo', '!=', 'transformador')]}"/> 
 						<field name="placa" attrs="{'invisible': [('code_tipo_activo', '!=', 'transformador')]}"/>
-						<field name="capacidad" attrs="{'invisible': [('code_tipo_activo', '!=', 'transformador')]}"/>
+						<field name="potencia" attrs="{'invisible': [('code_tipo_activo', '!=', 'transformador')]}"/>
+						<field name="voltaje" attrs="{'invisible': [('code_tipo_activo', '!=', 'transformador')]}"/>
+						<field name="tipo" attrs="{'invisible': [('code_tipo_activo', '!=', 'transformador')]}"/>
 					</group>
 				</sheet>
 			</form>

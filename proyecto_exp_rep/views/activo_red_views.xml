@@ -9,21 +9,23 @@
 			<search>
 				<field name="name" />	
 				<field name="name2" />		
-				<field name="distancia " />	
+				<field name="distancia" />	
+				<field name="nivel_tension_id"/>
 			</search>
 		</field>
 	</record>
 
 
 	<!-- Vista Formulario -->
-	<record id="ct_activo_poste_tree_view" model="ir.ui.view">
+	<record id="ct_activo_red_tree_view" model="ir.ui.view">
 		<field name="name">ct.activo_red.tree</field>
 		<field name="model">ct.activo_red</field>
 		<field name="arch" type="xml">
 			<tree>
 				<field name="name" />	
 				<field name="name2" />		
-				<field name="distancia " />	
+				<field name="distancia" />
+				<field name="nivel_tension_id"/>	
 			</tree>
 		</field>
 	</record>
@@ -34,13 +36,14 @@
 	<record id="ct_activo_red_form_view" model="ir.ui.view">
 		<field name="name">ct.activo_red.form</field>
 		<field name="model">ct.activo_red</field>
-		<field name="arch" type="xml">
+		<field name="arch" type="xml" >
 			<form>
 				<sheet>
-					<group>
+					<group col="4">
 						<field name="name" />	
 						<field name="name2" />		
-						<field name="distancia " />	
+						<field name="distancia" />
+						<field name="nivel_tension_id" />	
 					</group>
 				</sheet>
 			</form>
@@ -48,15 +51,15 @@
 	</record>
 
 	<!-- Accion del formulario -->
-	<record id="ct_activo_poste_action" model="ir.actions.act_window">
+	<record id="ct_activo_red_action" model="ir.actions.act_window">
 		<field name="name">RED</field>
 		<field name="type">ir.actions.act_window</field>
-		<field name="res_model">ct.activo_poste</field>
+		<field name="res_model">ct.activo_red</field>
 		<field name="view_mode">tree,form</field>
 	</record>
 
 <!-- menu de acceso -->
-	 <menuitem id="ct_activo_poste_menu" name="Activo Electrico en Poste" parent="merp_config_menu" action="ct_activo_poste_action" />
+	 <menuitem id="ct_activo_red_menu" name="Red" parent="merp_config_menu" action="ct_activo_red_action" />
 
 </odoo>
 

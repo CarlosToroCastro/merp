@@ -25,6 +25,7 @@
 				<field name="state1"/>
 				<field name= "tarea" />
 				<field name="notes"/>
+				<field name= "state" />
 			</tree>
 		</field>
 	</record>	
@@ -37,20 +38,23 @@
 		<field name="arch" type="xml">
 			<form>
 				<sheet>
+					<field name="can_edit" invisible="1" />
 					<group string ="Activos">
-						<field name="a_poste_id" />
-						<field name="tipo_activo_id" />
-						<field name="state1"/>
-						<field name= "tarea" />
-						<field name="notes"/>
-						<!--<field name="m_obra_ids" invisible="1"/> -->
+						<field name="a_poste_id" attrs="{'readonly': [('can_edit', '=', False)]}"/>
+						<field name="tipo_activo_id" attrs="{'readonly': [('can_edit', '=', False)]}"/>
+						<field name="state1" attrs="{'readonly': [('can_edit', '=', False)]}"/>
+						<field name= "tarea" attrs="{'readonly': [('can_edit', '=', False)]}"/>
+						<field name="notes" attrs="{'readonly': [('can_edit', '=', False)]}"/>
+						<field name= "state" attrs="{'readonly': [('can_edit', '=', False)]}"/>
 					</group>
 
 					<group string="Mano de obra">
-						<field name="product_ids" nolabel="1">
-							<tree editable="buttom">
-								<field name ="product_id" domain="[('tipo_activo_id', '=', parent.tipo_activo_id)]" options="{'no_create_edit': True, 'no_create': True}"/>
+						<field name="product_ids" nolabel="1" attrs="{'readonly': [('can_edit', '=', False)]}" domain="[('state', '=', 'replanteo')]">
+							<tree editable="buttom">								
+								<field name = "product_id" domain="[('tipo_activo_ids', '=', parent.tipo_activo_id)]"></field>
 								<field name ="cantidad" />
+								<field name ="tipo_product" />
+								<field name="state" invisible="1" />
 							</tree>
 						</field>
 					</group>
@@ -83,6 +87,27 @@
 						</field>
 					</group>
 				-->
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<record id="ct_nodo_activo_form_view2" model="ir.ui.view">
+		<field name="name">ct.nodo_activo.form</field>
+		<field name="model">ct.nodo_activo</field>
+		<field name="arch" type="xml">
+			<form>
+				<sheet>
+					<group string="Mano de obra">
+						<field name="product_ids" nolabel="1">
+							<tree editable="buttom">
+								<field name = "product_id">[('tipo_activo_id', 'in', parner.tipo_activo_id)]</field>
+								<field name ="cantidad" />
+								<field name = "bodega" />
+								<field name ="tipo_product" />
+							</tree>
+						</field>
+					</group>
 				</sheet>
 			</form>
 		</field>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<!-- Vista de Busqueda -->
+	<record id="ct_pot_trans_view" model="ir.ui.view">
+		<field name="name">ct.pot_trans.search</field>
+		<field name="model">ct.pot_trans</field>
+		<field name="arch" type="xml">
+			<search>
+				<field name="code" />	
+				<field name="name" />						
+			</search>
+		</field>
+
+	</record>	
+
+
+<!-- Vista Lista -->
+	<record id="ct_pot_trans_tree_view" model="ir.ui.view">
+		<field name="name">ct.pot_trans.tree</field>
+		<field name="model">ct.pot_trans</field>
+		<field name="arch" type="xml">
+			<tree editable ="bottom">
+				<field name="code" />	
+				<field name="name" />
+			</tree>
+		</field>
+	</record>	
+
+
+	<!-- Vista Formulario 
+	<record id="ct_tipo_activo_electrico_form_view" model="ir.ui.view">
+		<field name="name">ct.tipo_activo_electrico.form</field>
+		<field name="model">ct.tipo_activo_electrico</field>
+		<field name="arch" type="xml">
+			<form>
+				<sheet>
+					<group>
+						<field name="code" />
+						<field name="name" />	
+						<field name="notas" />
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>-->
+
+
+	<!-- Accion del formulario -->
+	<record id="ct_pot_trans_action" model="ir.actions.act_window">
+		<field name="name">POTENCIA TRANSFORMADOR</field>
+		<field name="type">ir.actions.act_window</field>
+		<field name="res_model">ct.pot_trans</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+	
+
+	<!-- menu de acceso -->
+	 <menuitem id="ct_pot_trans_menu" name="Potencia Transformador" parent="merp_config_menu" action="ct_pot_trans_action" />
+
+</odoo>

@@ -14,8 +14,8 @@
                  <page name="MERP" string="M.E.R.P.">
                     <group>
                         <field name="tipo_obra_id" /> 
-                        <field name="nivel_tension_id" widget="many2many_tags" />
-                        <field name="tipo_activo_id" widget="many2many_tags" />                           
+                        <field name="nivel_tension_ids" widget="many2many_tags" />
+                        <field name="tipo_activo_ids" widget="many2many_tags" />                           
                     </group>
                     <group string="Estructura">
                         <field name="estructura_ids">

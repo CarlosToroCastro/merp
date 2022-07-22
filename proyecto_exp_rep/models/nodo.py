@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
-
+import logging
 from odoo import api, fields, models
+from odoo.exceptions import ValidationError
+
+_logger = logging.getLogger(__name__)
 
 class Nodo(models.Model):
 
@@ -9,35 +12,55 @@ class Nodo(models.Model):
 
 
 	name = fields.Char('Nodo', required=True)
+	name2 = fields.Char('Nodo Final')
 	gps_altura = fields.Float('Altitud m.s.n.m')
 	gps_latitud = fields.Float('Latitud')
 	gps_longitud =fields.Float('Longitud')
 	direccion = fields.Char('Dirección', required=True)
 	notas = fields.Text('Observación')
-	activo_poste_ids = fields.One2many('ct.nodo_activo','nodo1_id', string="Activos")
+	activo_poste_ids = fields.One2many('ct.nodo_activo','nodo1_id', string="Activos", ondelete="cascade")
+	tipo_activo_id = fields.Many2one(related='activo_poste_ids.tipo_activo_id')
 	luminaria_ids = fields.One2many('ct.luminaria','nodo_id', string="Luminaria")
 	usuario_ids = fields.One2many('ct.usuario','nodo_id', string="Usuario")
-	proyecto_id = fields.Many2one('ct.proyecto', 'name')
+	proyecto_id = fields.Many2one('ct.proyecto', 'Proyecto')
 	state = fields.Selection([('diseño', 'Diseño'), ('replanteo', 'Replanteo'), ('ejecucion', 'Ejecución')], default='diseño')
 
 	def btn_replanteo(self):
-		self.state = 'replanteo'
+
+		# Solo debe pasar a estado replanteo cuando se seleccione al menos un activo
+		if len(self.activo_poste_ids) == 0:
+			raise ValidationError("Debe seleccior al menso un Activo para pasar de estado")
 
 		lineas_replanteo =[]
-		for activo in self.activo_poste_ids:
+		for activo in self.activo_poste_ids.filtered(lambda a: a.state == 'diseño'):
+
+			lista_productos = []
+			for p in activo.product_ids:
+				linea_producto = {
+					'product_id': p.product_id.id,
+					'cantidad': p.cantidad,
+					'bodega' : p.bodega,
+					'tipo_product': p.tipo_product,
+					'state': 'replanteo'
+				}
+				lista_productos.append((0,0, linea_producto))			
+
 			nueva_linea = {
 					'nodo1_id': activo.nodo1_id.id,
 					'a_poste_id': activo.a_poste_id.id,
 					'state1': activo.state1,
 					'tarea': activo.tarea,
 					'notes': activo.tarea,
-					#pasar los product tambien
+					'product_ids': lista_productos,
 					'state': 'replanteo' 
 			}
+			_logger.info('Nueva linea %s', nueva_linea)
 			lineas_replanteo.append((0,0, nueva_linea))
 
-			if lineas_replanteo:
-				self.activo_poste_ids = lineas_replanteo
+		if lineas_replanteo:
+			self.activo_poste_ids = lineas_replanteo
+			self.state = 'replanteo'
+				
 
 
 class ActivoPosteNodo(models.Model):
@@ -52,9 +75,15 @@ class ActivoPosteNodo(models.Model):
 	state1 = fields.Selection([('nuevo', 'Nuevo'), ('reutilizado', 'Reutilizado'), ('Retirado', 'Retirado')], string='Estado', required=True)
 	tarea = fields.Integer('Tarea MAXIMO', required=True)
 	notes = fields.Text('Observación')
-	product_ids = fields.One2many('ct.product_activo', 'activo_nodo_id', required=True)
+	product_ids = fields.One2many('ct.product_activo', 'activo_nodo_id', ondelete="cascade")
 	state = fields.Selection([('diseño', 'Diseño'), ('replanteo', 'Replanteo'), ('ejecucion', 'Ejecución')], default='diseño')
+	can_edit = fields.Boolean(string='Puede editar', compute='_can_edit')
 
+	@api.depends('nodo1_id.state')
+	def _can_edit(self):
+		for record in self:
+			estado_nodo = record.nodo1_id.state
+			record.can_edit = record.state == estado_nodo
 
 class productActivo(models.Model):
 	#cantidad de mano de obra que se puede realizar en un activo.
@@ -63,11 +92,17 @@ class productActivo(models.Model):
 	_description = 'Mano de obra y materiales que se utilizada en un activo'
 
 
-	activo_nodo_id = fields.Many2one('ct.nodo_activo', 'Activo', required=True)
-	product_id = fields.Many2one('product.template',string='Producto', required=True)
+	activo_nodo_id = fields.Many2one('ct.nodo_activo', 'Activo')
+	product_id = fields.Many2one('product.template',string='Producto')
 	cantidad = fields.Float('Cantidad', required=True)
-	tipo_product = fields.Selection([('mo', 'MO'), ('nuevo', 'Nuevo'), ('retirado', 'Retirado'),('reutilizado','Reutilizado')], required=True)
+	bodega=fields.Char('Bodega')
+	tipo_product = fields.Selection([('mo', 'MO'), ('nuevo', 'Nuevo'), ('retirado', 'Retirado'),('reutilizado','Reutilizado')], default='mo', required=True)
 	state = fields.Selection([('diseño', 'Diseño'), ('replanteo', 'Replanteo'), ('ejecucion', 'Ejecución')], default='diseño')
+	
+
+
+
+
 
 
 

@@ -13,9 +13,10 @@ class ActivoPoste(models.Model):
 	name = fields.Char('Código', required=True)
 	serie = fields.Char('Serie')
 	placa = fields.Char('Placa')
-	capacidad = fields.Char('Potencia nominal')
-	
-	
+	potencia = fields.Many2one('ct.pot_trans', string='Potencia nominal')
+	voltaje = fields.Selection([('7600', '7,6 kV'), ('13200', '13,2 kV')])
+	tipo = fields.Selection([('1', '1 Ø'), ('3', '3 Ø')])
+
 	_sql_constraints = [
 		('activo_electrico_name_uniq', 'unique(name)', 'Información Repetida'),
 	]
@@ -36,6 +37,14 @@ class TipoAtivoElectrico(models.Model):
 		('tipo_activo_electrico_name_uniq', 'unique(name)', 'Información Repetida')
 	]
 
+class potTrans(models.Model):
+
+	_name = 'ct.pot_trans'
+	_description = 'Pontencia mas conocida de los transformadores'
+
+
+	code = fields.Char('Codigo Interno', required=True) 
+	name = fields.Char('Potencia Nominal', required=True)	
 
 	"""class (object):"""
 	"""docstring for """
