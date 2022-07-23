@@ -20,6 +20,7 @@
 		#'views/activo_red_views.xml',
 		'views/tipo_proyecto_views.xml',
 		'views/nodo_views.xml',
+		'views/nodo_image_views.xml',		
 		'views/seguimiento_control_views.xml',
 		'views/proyecto_views.xml',
 		'views/tipo_medidor_views.xml',
@@ -30,9 +31,12 @@
 		'views/tipo_luminaria_views.xml',
 		'views/pot_luminaria_views.xml',
 		'views/luminaria_views.xml',
-		'views/pot_trans_views.xml',
-
-		
+		'views/pot_trans_views.xml',		
 	],
 	'installable': True,
+	'assets': {
+        'web.assets_backend': [
+            'proyecto_exp_rep/static/src/scss/nodo_image_kanban.scss',
+        ],	
+	},
 }

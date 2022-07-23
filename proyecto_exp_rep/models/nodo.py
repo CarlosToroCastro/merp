@@ -25,6 +25,8 @@ class Nodo(models.Model):
 	proyecto_id = fields.Many2one('ct.proyecto', 'Proyecto')
 	state = fields.Selection([('diseño', 'Diseño'), ('replanteo', 'Replanteo'), ('ejecucion', 'Ejecución')], default='diseño')
 
+	imagen_ids = fields.One2many('ct.nodo_image', 'nodo_id', string='Registro Fotografico')
+
 	def btn_replanteo(self):
 
 		# Solo debe pasar a estado replanteo cuando se seleccione al menos un activo
@@ -75,7 +77,8 @@ class ActivoPosteNodo(models.Model):
 	state1 = fields.Selection([('nuevo', 'Nuevo'), ('reutilizado', 'Reutilizado'), ('Retirado', 'Retirado')], string='Estado', required=True)
 	tarea = fields.Integer('Tarea MAXIMO', required=True)
 	notes = fields.Text('Observación')
-	product_ids = fields.One2many('ct.product_activo', 'activo_nodo_id', ondelete="cascade")
+	product_ids = fields.One2many('ct.product_activo', 'activo_nodo_id', ondelete="cascade", domain=[('tipo_product', '=', 'mo')]) # Mano de Obra
+	product_mn_ids = fields.One2many('ct.product_activo', 'activo_nodo_id', ondelete="cascade", domain=[('tipo_product', '=', 'nuevo')]) # Material Nuevo (mn)
 	state = fields.Selection([('diseño', 'Diseño'), ('replanteo', 'Replanteo'), ('ejecucion', 'Ejecución')], default='diseño')
 	can_edit = fields.Boolean(string='Puede editar', compute='_can_edit')
 
@@ -96,8 +99,9 @@ class productActivo(models.Model):
 	product_id = fields.Many2one('product.template',string='Producto')
 	cantidad = fields.Float('Cantidad', required=True)
 	bodega=fields.Char('Bodega')
-	tipo_product = fields.Selection([('mo', 'MO'), ('nuevo', 'Nuevo'), ('retirado', 'Retirado'),('reutilizado','Reutilizado')], default='mo', required=True)
+	tipo_product = fields.Selection([('mo', 'Mano de Obra'), ('nuevo', 'Nuevo'), ('retirado', 'Retirado'),('reutilizado','Reutilizado')], default='mo', required=True)
 	state = fields.Selection([('diseño', 'Diseño'), ('replanteo', 'Replanteo'), ('ejecucion', 'Ejecución')], default='diseño')
+
 	
 
 

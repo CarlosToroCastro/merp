@@ -10,7 +10,7 @@ class ProductTemplate(models.Model):
 		""" Personalizar nombre a mostrar en campos de seleccion"""
 		result = []
 		for record in self:
-			name = "%s - %s - %s" % (record.default_code, record.name, record.name2)
+			name = "%s - %s - %s" % (record.default_code, record.name, record.name2 or '')
 			result.append([record.id, name])
 		return result
 

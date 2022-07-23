@@ -42,6 +42,7 @@ class Proyecto(models.Model):
 	nodo_ids = fields.One2many('ct.nodo', 'proyecto_id', string="Nodos")
 	seg_cont_ids = fields.One2many('ct.seguimiento_control', 'proyecto_id', string="Seguimiento y control" )
 	maniobras_ids = fields.One2many('ct.maniobra', 'proyecto_id', string="Maniobras" )
+	anexos_ids = fields.One2many('ct.archivo_proyecto', 'proyecto_id', string="Archivos")
 
 	#maniobras
 	#SEGUIMIENTO Y CONTROL 

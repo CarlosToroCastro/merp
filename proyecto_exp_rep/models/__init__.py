@@ -12,6 +12,10 @@ from . import tipo_proyecto
 from . import luminaria
 from . import estructura
 from . import nodo
+from . import nodo_image
 from . import proyecto
 from . import usuario
+from . import tipo_archivo
+from . import archivo_proyecto
+
 

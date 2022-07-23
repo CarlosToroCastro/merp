@@ -71,6 +71,10 @@
 								<field name="usuario_ids" />
 							</field>
 						</page>
+						<page string="Registro Fotografico">
+							<!--<field name="imagen_ids" widget="many2many_binary" nolabel="1" options="{'accepted_file_extensions': 'image/*'}" cols="8"/> -->
+							<field name="imagen_ids" class="ct_nodo_image_list" context="{'default_name': name}" mode="kanban" add-label="Agregar Fotografia" nolabel="1"/>
+						</page>
 
 					</notebook>
 					

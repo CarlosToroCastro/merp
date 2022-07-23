@@ -31,3 +31,6 @@ proyecto_exp_rep.access_product_activo,access_product_activo,proyecto_exp_rep.mo
 proyecto_exp_rep.access_ct_nodo_activo_poste,access_ct_nodo_activo_poste,proyecto_exp_rep.model_ct_nodo_activo_poste,base.group_user,1,1,1,1
 proyecto_exp_rep.access_ct_pot_trans,access_ct_pot_trans,proyecto_exp_rep.model_ct_pot_trans,base.group_user,1,1,1,1
 proyecto_exp_rep.access_ct_des_red,access_ct_des_red,proyecto_exp_rep.model_ct_des_red,base.group_user,1,1,1,1
+proyecto_exp_rep.access_ct_tipo_archvivo,access_ct_tipo_archvivo,proyecto_exp_rep.model_ct_tipo_archvivo,base.group_user,1,1,1,1
+proyecto_exp_rep.access_ct_archivo_proyecto,access_ct_archivo_proyecto,proyecto_exp_rep.model_ct_archivo_proyecto,base.group_user,1,1,1,1
+proyecto_exp_rep.access_ct_nodo_image,access_ct_nodo_image,proyecto_exp_rep.model_ct_nodo_image,base.group_user,1,1,1,1

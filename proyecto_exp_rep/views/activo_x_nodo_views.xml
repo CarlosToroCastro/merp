@@ -49,26 +49,26 @@
 					</group>
 
 					<group string="Mano de obra">
-						<field name="product_ids" nolabel="1" attrs="{'readonly': [('can_edit', '=', False)]}" domain="[('state', '=', 'replanteo')]">
-							<tree editable="buttom">								
-								<field name = "product_id" domain="[('tipo_activo_ids', '=', parent.tipo_activo_id)]"></field>
-								<field name ="cantidad" />
-								<field name ="tipo_product" />
+						<field name="product_ids" nolabel="1" attrs="{'readonly': [('can_edit', '=', False)]}" context="{'tipo_product' : 'mo'}">
+							<tree editable="buttom">
+								<field name="tipo_product" invisible="1"/>							
+								<field name="product_id" domain="[('tipo_activo_ids', '=', parent.tipo_activo_id)]" required="1"/>
+								<field name="cantidad" />								
 								<field name="state" invisible="1" />
 							</tree>
 						</field>
 					</group>
 
-				<!--	<group string="Material nuevo">
-						<field name="product_ids" nolabel="1">
+				<group string="Material nuevo">
+						<field name="product_mn_ids" nolabel="1" context="{'tipo_product' : 'nuevo'}">
 							<tree editable="buttom">
-								<field name ="product_id"   options="{'no_create_edit': True, 'no_create': True}"/>
-								<field name ="cantidad"/>
-								<field name ="tipo_product"  />		
+								<field name="tipo_product" invisible="1"/>
+								<field name="product_id" options="{'no_create_edit': True, 'no_create': True}" required="1"/>
+								<field name="cantidad"/>										
 							</tree>
 						</field>
 					</group>
-					<group string="Material retirado">
+					<!--	<group string="Material retirado">
 						<field name="product_ids" nolabel="1">
 							<tree editable="buttom">
 								<field name ="product_id"   options="{'no_create_edit': True, 'no_create': True}"/>
