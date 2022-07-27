@@ -8,7 +8,7 @@ class TipoProyecto(models.Model):
 	_description = 'Tipo de proyectop' #ATC, PQR, Inversión, RP
 	_rec_name = 'tipo_proyecto' 
 
-	code = fields.Char('Código interno')
+	code = fields.Char('Código interno', required=True)
 	tipo_proyecto = fields.Char('Tipo Proyecto', required=True) #ATC, PQR, Inversión, RP 	
 	notas = fields.Text('Observación')
 

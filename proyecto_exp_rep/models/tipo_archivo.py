@@ -8,7 +8,7 @@ class TipoArchivo(models.Model):
 	_description = 'Documentos necesrios para la elavoracion del proyecto'
 	
 
-	code = fields.Char('Código interno')
+	code = fields.Char('Código interno', required=True)
 	name = fields.Char('Tipo Archivo', required=True) 	
 	
 

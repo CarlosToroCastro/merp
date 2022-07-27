@@ -17,6 +17,8 @@ class Nodo(models.Model):
 	gps_latitud = fields.Float('Latitud')
 	gps_longitud =fields.Float('Longitud')
 	direccion = fields.Char('Dirección', required=True)
+	estado_revision = fields.Selection([('conforme', 'CONFORME'),('no conforme', 'NO CONFORME')])
+	no_conformidad_ids = fields.Many2many('ct.no_conformidades', string='No conformidad')
 	notas = fields.Text('Observación')
 	activo_poste_ids = fields.One2many('ct.nodo_activo','nodo1_id', string="Activos", ondelete="cascade")
 	tipo_activo_id = fields.Many2one(related='activo_poste_ids.tipo_activo_id')
@@ -25,7 +27,9 @@ class Nodo(models.Model):
 	proyecto_id = fields.Many2one('ct.proyecto', 'Proyecto')
 	state = fields.Selection([('diseño', 'Diseño'), ('replanteo', 'Replanteo'), ('ejecucion', 'Ejecución')], default='diseño')
 
-	imagen_ids = fields.One2many('ct.nodo_image', 'nodo_id', string='Registro Fotografico')
+	imagen_diseno_ids = fields.One2many('ct.nodo_image', 'nodo_id', string='Fotos Diseño')
+	imagen_replanteo_ids = fields.One2many('ct.nodo_image', 'nodo_id', string='Fotos Replanteo')
+	imagen_ejecucion_ids = fields.One2many('ct.nodo_image', 'nodo_id', string='Fotos Ejecucion')
 
 	def btn_replanteo(self):
 
@@ -98,10 +102,11 @@ class productActivo(models.Model):
 	activo_nodo_id = fields.Many2one('ct.nodo_activo', 'Activo')
 	product_id = fields.Many2one('product.template',string='Producto')
 	cantidad = fields.Float('Cantidad', required=True)
+	estructura_ids = fields.Many2many('ct.estructura', string='Estructuras')
 	bodega=fields.Char('Bodega')
 	tipo_product = fields.Selection([('mo', 'Mano de Obra'), ('nuevo', 'Nuevo'), ('retirado', 'Retirado'),('reutilizado','Reutilizado')], default='mo', required=True)
 	state = fields.Selection([('diseño', 'Diseño'), ('replanteo', 'Replanteo'), ('ejecucion', 'Ejecución')], default='diseño')
-
+    
 	
 
 

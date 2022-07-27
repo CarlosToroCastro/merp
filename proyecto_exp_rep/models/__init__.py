@@ -17,5 +17,6 @@ from . import proyecto
 from . import usuario
 from . import tipo_archivo
 from . import archivo_proyecto
+from . import no_conformidades
 
 

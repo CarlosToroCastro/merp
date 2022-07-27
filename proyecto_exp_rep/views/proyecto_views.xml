@@ -72,7 +72,7 @@
 								</tree>
 							</field>
 						</page>
-						<page string="Actividades" name="nodos">
+						<page string="Nodos" name="nodos">
 							<field name="nodo_ids" nolabel="1">
 								<field name="nodo_ids" />
 							</field>
@@ -96,7 +96,7 @@
 							</field>
 						</page>
 
-						<page string="Anexos" name="anexos">
+						<page string="Anexos" name="anexos" attrs="{'invisible': [('state', '!=', 'ejecucion')]}">
 							<field name="anexos_ids" nolabel="1">
 								<tree editable="bottom">
 									<field name="tipo_archivo_id" required="1"/>

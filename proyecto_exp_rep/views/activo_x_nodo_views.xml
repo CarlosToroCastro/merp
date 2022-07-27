@@ -37,23 +37,26 @@
 		<field name="model">ct.nodo_activo</field>
 		<field name="arch" type="xml">
 			<form>
+				<header>
+					<field name="state" widget="statusbar" options="{'clickable': True, 'fold_field': 'fold'}"/>
+				</header>
 				<sheet>
 					<field name="can_edit" invisible="1" />
-					<group string ="Activos">
+					<group string ="Activos" col="4">
 						<field name="a_poste_id" attrs="{'readonly': [('can_edit', '=', False)]}"/>
-						<field name="tipo_activo_id" attrs="{'readonly': [('can_edit', '=', False)]}"/>
+						<field name="tipo_activo_id"/>
 						<field name="state1" attrs="{'readonly': [('can_edit', '=', False)]}"/>
 						<field name= "tarea" attrs="{'readonly': [('can_edit', '=', False)]}"/>
 						<field name="notes" attrs="{'readonly': [('can_edit', '=', False)]}"/>
-						<field name= "state" attrs="{'readonly': [('can_edit', '=', False)]}"/>
 					</group>
 
 					<group string="Mano de obra">
 						<field name="product_ids" nolabel="1" attrs="{'readonly': [('can_edit', '=', False)]}" context="{'tipo_product' : 'mo'}">
 							<tree editable="buttom">
 								<field name="tipo_product" invisible="1"/>							
-								<field name="product_id" domain="[('tipo_activo_ids', '=', parent.tipo_activo_id)]" required="1"/>
-								<field name="cantidad" />								
+								<field name="product_id" domain="[('tipo_activo_ids', '=', parent.tipo_activo_id)]" required="1" options="{'no_create_edit': True, 'no_create': True}"/>
+								<field name="cantidad" />	
+								<field name="estructura_ids" widget="many2many_tags"/>							
 								<field name="state" invisible="1" />
 							</tree>
 						</field>
@@ -64,7 +67,8 @@
 							<tree editable="buttom">
 								<field name="tipo_product" invisible="1"/>
 								<field name="product_id" options="{'no_create_edit': True, 'no_create': True}" required="1"/>
-								<field name="cantidad"/>										
+								<field name="cantidad"/>
+								<field name="bodega"/>										
 							</tree>
 						</field>
 					</group>

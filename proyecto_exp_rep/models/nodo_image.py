@@ -10,3 +10,5 @@ class NodoImage(models.Model):
 	name = fields.Char('Name', required=True)
 	sequence = fields.Integer(default=10, index=True)
 	image_1920 = fields.Image(required=True)
+	state = fields.Selection([('diseño', 'Diseño'), ('replanteo', 'Replanteo'), ('ejecucion', 'Ejecución')], default='diseño')
+    

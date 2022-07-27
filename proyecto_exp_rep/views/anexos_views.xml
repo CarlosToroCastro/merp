@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+<!-- Vista de Busqueda -->
+	<record id="ct_tipo_archvivo_search_view" model="ir.ui.view">
+		<field name="name">ct.tipo_archvivo.search</field>
+		<field name="model">ct.tipo_archvivo</field>
+		<field name="arch" type="xml">
+			<search>
+				<field name="code" />
+				<field name="name" />							
+			</search>
+		</field>
+	</record>
+
+
+<!-- Vista Lista -->
+	<record id="ct_tipo_archvivo_tree_view" model="ir.ui.view">
+		<field name="name">ct.tipo_archvivo.tree</field>
+		<field name="model">ct.tipo_archvivo</field>
+		<field name="arch" type="xml">
+			<tree editable ="bottom">
+				<field name="code" />
+				<field name="name" />
+			</tree>
+		</field>
+	</record>	
+
+
+
+	<!-- Accion del formulario -->
+	<record id="ct_tipo_archvivo_action" model="ir.actions.act_window">
+		<field name="name">ANEXOS</field>
+		<field name="type">ir.actions.act_window</field>
+		<field name="res_model">ct.tipo_archvivo</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+	
+
+	<!-- menu de acceso -->
+	 <menuitem id="ct_tipo_archvivo_menu" name="Anexos" parent="merp_config_menu" action="ct_tipo_archvivo_action" />
+
+</odoo>

@@ -27,6 +27,7 @@
 				<field name="gps_latitud" optional="hide" />
 				<field name="gps_longitud" optional="hide"/>
 				<field name="direccion" />
+				<field name="estado_revision" optional="hide" string="Estado de Revisión"/>
 				<field name="notas" optional="hide"/>   
 			</tree>
 		</field>
@@ -46,18 +47,19 @@
 				<sheet>
 					<group string="Nodo" col="4">
 							<field name="name" />
-							<field name="name2" attrs="{'invisible': [('tipo_activo_id', '!=', 'red')]}" />
 							<field name="gps_longitud" />
 							<field name="gps_latitud" />
 							<field name="gps_altura" />
 							<field name="direccion" />
-							<field name="notas"/>
-							<field name="tipo_activo_id" />
+							<field name="notas" />
+							<field name="estado_revision" attrs="{'required': [('state', '=', 'ejecucion')], 'invisible': [('state', '!=', 'ejecucion')]}" string="Estado de Revisión" />
+							<field name="no_conformidad_ids" attrs="{'required': [('estado_revision', '=', 'no conforme')], 'invisible': [('estado_revision', '!=', 'no conforme')]}" options="{'no_create_edit': True, 'no_create': True}" widget="many2many_tags" />
+							<field name="tipo_activo_id"  invisible="1"/> 
 					</group>
 
 					<notebook colspan="6" name="info_complementaria">
 						<page string="Activos" name="activos">
-							<field name="activo_poste_ids" nolabel="1" domain="[('state', '=', 'replanteo')]">
+							<field name="activo_poste_ids" nolabel="1">
 								<field name="activo_poste_ids" />
 							</field>
 						</page>
@@ -71,9 +73,17 @@
 								<field name="usuario_ids" />
 							</field>
 						</page>
-						<page string="Registro Fotografico">
+						<page string="Registro Fotografico1" attrs="{'invisible': [('state', '!=', 'diseño')]}">
 							<!--<field name="imagen_ids" widget="many2many_binary" nolabel="1" options="{'accepted_file_extensions': 'image/*'}" cols="8"/> -->
-							<field name="imagen_ids" class="ct_nodo_image_list" context="{'default_name': name}" mode="kanban" add-label="Agregar Fotografia" nolabel="1"/>
+							<field name="imagen_diseno_ids" class="ct_nodo_image_list" context="{'default_name': name}" mode="kanban" add-label="Agregar Fotografia" nolabel="1" domain="[('state', '=', 'diseño')]"/>
+						</page>
+						<page string="Registro Fotografico2" attrs="{'invisible': [('state', '!=', 'replanteo')]}">
+							<!--<field name="imagen_ids" widget="many2many_binary" nolabel="1" options="{'accepted_file_extensions': 'image/*'}" cols="8"/> -->
+							<field name="imagen_replanteo_ids" class="ct_nodo_image_list" context="{'default_name': name}" mode="kanban" add-label="Agregar Fotografia" nolabel="1" domain="[('state', '=', 'ejecucion')]"/>
+						</page>
+						<page string="Registro Fotografico3" attrs="{'invisible': [('state', '!=', 'ejecucion')]}">
+							<!--<field name="imagen_ids" widget="many2many_binary" nolabel="1" options="{'accepted_file_extensions': 'image/*'}" cols="8"/> -->
+							<field name="imagen_ejecucion_ids" class="ct_nodo_image_list" context="{'default_name': name}" mode="kanban" add-label="Agregar Fotografia" nolabel="1" domain="[('state', '=', 'replanteo')]"/>
 						</page>
 
 					</notebook>

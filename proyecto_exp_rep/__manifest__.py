@@ -31,7 +31,9 @@
 		'views/tipo_luminaria_views.xml',
 		'views/pot_luminaria_views.xml',
 		'views/luminaria_views.xml',
-		'views/pot_trans_views.xml',		
+		'views/pot_trans_views.xml',
+		'views/anexos_views.xml',
+		'views/no_conformidades_views.xml',	
 	],
 	'installable': True,
 	'assets': {

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<!-- Vista de Busqueda -->
+	<record id="ct_no_conformidades_view" model="ir.ui.view">
+		<field name="name">ct.no_conformidades.search</field>
+		<field name="model">ct.no_conformidades</field>
+		<field name="arch" type="xml">
+			<search>
+				<field name="name" />	
+				<field name="code" />						
+			</search>
+		</field>
+
+	</record>	
+
+
+<!-- Vista Lista -->
+	<record id="ct_no_conformidades_tree_view" model="ir.ui.view">
+		<field name="name">ct.no_conformidades.tree</field>
+		<field name="model">ct.no_conformidades</field>
+		<field name="arch" type="xml">
+			<tree editable="bottom">
+				<field name="code" />
+				<field name="name" />		
+			</tree>
+		</field>
+	</record>	
+
+
+	<!-- Accion del formulario -->
+	<record id="ct_no_conformidades_action" model="ir.actions.act_window">
+		<field name="name">NO CONFORMIDADES</field>
+		<field name="type">ir.actions.act_window</field>
+		<field name="res_model">ct.no_conformidades</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+	
+
+	<!-- menu de acceso -->
+	 <menuitem id="ct_no_conformidades_menu" name="No conformidades" parent="merp_config_menu" action="ct_no_conformidades_action" />
+
+</odoo>
