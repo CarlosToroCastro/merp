@@ -75,15 +75,15 @@
 						</page>
 						<page string="Registro Fotografico1" attrs="{'invisible': [('state', '!=', 'diseño')]}">
 							<!--<field name="imagen_ids" widget="many2many_binary" nolabel="1" options="{'accepted_file_extensions': 'image/*'}" cols="8"/> -->
-							<field name="imagen_diseno_ids" class="ct_nodo_image_list" context="{'default_name': name}" mode="kanban" add-label="Agregar Fotografia" nolabel="1" domain="[('state', '=', 'diseño')]"/>
+							<field name="imagen_diseno_ids" class="ct_nodo_image_list" context="{'default_name': name, 'default_state': state}" mode="kanban" add-label="Agregar Fotografia" nolabel="1" domain="[('state', '=', 'diseño')]"/>
 						</page>
 						<page string="Registro Fotografico2" attrs="{'invisible': [('state', '!=', 'replanteo')]}">
 							<!--<field name="imagen_ids" widget="many2many_binary" nolabel="1" options="{'accepted_file_extensions': 'image/*'}" cols="8"/> -->
-							<field name="imagen_replanteo_ids" class="ct_nodo_image_list" context="{'default_name': name}" mode="kanban" add-label="Agregar Fotografia" nolabel="1" domain="[('state', '=', 'ejecucion')]"/>
+							<field name="imagen_replanteo_ids" class="ct_nodo_image_list" context="{'default_name': name, 'default_state': state}" mode="kanban" add-label="Agregar Fotografia" nolabel="1" domain="[('state', '=', 'ejecucion')]"/>
 						</page>
 						<page string="Registro Fotografico3" attrs="{'invisible': [('state', '!=', 'ejecucion')]}">
 							<!--<field name="imagen_ids" widget="many2many_binary" nolabel="1" options="{'accepted_file_extensions': 'image/*'}" cols="8"/> -->
-							<field name="imagen_ejecucion_ids" class="ct_nodo_image_list" context="{'default_name': name}" mode="kanban" add-label="Agregar Fotografia" nolabel="1" domain="[('state', '=', 'replanteo')]"/>
+							<field name="imagen_ejecucion_ids" class="ct_nodo_image_list" context="{'default_name': name, 'default_state': state}" mode="kanban" add-label="Agregar Fotografia" nolabel="1" domain="[('state', '=', 'replanteo')]"/>
 						</page>
 
 					</notebook>

@@ -17,6 +17,12 @@ class ActivoPoste(models.Model):
 	voltaje = fields.Selection([('7600', '7,6 kV'), ('13200', '13,2 kV')], default='13200')
 	tipo = fields.Selection([('1', '1 Ø'), ('3', '3 Ø')])
 
+	@api.onchange('voltaje', 'tipo')
+	def onchange_tipo(self):
+		if self.tipo == '3':
+			self.voltaje = '13200'
+			
+
 	_sql_constraints = [
 		('activo_electrico_name_uniq', 'unique(name)', 'Información Repetida'),
 	]

@@ -27,9 +27,18 @@ class Nodo(models.Model):
 	proyecto_id = fields.Many2one('ct.proyecto', 'Proyecto')
 	state = fields.Selection([('diseño', 'Diseño'), ('replanteo', 'Replanteo'), ('ejecucion', 'Ejecución')], default='diseño')
 
-	imagen_diseno_ids = fields.One2many('ct.nodo_image', 'nodo_id', string='Fotos Diseño')
-	imagen_replanteo_ids = fields.One2many('ct.nodo_image', 'nodo_id', string='Fotos Replanteo')
-	imagen_ejecucion_ids = fields.One2many('ct.nodo_image', 'nodo_id', string='Fotos Ejecucion')
+	imagen_diseno_ids = fields.One2many('ct.nodo_image', 'nodo_id', string='Fotos Diseño', domain=[('state', '=', 'diseño')])
+	imagen_replanteo_ids = fields.One2many('ct.nodo_image', 'nodo_id', string='Fotos Replanteo', domain=[('state', '=', 'replanteo')])
+	imagen_ejecucion_ids = fields.One2many('ct.nodo_image', 'nodo_id', string='Fotos Ejecucion', domain=[('state', '=', 'ejecucion')])
+
+	_sql_constraints = [
+		('nodo_name_uniq', 'unique(proyecto_id, name)', 'El nodo ya existe en el proyecto'),
+	]
+
+	@api.onchange('estado_revision')
+	def onchange_tipo(self):
+		if self.estado_revision == 'conforme':
+			self.no_conformidad_ids = False
 
 	def btn_replanteo(self):
 
@@ -92,6 +101,47 @@ class ActivoPosteNodo(models.Model):
 			estado_nodo = record.nodo1_id.state
 			record.can_edit = record.state == estado_nodo
 
+	
+	def buscarMaterial(self, lista, product_id):		
+		pos = 0
+		for elemento in lista:
+			if elemento['product_id'] == product_id:
+				return pos
+			else:
+				pos += 1
+		return False
+
+
+	def bt_calcular_material_nuevo(self):
+		if len(self.product_ids) == 0:
+			# Mensaje de error pasra el usuario
+			pass
+
+		if self.product_ids:
+
+			self.product_mn_ids = False
+
+			material_ids = []
+			for mo in self.product_ids:
+				for material in mo.estructura_ids.materiales_ids:
+					cantidad = material.cantidad * mo.cantidad
+					
+					index = self.buscarMaterial(material_ids, material.product_id.id)					
+					if index:						
+						_logger.info(' POSICION %s - tipo %s', index, type(index))
+						material_ids[index]['cantidad'] = material_ids[index]['cantidad'] + cantidad
+					else:
+						vals = {'product_id': material.product_id.id, 'cantidad' : cantidad, 'tipo_product': 'nuevo'}
+						material_ids.append(vals)
+
+
+			materiales_agrupados_id = []
+			for m in material_ids:
+				materiales_agrupados_id.append((0,0, m))
+			self.product_mn_ids = materiales_agrupados_id
+
+
+
 class productActivo(models.Model):
 	#cantidad de mano de obra que se puede realizar en un activo.
 
@@ -101,17 +151,26 @@ class productActivo(models.Model):
 
 	activo_nodo_id = fields.Many2one('ct.nodo_activo', 'Activo')
 	product_id = fields.Many2one('product.template',string='Producto')
-	cantidad = fields.Float('Cantidad', required=True)
-	estructura_ids = fields.Many2many('ct.estructura', string='Estructuras')
+	estructura_product_ids = fields.One2many(related='product_id.estructura_ids')	
+	cantidad = fields.Float('Cantidad', required=True, default=1)
+	estructura_ids = fields.Many2one('ct.estructura', string='Estructuras')
 	bodega=fields.Char('Bodega')
 	tipo_product = fields.Selection([('mo', 'Mano de Obra'), ('nuevo', 'Nuevo'), ('retirado', 'Retirado'),('reutilizado','Reutilizado')], default='mo', required=True)
 	state = fields.Selection([('diseño', 'Diseño'), ('replanteo', 'Replanteo'), ('ejecucion', 'Ejecución')], default='diseño')
-    
 	
+	@api.constrains("cantidad")
+	def _constrain_cantidad(self):
+		if self.cantidad <= 0:
+			raise ValidationError('Debe especificar una cantidad')
 
 
-
-
+	@api.onchange("cantidad")
+	def onchange_cantidad(self):
+		if self.cantidad <= 0:
+			self.cantidad = 1
+			return {
+				"warning": {"title": "Error en Cantidad",	"message": "Debe especificar una cantidad mayor a cero" }
+			}			 
 
 
 

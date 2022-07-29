@@ -10,7 +10,7 @@ proyecto_exp_rep.access_ct_contrato,access_ct_contrato,proyecto_exp_rep.model_ct
 proyecto_exp_rep.access_ct_tipo_proyecto,access_ct_tipo_proyecto,proyecto_exp_rep.model_ct_tipo_proyecto,base.group_user,1,1,1,0
 proyecto_exp_rep.access_ct_estructura,access_ct_estructura,proyecto_exp_rep.model_ct_estructura,base.group_user,1,1,1,0
 proyecto_exp_rep.access_ct_materiales_estructura,access_ct_materiales_estructura,proyecto_exp_rep.model_ct_materiales_estructura,base.group_user,1,1,1,0
-proyecto_exp_rep.access_ct_proyecto,access_ct_proyecto,proyecto_exp_rep.model_ct_proyecto,base.group_user,1,1,1,0
+proyecto_exp_rep.access_ct_proyecto,access_ct_proyecto,proyecto_exp_rep.model_ct_proyecto,base.group_user,1,1,1,1
 proyecto_exp_rep.access_ct_proyecto_personal,access_ct_proyecto_personal,proyecto_exp_rep.model_ct_proyecto_personal,base.group_user,1,1,1,0
 proyecto_exp_rep.access_ct_nodo_activo,access_ct_nodo_activo,proyecto_exp_rep.model_ct_nodo_activo,base.group_user,1,1,1,1
 proyecto_exp_rep.access_ct_nodo,access_ct_nodo,proyecto_exp_rep.model_ct_nodo,base.group_user,1,1,1,1

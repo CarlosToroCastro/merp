@@ -65,9 +65,9 @@
 						<page string="Equipo de Trabajo" name="equipo_trabajo">
 							<field name="personal_ids" nolabel="1">
 								<tree editable="bottom">
-									<field name="rol" options="{'no_create_edit': True, 'no_create': True}"/>
-									<field name="partner_id" domain="[('parent_id', '!=', False), ('is_company', '=', False)]"/>
-									<field name="f_inicio" />
+									<field name="rol" options="{'no_create_edit': True, 'no_create': True}" required="1" />
+									<field name="partner_id" domain="[('parent_id', '!=', False), ('is_company', '=', False)]" required="1"/>
+									<field name="f_inicio" required="1"/>
 									<field name="f_fin" />
 								</tree>
 							</field>
