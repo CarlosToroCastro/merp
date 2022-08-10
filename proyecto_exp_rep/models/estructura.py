@@ -7,7 +7,14 @@ class Estructura(models.Model):
 	_name = 'ct.estructura'
 	_description = 'Estructura'
 
-     
+	def name_get(self):
+		""" Personalizar nombre a mostrar en campos de seleccion"""
+		result = []
+		for record in self:
+			name = "[%s] %s " % (record.name, record.descripcion)
+			result.append([record.id, name])
+		return result 
+
 	name = fields.Char('Código de la estructura',required=True)
 	descripcion = fields.Text('Descripción', required=True)
 	familia = fields.Char('Familia') #centro, bandera, semibandera, H....

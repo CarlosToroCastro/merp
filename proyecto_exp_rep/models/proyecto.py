@@ -44,6 +44,24 @@ class Proyecto(models.Model):
 	maniobras_ids = fields.One2many('ct.maniobra', 'proyecto_id', string="Maniobras" )
 	anexos_ids = fields.One2many('ct.archivo_proyecto', 'proyecto_id', string="Archivos")
 
+	nodos_count = fields.Integer('Nodos', compute='compute_count')
+
+
+	def compute_count(self):
+		self.nodos_count = len(self.nodo_ids)
+
+
+	def action_nodos(self):
+		self.ensure_one()
+		return {
+			'type': 'ir.actions.act_window',
+			'name': 'Nodo(s) del proyecto: ' + self.name,
+			'view_mode': 'tree,form',
+			'res_model': 'ct.nodo',
+			'domain': [('proyecto_id', '=', self.id)],
+			'context': "{'default_proyecto_id': %d}" % (self.id),
+		}
+
 	#maniobras
 	#SEGUIMIENTO Y CONTROL 
 	#GPS

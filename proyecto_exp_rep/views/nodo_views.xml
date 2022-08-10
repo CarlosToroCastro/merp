@@ -39,12 +39,20 @@
 		<field name="model">ct.nodo</field>
 		<field name="arch" type="xml">
 			<form>
-
 				<header>
-					<button name="btn_replanteo" class="oe_highlight" string="Pasar a Replanteo" type="object" states="diseño"/>
+					<button name="btn_replanteo" class="oe_highlight" string="Pasar a Replanteo." type="object" states="diseño"/>
 					<field name="state" widget="statusbar" options="{'clickable': True, 'fold_field': 'fold'}"/>
 				</header>
 				<sheet>
+					<div class="oe_button_box" name="button_box">
+						<button name="action_activos" type="object"
+							class="oe_stat_button" icon="fa-list">
+							<div class="o_stat_info">
+								<field name="activos_count" class="o_stat_value"/>
+								<span class="o_stat_text"> Activos</span>
+							</div>
+						</button>
+					</div>						
 					<group string="Nodo" col="4">
 							<field name="name" />
 							<field name="gps_longitud" />
@@ -103,6 +111,6 @@
 	</record>
 
 	<!-- menu de acceso -->
-	 <menuitem id="ct_nodo_menu" name="Nodo" parent="merp_config_menu" action="ct_nodo_action" />
+	 <menuitem id="ct_nodo_menu" name="Nodo" parent="merp_menu" action="ct_nodo_action" />
 
 </odoo>

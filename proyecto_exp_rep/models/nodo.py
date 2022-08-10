@@ -30,6 +30,22 @@ class Nodo(models.Model):
 	imagen_diseno_ids = fields.One2many('ct.nodo_image', 'nodo_id', string='Fotos Diseño', domain=[('state', '=', 'diseño')])
 	imagen_replanteo_ids = fields.One2many('ct.nodo_image', 'nodo_id', string='Fotos Replanteo', domain=[('state', '=', 'replanteo')])
 	imagen_ejecucion_ids = fields.One2many('ct.nodo_image', 'nodo_id', string='Fotos Ejecucion', domain=[('state', '=', 'ejecucion')])
+	activos_count = fields.Integer('Activos', compute='compute_count')
+
+	def compute_count(self):
+		self.activos_count = len(self.activo_poste_ids.filtered(lambda a: a.state == self.state))
+
+
+	def action_activos(self):
+		self.ensure_one()
+		return {
+			'type': 'ir.actions.act_window',
+			'name': 'Activo(s) del nodo: ' + self.name,
+			'view_mode': 'tree,form',
+			'res_model': 'ct.nodo_activo',
+			'domain': [('nodo1_id', '=', self.id), ('state', '=', self.state)],
+			'context': "{'default_nodo1_id': %d, 'default_state': '%s', 'can_edit': True}" % (self.id, self.state),
+		}
 
 	_sql_constraints = [
 		('nodo_name_uniq', 'unique(proyecto_id, name)', 'El nodo ya existe en el proyecto'),
@@ -87,6 +103,8 @@ class ActivoPosteNodo(models.Model):
 	nodo1_id = fields.Many2one('ct.nodo', 'name', required=True)
 	a_poste_id = fields.Many2one('ct.activo_poste', 'Activo',  required=True)
 	tipo_activo_id = fields.Many2one(related='a_poste_id.tipo_activo_id')
+	tipo_activo_code = fields.Char(related='a_poste_id.tipo_activo_id.code')
+	
 	state1 = fields.Selection([('nuevo', 'Nuevo'), ('reutilizado', 'Reutilizado'), ('Retirado', 'Retirado')], string='Estado', required=True)
 	tarea = fields.Integer('Tarea MAXIMO', required=True)
 	notes = fields.Text('Observación')
@@ -94,10 +112,17 @@ class ActivoPosteNodo(models.Model):
 	product_mn_ids = fields.One2many('ct.product_activo', 'activo_nodo_id', ondelete="cascade", domain=[('tipo_product', '=', 'nuevo')]) # Material Nuevo (mn)
 	state = fields.Selection([('diseño', 'Diseño'), ('replanteo', 'Replanteo'), ('ejecucion', 'Ejecución')], default='diseño')
 	can_edit = fields.Boolean(string='Puede editar', compute='_can_edit')
+	distancia =fields.Integer('Distancia entre nodos')
+
+	_sql_constraints = [
+		('nodo_uniq', 'unique(code, a_poste_id)', 'Informacion Repetida'),
+		
+	]
 
 	@api.depends('nodo1_id.state')
 	def _can_edit(self):
 		for record in self:
+			_logger.info('************ , %s', record.env.context)
 			estado_nodo = record.nodo1_id.state
 			record.can_edit = record.state == estado_nodo
 

@@ -45,6 +45,15 @@
 					<field name="state" widget="statusbar" options="{'clickable': True, 'fold_field': 'fold'}"/>
 				</header>
 				<sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_nodos" type="object"
+                            class="oe_stat_button" icon="fa-code-fork">
+                            <div class="o_stat_info">
+                                <field name="nodos_count" class="o_stat_value"/>
+                                <span class="o_stat_text"> Nodos</span>
+                            </div>
+                        </button>
+                    </div>					
 					<group col="4">
 							<field name="name" attrs="{'readonly': [('state', '!=', 'diseño')]}" />
 							<field name="tipo_proyecto_id" attrs="{'readonly': [('state', '!=', 'diseño')]}" options="{'no_create_edit': True, 'no_create': True}" />
@@ -123,6 +132,6 @@
 	</record>
 
 	<!-- menu de acceso -->
-	 <menuitem id="ct_proyecto_menu" name="Proyecto" parent="merp_config_menu" action="ct_proyecto_action" />
+	 <menuitem id="ct_proyecto_menu" name="Proyecto" parent="merp_menu" action="ct_proyecto_action" />
 
 </odoo>

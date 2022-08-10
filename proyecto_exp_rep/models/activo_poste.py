@@ -15,7 +15,7 @@ class ActivoPoste(models.Model):
 	placa = fields.Char('Placa')
 	potencia = fields.Many2one('ct.pot_trans', string='Potencia nominal')
 	voltaje = fields.Selection([('7600', '7,6 kV'), ('13200', '13,2 kV')], default='13200')
-	tipo = fields.Selection([('1', '1 Ø'), ('3', '3 Ø')])
+	tipo = fields.Selection([('1', 'Monofásico'), ('3', 'Trifásico')])
 
 	@api.onchange('voltaje', 'tipo')
 	def onchange_tipo(self):
