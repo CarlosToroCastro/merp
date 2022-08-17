@@ -207,19 +207,3 @@ class productActivo(models.Model):
 		
 
 
-###NO SIRVE PARA NADA PERO NO SE PUEDE QUITAR
-class productActivo2(models.Model):
-	#cantidad de mano de obra que se puede realizar en un activo.
-
-	_name = 'product_activo' 
-	_description = 'Mano de obra y materiales que se utilizada en un activo'
-
-	cantidad = fields.Float('Cantidad', required=True)
-	
-###NO SIRVE PARA NADA PERO NO SE PUEDE QUITAR
-class ActivoPosteNodo2(models.Model):
-#realacion  entre activos y nodos. 
-	_name = 'ct.nodo.activo_poste'
-	_description = 'Activos que se encuentran en un nodo'
-
-	cantidad = fields.Float('Cantidad', required=True)
