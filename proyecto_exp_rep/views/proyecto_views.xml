@@ -81,12 +81,6 @@
 								</tree>
 							</field>
 						</page>
-						<page string="Nodos" name="nodos">
-							<field name="nodo_ids" nolabel="1">
-								<field name="nodo_ids" />
-							</field>
-						</page>
-
 						<page string="Seguimiento y Control" name="Visitas" attrs="{'invisible': [('state', '=', 'diseño')]}">
 							<field name="seg_cont_ids"  >
 								<field name="seg_cont_ids" />

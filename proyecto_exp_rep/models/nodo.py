@@ -12,7 +12,7 @@ class Nodo(models.Model):
 
 
 	name = fields.Char('Nodo', required=True)
-	name2 = fields.Char('Nodo Final')
+	#name2 = fields.Char('Nodo Final')
 	gps_altura = fields.Float('Altitud m.s.n.m')
 	gps_latitud = fields.Float('Latitud')
 	gps_longitud =fields.Float('Longitud')
@@ -25,8 +25,8 @@ class Nodo(models.Model):
 	luminaria_ids = fields.One2many('ct.luminaria','nodo_id', string="Luminaria")
 	usuario_ids = fields.One2many('ct.usuario','nodo_id', string="Usuario")
 	proyecto_id = fields.Many2one('ct.proyecto', 'Proyecto')
-	state = fields.Selection([('diseño', 'Diseño'), ('replanteo', 'Replanteo'), ('ejecucion', 'Ejecución')], default='diseño')
-
+	state = fields.Selection(related='proyecto_id.state')
+	#state = fields.Selection([('diseño', 'Diseño'), ('replanteo', 'Replanteo'), ('ejecucion', 'Ejecución')], default = proyecto_id.state)
 	imagen_diseno_ids = fields.One2many('ct.nodo_image', 'nodo_id', string='Fotos Diseño', domain=[('state', '=', 'diseño')])
 	imagen_replanteo_ids = fields.One2many('ct.nodo_image', 'nodo_id', string='Fotos Replanteo', domain=[('state', '=', 'replanteo')])
 	imagen_ejecucion_ids = fields.One2many('ct.nodo_image', 'nodo_id', string='Fotos Ejecucion', domain=[('state', '=', 'ejecucion')])
@@ -104,15 +104,15 @@ class ActivoPosteNodo(models.Model):
 	a_poste_id = fields.Many2one('ct.activo_poste', 'Activo',  required=True)
 	tipo_activo_id = fields.Many2one(related='a_poste_id.tipo_activo_id')
 	tipo_activo_code = fields.Char(related='a_poste_id.tipo_activo_id.code')
-	
 	state1 = fields.Selection([('nuevo', 'Nuevo'), ('reutilizado', 'Reutilizado'), ('Retirado', 'Retirado')], string='Estado', required=True)
 	tarea = fields.Integer('Tarea MAXIMO', required=True)
 	notes = fields.Text('Observación')
 	product_ids = fields.One2many('ct.product_activo', 'activo_nodo_id', ondelete="cascade", domain=[('tipo_product', '=', 'mo')]) # Mano de Obra
 	product_mn_ids = fields.One2many('ct.product_activo', 'activo_nodo_id', ondelete="cascade", domain=[('tipo_product', '=', 'nuevo')]) # Material Nuevo (mn)
-	state = fields.Selection([('diseño', 'Diseño'), ('replanteo', 'Replanteo'), ('ejecucion', 'Ejecución')], default='diseño')
+	#state = fields.Selection([('diseño', 'Diseño'), ('replanteo', 'Replanteo'), ('ejecucion', 'Ejecución')], default='diseño')
+	state=fields.Selection(related='nodo1_id.state')
 	can_edit = fields.Boolean(string='Puede editar', compute='_can_edit')
-	distancia =fields.Integer('Distancia entre nodos')
+	distancia =fields.Integer('Distancia Entre Nodos')
 
 	_sql_constraints = [
 		('nodo_uniq', 'unique(code, a_poste_id)', 'Informacion Repetida'),
@@ -125,7 +125,7 @@ class ActivoPosteNodo(models.Model):
 			_logger.info('************ , %s', record.env.context)
 			estado_nodo = record.nodo1_id.state
 			record.can_edit = record.state == estado_nodo
-
+    
 	
 	def buscarMaterial(self, lista, product_id):		
 		pos = 0
@@ -139,7 +139,7 @@ class ActivoPosteNodo(models.Model):
 
 	def bt_calcular_material_nuevo(self):
 		if len(self.product_ids) == 0:
-			# Mensaje de error pasra el usuario
+			# Mensaje de error para el usuario
 			pass
 
 		if self.product_ids:
@@ -179,16 +179,18 @@ class productActivo(models.Model):
 	estructura_product_ids = fields.One2many(related='product_id.estructura_ids')	
 	cantidad = fields.Float('Cantidad', required=True, default=1)
 	estructura_ids = fields.Many2one('ct.estructura', string='Estructuras')
+	valor_uni = fields.Float('valor U', default=0)
 	bodega=fields.Char('Bodega')
-	tipo_product = fields.Selection([('mo', 'Mano de Obra'), ('nuevo', 'Nuevo'), ('retirado', 'Retirado'),('reutilizado','Reutilizado')], default='mo', required=True)
-	state = fields.Selection([('diseño', 'Diseño'), ('replanteo', 'Replanteo'), ('ejecucion', 'Ejecución')], default='diseño')
-	
+	tipo_product = fields.Selection([('mo', 'Mano de Obra'), ('nuevo', 'Nuevo'), ('retirado', 'Retirado'),('reutilizado','Reutilizado')], required=True)
+	#state = fields.Selection([('diseño', 'Diseño'), ('replanteo', 'Replanteo'), ('ejecucion', 'Ejecución')], default='diseño')
+	state = fields.Selection(related='activo_nodo_id.state')
+
 	@api.constrains("cantidad")
 	def _constrain_cantidad(self):
 		if self.cantidad <= 0:
 			raise ValidationError('Debe especificar una cantidad')
 
-
+     # Si la cantidad es 0 o un numero negativo se convierte en 1
 	@api.onchange("cantidad")
 	def onchange_cantidad(self):
 		if self.cantidad <= 0:
@@ -196,8 +198,13 @@ class productActivo(models.Model):
 			return {
 				"warning": {"title": "Error en Cantidad",	"message": "Debe especificar una cantidad mayor a cero" }
 			}			 
-
-
+    #Trae el valor unitario de caracteristicas del producto. 
+	@api.onchange("product_id")
+	def onchange_valor_uni(self):
+		if self.product_id:
+			self.valor_uni = self.product_id.list_price
+			
+		
 
 
 ###NO SIRVE PARA NADA PERO NO SE PUEDE QUITAR

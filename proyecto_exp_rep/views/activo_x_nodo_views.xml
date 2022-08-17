@@ -38,42 +38,42 @@
 		<field name="arch" type="xml">
 			<form>
 				<header>
-					<field name="state" widget="statusbar" options="{'clickable': True, 'fold_field': 'fold'}"/>
+					<field name="state" widget="statusbar"/>
 				</header>
 				<sheet>
-
-					<field name="can_edit" invisible="1" />
 					<group string ="Activos" col="4">
-						<field name="a_poste_id" attrs="{'readonly': [('can_edit', '=', False)]}"/>
+						<field name="a_poste_id" />
 						<field name="tipo_activo_id"/>
+						<field name="state1" />
+						<field name= "tarea" />
+						<field name="distancia" attrs="{'invisible': [('tipo_activo_code', '!=', 'red')], 'required': [('tipo_activo_code', '=', 'red')]}" />
+						<field name="notes" />
 						<field name="tipo_activo_code" invisible="1" />
-						<field name="state1" attrs="{'readonly': [('can_edit', '=', False)]}"/>
-						<field name= "tarea" attrs="{'readonly': [('can_edit', '=', False)]}"/>
-						<field name="distancia" attrs="{'invisible': [('tipo_activo_code', '!=', 'red')], 'required': [('tipo_activo_code', '=', 'red')], 'readonly': [('can_edit', '=', False)]}" />
-						<field name="notes" attrs="{'readonly': [('can_edit', '=', False)]}"/>
 					</group>
 
-					<group string="Mano de obra" >
-						<field name="product_ids" nolabel="1" attrs="{'readonly': [('can_edit', '=', False)]}" context="{'tipo_product' : 'mo'}">
+					<group string="Mano de obra" attrs="{'invisible': [('tipo_activo_code', '=', False)]}">
+						<field name="product_ids" nolabel="1" context="{'tipo_product' : 'mo'}">
 							<tree editable="buttom">
-								<field name="tipo_product" invisible="1"/>
+								<field name="tipo_product"  default="mo"/>
 								<field name="estructura_product_ids" invisible="1" />							
 								<field name="product_id" domain="[('tipo_activo_ids', '=', parent.tipo_activo_id)]" required="1" options="{'no_create_edit': True, 'no_create': True}"/>
+								<field name="valor_uni" optional="hide"/>
 								<field name="cantidad" />	
 								<field name="estructura_ids"  domain="[('id', 'in', estructura_product_ids)]" required="1" />							
 								<field name="state" invisible="1" />
 							</tree>
 						</field>
 						<newline />
-						<button name="bt_calcular_material_nuevo" string=" Calcular Material Nuevo" type="object"/>
-
+						<button name="bt_calcular_material_nuevo" class="oe_highlight" string=" Calcular Material Nuevo" type="object"/>
+                       
 					</group>
 
-				<group string="Material nuevo">
+				<group string="Material nuevo" attrs="{'invisible': [('tipo_activo_code', '=', False)]}">
 						<field name="product_mn_ids" nolabel="1" context="{'tipo_product' : 'nuevo'}">
 							<tree editable="buttom">
-								<field name="tipo_product" invisible="1"/>
+								<field name="tipo_product" default='nuevo' invisible="1"/>
 								<field name="product_id" options="{'no_create_edit': True, 'no_create': True}" required="1"/>
+								<field name="valor_uni" optional="hide"/>
 								<field name="cantidad"/>
 								<field name="bodega"/>										
 							</tree>
