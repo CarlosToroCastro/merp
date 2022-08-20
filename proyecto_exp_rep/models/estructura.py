@@ -21,7 +21,11 @@ class Estructura(models.Model):
 	tipo = fields.Selection([('retencion', 'Retención'), ('suspension', 'Suspensión')])
 	nivel_tension_id = fields.Many2many('ct.nivel_tension', string='Nivel tensión', required=True)
 	materiales_ids = fields.One2many('ct.materiales_estructura', 'estructura_id', string="Material de la estructura")
-	
+
+	_sql_constraints = [
+		('estructuras_uniq', 'unique(name)', 'Información Repetida'),
+		
+	]
 	
 	
 
@@ -35,4 +39,4 @@ class MaterialesEstructura(models.Model):
 	cantidad = fields.Float('Cantidad',required=True)
 
 	
-	#stage_id
+	

@@ -39,7 +39,7 @@
 					<group>
 						<field name="codigo" />
 						<field name="name" />
-						<field name="city_id" />
+						<field name="city_id" options="{'no_create_edit': True, 'no_create': True}"/>
 						<field name="direccion" />
 						<field name="notas" />
 					</group>

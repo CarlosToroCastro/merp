@@ -11,7 +11,7 @@
         	</field>
 
             <xpath expr="//page[@name='general_information']" position="after">
-                 <page name="MERP" string="M.E.R.P.">
+                 <page name="MERP" string="M.E.R.P." attrs="{'invisible': [('detailed_type', '!=', 'service')]}">
                     <group>
                         <field name="tipo_obra_id" /> 
                         <field name="nivel_tension_ids" widget="many2many_tags" />
@@ -20,7 +20,7 @@
                     <group string="Estructura">
                         <field name="estructura_ids">
                             <tree editable="bottom">
-                                <field name="estructura_id" />
+                                <field name="estructura_id" options="{'no_create_edit': True, 'no_create': True}"/>
                             </tree>
                         </field>
                     </group>
