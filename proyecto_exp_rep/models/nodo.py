@@ -197,7 +197,8 @@ class productActivo(models.Model):
 			self.cantidad = 1
 			return {
 				"warning": {"title": "Error en Cantidad",	"message": "Debe especificar una cantidad mayor a cero" }
-			}			 
+			}	
+					 
     #Trae el valor unitario de caracteristicas del producto. 
 	@api.onchange("product_id")
 	def onchange_valor_uni(self):
