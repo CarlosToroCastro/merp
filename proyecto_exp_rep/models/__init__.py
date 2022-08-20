@@ -6,7 +6,6 @@ from . import subestacion
 from . import circuito
 from . import nivel_tension
 from . import activo_poste
-from . import activo_red
 from . import contrato
 from . import tipo_proyecto
 from . import luminaria
