@@ -204,8 +204,7 @@ class productActivo(models.Model):
 	def onchange_valor_uni(self):
 		if self.product_id:
 			self.valor_uni = self.product_id.list_price
-			
-		
+
 
 
 class desRed(models.Model):
@@ -213,4 +212,3 @@ class desRed(models.Model):
 
 	_name = 'ct.des_red' 
 	_description = 'Prueba'
-
