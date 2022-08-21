@@ -125,7 +125,7 @@ class ActivoPosteNodo(models.Model):
 			_logger.info('************ , %s', record.env.context)
 			estado_nodo = record.nodo1_id.state
 			record.can_edit = record.state == estado_nodo
-    
+	
 	
 	def buscarMaterial(self, lista, product_id):		
 		pos = 0
@@ -179,7 +179,7 @@ class productActivo(models.Model):
 	estructura_product_ids = fields.One2many(related='product_id.estructura_ids')	
 	cantidad = fields.Float('Cantidad', required=True, default=1)
 	estructura_ids = fields.Many2one('ct.estructura', string='Estructuras')
-	
+	vali_len_estruc = fields.Boolean(default=False)
 	valor_uni = fields.Float('valor U', default=0)
 	bodega=fields.Char('Bodega')
 	tipo_product = fields.Selection([('mo', 'Mano de Obra'), ('nuevo', 'Nuevo'), ('retirado', 'Retirado'),('reutilizado','Reutilizado')], required=True)
@@ -191,7 +191,7 @@ class productActivo(models.Model):
 		if self.cantidad <= 0:
 			raise ValidationError('Debe especificar una cantidad')
 
-     # Si la cantidad es 0 o un numero negativo se convierte en 1
+	 # Si la cantidad es 0 o un numero negativo se convierte en 1
 	@api.onchange("cantidad")
 	def onchange_cantidad(self):
 		if self.cantidad <= 0:
@@ -200,15 +200,19 @@ class productActivo(models.Model):
 				"warning": {"title": "Error en Cantidad",	"message": "Debe especificar una cantidad mayor a cero" }
 			}	
 
-    #Trae el valor unitario de caracteristicas del producto. 
+	#Trae el valor unitario de caracteristicas del producto. 
 	@api.onchange("product_id")
 	def onchange_valor_uni(self):
 		if self.product_id:
 			self.valor_uni = self.product_id.list_price
 
 
-    #Si la MO tiene estructuras se vuelve requerido. 
+	#Si la MO tiene estructuras se vuelve requerido. 
 	@api.onchange("product_id")
 	def onchange_estruc_required(self):
 		if len(self.product_id.estructura_ids) != 0:
-			self.estructura_ids = required=True
+			self.vali_len_estruc = True 
+			self.estructura_ids = False
+		else: 
+			self.vali_len_estruc = False
+			self.estructura_ids = False
