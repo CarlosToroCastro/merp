@@ -198,7 +198,7 @@ class productActivo(models.Model):
 			return {
 				"warning": {"title": "Error en Cantidad",	"message": "Debe especificar una cantidad mayor a cero" }
 			}	
-					 
+
     #Trae el valor unitario de caracteristicas del producto. 
 	@api.onchange("product_id")
 	def onchange_valor_uni(self):
@@ -207,4 +207,10 @@ class productActivo(models.Model):
 			
 		
 
+
+class desRed(models.Model):
+	#cantidad de mano de obra que se puede realizar en un activo.
+
+	_name = 'ct.des_red' 
+	_description = 'Prueba'
 
