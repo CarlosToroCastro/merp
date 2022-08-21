@@ -17,7 +17,6 @@
 		'views/contrato_views.xml',
 		'views/tipo_activo_electrico_views.xml',
 		'views/activo_poste_views.xml',
-		#'views/activo_red_views.xml',
 		'views/tipo_proyecto_views.xml',
 		'views/nodo_views.xml',
 		'views/nodo_image_views.xml',		
