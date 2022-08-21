@@ -179,6 +179,7 @@ class productActivo(models.Model):
 	estructura_product_ids = fields.One2many(related='product_id.estructura_ids')	
 	cantidad = fields.Float('Cantidad', required=True, default=1)
 	estructura_ids = fields.Many2one('ct.estructura', string='Estructuras')
+	
 	valor_uni = fields.Float('valor U', default=0)
 	bodega=fields.Char('Bodega')
 	tipo_product = fields.Selection([('mo', 'Mano de Obra'), ('nuevo', 'Nuevo'), ('retirado', 'Retirado'),('reutilizado','Reutilizado')], required=True)
@@ -206,9 +207,8 @@ class productActivo(models.Model):
 			self.valor_uni = self.product_id.list_price
 
 
-
-class desRed(models.Model):
-	#cantidad de mano de obra que se puede realizar en un activo.
-
-	_name = 'ct.des_red' 
-	_description = 'Prueba'
+    #Si la MO tiene estructuras se vuelve requerido. 
+	@api.onchange("product_id")
+	def onchange_estruc_required(self):
+		if len(self.product_id.estructura_ids) != 0:
+			self.estructura_ids = required=True

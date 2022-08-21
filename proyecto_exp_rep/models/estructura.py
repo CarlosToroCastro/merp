@@ -19,11 +19,11 @@ class Estructura(models.Model):
 	descripcion = fields.Text('Descripción', required=True)
 	familia = fields.Char('Familia') #centro, bandera, semibandera, H....
 	tipo = fields.Selection([('retencion', 'Retención'), ('suspension', 'Suspensión')])
-	nivel_tension_id = fields.Many2many('ct.nivel_tension', string='Nivel tensión', required=True)
-	materiales_ids = fields.One2many('ct.materiales_estructura', 'estructura_id', string="Material de la estructura")
+	nivel_tension_id = fields.Many2many('ct.nivel_tension', string='Nivel tensión', ondelete="cascade", required=True)
+	materiales_ids = fields.One2many('ct.materiales_estructura', 'estructura_id', ondelete="cascade", string="Material de la estructura")
 
 	_sql_constraints = [
-		('estructuras_uniq', 'unique(name)', 'Información Repetida'),
+		('estructuras_uniq', 'unique(name)', 'Esta estructura ya existe'),
 		
 	]
 	
@@ -35,8 +35,8 @@ class MaterialesEstructura(models.Model):
 	_description = 'Matariales empleados en la estructura'
 
 	estructura_id = fields.Many2one('ct.estructura', 'name',required=True)
-	product_id = fields.Many2one('product.template', 'Material',required=True)
-	cantidad = fields.Float('Cantidad',required=True)
+	product_id = fields.Many2one('product.template', 'Material',ondelete="cascade", required=True)
+	cantidad = fields.Float('Cantidad',default=1, required=True)
 
 	@api.constrains("cantidad")
 	def _constrain_cantidad(self):

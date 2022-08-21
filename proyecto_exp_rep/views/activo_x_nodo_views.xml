@@ -59,8 +59,9 @@
 								<field name="product_id" domain="[('tipo_activo_ids', '=', parent.tipo_activo_id)]" required="1" options="{'no_create_edit': True, 'no_create': True}"/>
 								<field name="valor_uni" optional="hide"/>
 								<field name="cantidad" />	
-								<field name="estructura_ids"  domain="[('id', 'in', estructura_product_ids)]" required="1" />							
+								<field name="estructura_ids"  domain="[('id', 'in', estructura_product_ids)]" />							
 								<field name="state" invisible="1" />
+								
 							</tree>
 						</field>
 						<newline />
