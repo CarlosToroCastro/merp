@@ -42,13 +42,14 @@
 				</header>
 				<sheet>
 					<group string ="Activos" col="4">
-						<field name="a_poste_id" />
+						<field name="a_poste_id" attrs="{'readonly': [('bloq_encabe', '=', True)]}" />
 						<field name="tipo_activo_id"/>
-						<field name="state1" />
-						<field name= "tarea" />
+						<field name="state1" attrs="{'readonly': [('bloq_encabe', '=', True)]}"/>
+						<field name= "tarea" attrs="{'readonly': [('bloq_encabe', '=', True)]}"/>
 						<field name="distancia" attrs="{'invisible': [('tipo_activo_code', '!=', 'red')], 'required': [('tipo_activo_code', '=', 'red')]}" />
 						<field name="notes" />
 						<field name="tipo_activo_code" invisible="1" />
+						<field name="bloq_encabe" invisible="1" />
 					</group>
 
 					<group string="Mano de obra" attrs="{'invisible': [('tipo_activo_code', '=', False)]}">
@@ -58,7 +59,8 @@
 								<field name="estructura_product_ids" invisible="1" />							
 								<field name="product_id" domain="[('tipo_activo_ids', '=', parent.tipo_activo_id)]" required="1" options="{'no_create_edit': True, 'no_create': True}"/>
 								<field name="valor_uni" optional="hide"/>
-								<field name="cantidad" />	
+								<field name="sub_cantidad" />
+								<field name="cantidad" readonly="1"/>	
 								<field name="estructura_ids" attrs="{'required': [('vali_len_estruc', '=', True)]}" domain="[('id', 'in', estructura_product_ids)]" options="{'no_create_edit': True, 'no_create': True}"/>							
 								<field name="state" invisible="1" />
 								<field name="vali_len_estruc" invisible = "1"/>
