@@ -37,7 +37,7 @@ class Proyecto(models.Model):
 	fecha_replanteo = fields.Date('Fecha Replanteo')
 	fecha_ejecucion = fields.Date('Fecha Ejecución')
 	area = fields.Selection([('rural', 'Rural'), ('urbano', 'Urbano')], string='Área', required=True)
-	state = fields.Selection([('diseño', 'Diseño'), ('replanteo', 'Replanteo'), ('ejecucion', 'Ejecución')], string='Estado', default='diseño')
+	state = fields.Selection([('diseño', 'Diseño'), ('replanteo', 'Replanteo'), ('ejecucion', 'Ejecución')], string='Etapa', default='diseño')
 	notas = fields.Text('Observación')
 	nodo_ids = fields.One2many('ct.nodo', 'proyecto_id', string="Nodos")
 	seg_cont_ids = fields.One2many('ct.seguimiento_control', 'proyecto_id', string="Seguimiento y control" )

@@ -61,7 +61,7 @@
 	</record>
 
 <!-- menu de acceso -->
-	 <menuitem id="ct_activo_poste_menu" name="Activo Electrico en Poste" parent="merp_config_menu" action="ct_activo_poste_action" />
+	 <!--<menuitem id="ct_activo_poste_menu" name="Activo Electrico en Poste" parent="merp_config_menu" action="ct_activo_poste_action" />-->
 
 </odoo>
 

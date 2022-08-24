@@ -54,6 +54,6 @@
 	</record>
 
 	<!-- menu de acceso -->
-	 <menuitem id="ct_medidor_menu" name="Medidor" parent="merp_config_menu" action="ct_medidor_action" />
+	 <!--<menuitem id="ct_medidor_menu" name="Medidor" parent="merp_config_menu" action="ct_medidor_action" />-->
 
 </odoo>

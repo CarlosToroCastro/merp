@@ -10,7 +10,7 @@ class ActivoPoste(models.Model):
 
 	tipo_activo_id = fields.Many2one('ct.tipo_activo_electrico', string="Tipo Activo Eléctrico", required=True)
 	code_tipo_activo = fields.Char(related='tipo_activo_id.code')
-	name = fields.Char('Código', required=True)
+	name = fields.Char('Nombre Activo', required=True)
 	serie = fields.Char('Serie')
 	placa = fields.Char('Placa')
 	potencia = fields.Many2one('ct.pot_trans', string='Potencia nominal')
@@ -24,7 +24,7 @@ class ActivoPoste(models.Model):
 			
 
 	_sql_constraints = [
-		('activo_electrico_name_uniq', 'unique(name)', 'Información Repetida'),
+		('activo_electrico_name_uniq', 'unique(name)', 'Activo ya existe'),
 	]
 
 

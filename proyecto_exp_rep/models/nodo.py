@@ -99,7 +99,7 @@ class ActivoPosteNodo(models.Model):
 
 
 	nodo1_id = fields.Many2one('ct.nodo', 'name', required=True)
-	proyecto_name = fields.Char(related='nodo1_id.proyecto_id.name')
+	proyecto_id = fields.Many2one(related='nodo1_id.proyecto_id')
 	a_poste_id = fields.Many2one('ct.activo_poste', 'Activo',  required=True)
 	tipo_activo_id = fields.Many2one(related='a_poste_id.tipo_activo_id')
 	tipo_activo_code = fields.Char(related='a_poste_id.tipo_activo_id.code')
@@ -113,9 +113,6 @@ class ActivoPosteNodo(models.Model):
 	distancia =fields.Integer('Distancia Entre Nodos', default=1)
 	bloq_encabe = fields.Boolean(default=False)
 	
-	_sql_constraints = [
-		('activo_uniq', 'unique(a_poste_id)', 'Activo ya existe en el proyecto'),	
-	]
 
 	#Si existe un material o mano de obra bloquea el encabezado de activo. 
 	@api.onchange("product_ids")
@@ -223,9 +220,12 @@ class productActivo(models.Model):
 	#Si la MO tiene estructuras se vuelve requerido. 
 	@api.onchange("product_id")
 	def onchange_estruc_required(self):
+		self.estructura_ids = False
 		if len(self.product_id.estructura_ids) != 0:
 			self.vali_len_estruc = True 
-			self.estructura_ids = False
 		else: 
 			self.vali_len_estruc = False
-			self.estructura_ids = False
+
+
+    
+			

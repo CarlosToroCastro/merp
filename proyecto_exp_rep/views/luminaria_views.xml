@@ -40,6 +40,6 @@
 	
 
 	<!-- menu de acceso -->
-	 <menuitem id="ct_luminaria_menu" name="Luminaria" parent="merp_config_menu" action="ct_luminaria_action" />
+	 <!--<menuitem id="ct_luminaria_menu" name="Luminaria" parent="merp_config_menu" action="ct_luminaria_action" />-->
 
 </odoo>

@@ -28,4 +28,14 @@
             </xpath>
         </field>
     </record>
+
+    <record id="ct_material_mo_action" model="ir.actions.act_window">
+        <field name="name">MATERIAL MO</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.template</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="ct_material_mo" name="Materiales y MO" parent="merp_config_menu" action="ct_material_mo_action" />
+
 </odoo>

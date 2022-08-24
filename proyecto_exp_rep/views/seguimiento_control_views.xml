@@ -67,6 +67,6 @@
 	</record>
 
 	<!-- menu de acceso -->
-	 <menuitem id="ct_seguimiento_control_menu" name="Segumiento y control" parent="merp_config_menu" action="ct_seguimiento_control_action" />
+	 <!--<menuitem id="ct_seguimiento_control_menu" name="Segumiento y control" parent="merp_config_menu" action="ct_seguimiento_control_action" />-->
 
 </odoo>
