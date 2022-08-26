@@ -108,10 +108,11 @@ class ActivoPosteNodo(models.Model):
 	notes = fields.Text('Observación')
 	product_ids = fields.One2many('ct.product_activo', 'activo_nodo_id', ondelete="cascade", domain=[('tipo_product', '=', 'mo')]) # Mano de Obra
 	product_mn_ids = fields.One2many('ct.product_activo', 'activo_nodo_id', ondelete="cascade", domain=[('tipo_product', '=', 'nuevo')]) # Material Nuevo (mn)
+	product_mr_ids = fields.One2many('ct.product_activo', 'activo_nodo_id', ondelete="cascade", domain=[('tipo_product', '=', 'retirado')]) # Material Retirado (mr)
 	state=fields.Selection(related='nodo1_id.state')
 	can_edit = fields.Boolean(string='Puede editar', compute='_can_edit')
-	distancia =fields.Integer('Distancia Entre Nodos', default=1)
 	bloq_encabe = fields.Boolean(default=False)
+
 	
 
 	#Si existe un material o mano de obra bloquea el encabezado de activo. 
@@ -122,11 +123,7 @@ class ActivoPosteNodo(models.Model):
 		else: 
 			self.bloq_encabe = False
 
-	#Si cambia de activo distancia se vuelve 1. 
-	@api.onchange("a_poste_id")
-	def reset_distancia(self):
-		self.distancia = 1		
-			
+					
 
 	@api.depends('nodo1_id.state')
 	def _can_edit(self):
@@ -148,7 +145,7 @@ class ActivoPosteNodo(models.Model):
 
 	def bt_calcular_material_nuevo(self):
 		if len(self.product_ids) == 0:
-			# Mensaje de error para el usuario
+				# Mensaje de error para el usuario		
 			pass
 
 		if self.product_ids:
@@ -184,28 +181,30 @@ class productActivo(models.Model):
 
 
 	activo_nodo_id = fields.Many2one('ct.nodo_activo', 'Activo')
+	tipo_activo_id = fields.Many2one(related='activo_nodo_id.tipo_activo_id')
 	product_id = fields.Many2one('product.template',string='Producto')
 	estructura_product_ids = fields.One2many(related='product_id.estructura_ids')
-	sub_cantidad = fields.Float('Subtotal', required=True, default=1)	
-	cantidad = fields.Float('Total')
+	valor_uni = fields.Float('valor U', default=0)
+	distancia = fields.Float('Dist', default=1)		
+	can_lineas = fields.Selection([('1', 1), ('2', 2),('3', 3),('4', 4)], default = '1', string="Can lineas")
+	cantidad = fields.Float('Total', default = 1)
 	estructura_ids = fields.Many2one('ct.estructura', string='Estructuras')
 	vali_len_estruc = fields.Boolean(default=False)
-	valor_uni = fields.Float('valor U', default=0)
 	bodega=fields.Char('Bodega')
 	tipo_product = fields.Selection([('mo', 'Mano de Obra'), ('nuevo', 'Nuevo'), ('retirado', 'Retirado'),('reutilizado','Reutilizado')], required=True)
 	state = fields.Selection(related='activo_nodo_id.state')
 
-	@api.constrains("sub_cantidad")
-	def _constrain_sub_cantidad(self):
-		if self.sub_cantidad <= 0:
+	@api.constrains("cantidad")
+	def _constrain_cantidad(self):
+		if self.cantidad <= 0:
 			raise ValidationError('Debe especificar una cantidad')
 
-	 # Si la sub_cantidad es 0 o un numero negativo se convierte en 1
-	@api.onchange("sub_cantidad")
+	 # Si la cantidad es 0 o un numero negativo se convierte en 1
+	@api.onchange("can_lineas" , "distancia")
 	def onchange_cantidad(self):
-		self.cantidad = self.sub_cantidad * self.activo_nodo_id.distancia
-		if self.sub_cantidad <= 0:
-			self.sub_cantidad = 1
+		self.cantidad = self.can_lineas * self.distancia
+		if self.cantidad <= 0:
+			self.cantidad = 1
 			return {
 				"warning": {"title": "Error en Cantidad",	"message": "Debe especificar una cantidad mayor a cero" }
 			}	
@@ -215,9 +214,18 @@ class productActivo(models.Model):
 	def onchange_valor_uni(self):
 		if self.product_id:
 			self.valor_uni = self.product_id.list_price
+		if self.product_id.detailed_type == 'service':
+			self.tipo_product = 'mo'
+		elif self.product_id.detailed_type == 'product':
+			self.tipo_product = 'nuevo'
+		elif self.product_id.name2 == 'Retirado':
+			self.tipo_product = 'retirado'
 
 
-	#Si la MO tiene estructuras se vuelve requerido. 
+
+
+
+	#Si la MO tiene estructuras se vuelve requerido, si tiene una sola estructura la pone por defecto.  
 	@api.onchange("product_id")
 	def onchange_estruc_required(self):
 		self.estructura_ids = False
