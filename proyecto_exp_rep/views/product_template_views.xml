@@ -18,10 +18,8 @@
                         <field name="tipo_activo_ids" widget="many2many_tags" />                           
                     </group>
                     <group string="Estructura">
-                        <field name="estructura_ids" options="{'no_create_edit': True, 'no_create': True}">
-                            
+                        <field name="estructura_ids" options="{'no_create_edit': True, 'no_create': True}" nolabel="1">
                                 <field name="estructura_ids" options="{'no_create_edit': True, 'no_create': True}"/>
-                            
                         </field>
                     </group>
                  </page>

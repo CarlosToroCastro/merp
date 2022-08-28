@@ -232,7 +232,7 @@ class productActivo(models.Model):
 		if len(self.product_id.estructura_ids) != 0:
 			self.vali_len_estruc = True 
 		elif len(self.product_id.estructura_ids) == 1:
-			self.estructura_ids[0] = self.product_id.estructura_ids[0]
+			self.estructura_ids = self.product_id.estructura_ids
 		else: 
 			self.vali_len_estruc = False
 
