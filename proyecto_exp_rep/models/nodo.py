@@ -181,13 +181,13 @@ class productActivo(models.Model):
 
 
 	activo_nodo_id = fields.Many2one('ct.nodo_activo', 'Activo')
-	tipo_activo_id = fields.Many2one(related='activo_nodo_id.tipo_activo_id')
+	tipo_activo_code = fields.Char(related='activo_nodo_id.tipo_activo_code')
 	product_id = fields.Many2one('product.template',string='Producto')
-	estructura_product_ids = fields.One2many(related='product_id.estructura_ids')
+	estructura_product_ids = fields.Many2many(related='product_id.estructura_ids')
 	valor_uni = fields.Float('valor U', default=0)
-	distancia = fields.Float('Dist', default=1)		
+	distancia = fields.Integer('Dist', default=1)		
 	can_lineas = fields.Selection([('1', 1), ('2', 2),('3', 3),('4', 4)], default = '1', string="Can lineas")
-	cantidad = fields.Float('Total', default = 1)
+	cantidad = fields.Integer('Total', default = 1)
 	estructura_ids = fields.Many2one('ct.estructura', string='Estructuras')
 	vali_len_estruc = fields.Boolean(default=False)
 	bodega=fields.Char('Bodega')
@@ -202,7 +202,7 @@ class productActivo(models.Model):
 	 # Si la cantidad es 0 o un numero negativo se convierte en 1
 	@api.onchange("can_lineas" , "distancia")
 	def onchange_cantidad(self):
-		self.cantidad = self.can_lineas * self.distancia
+		self.cantidad = int(self.can_lineas) * self.distancia
 		if self.cantidad <= 0:
 			self.cantidad = 1
 			return {
@@ -231,9 +231,11 @@ class productActivo(models.Model):
 		self.estructura_ids = False
 		if len(self.product_id.estructura_ids) != 0:
 			self.vali_len_estruc = True 
+		elif len(self.product_id.estructura_ids) == 1:
+			self.estructura_ids[0] = self.product_id.estructura_ids[0]
 		else: 
 			self.vali_len_estruc = False
 
 
-    
+	
 			

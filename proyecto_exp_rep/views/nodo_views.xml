@@ -61,7 +61,7 @@
 							<field name="gps_altura" />
 							<field name="direccion" />
 							<field name="notas" />
-							<field name="estado_revision" attrs="{'required': [('state', '=', 'ejecucion')], 'invisible': [('state', '!=', 'ejecucion')]}" string="Estado de Revisión" />
+							<field name="estado_revision" attrs="{ 'invisible': [('state', '!=', 'ejecucion')]}" string="Estado de Revisión" />
 							<field name="no_conformidad_ids" attrs="{'required': [('estado_revision', '=', 'no conforme')], 'invisible': [('estado_revision', '!=', 'no conforme')]}" options="{'no_create_edit': True, 'no_create': True}" widget="many2many_tags" />
 							<field name="tipo_activo_id"  invisible="1"/> 
 					</group>
