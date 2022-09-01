@@ -93,7 +93,7 @@
 						<page string="Maniobras" name="maniobra" attrs="{'invisible': [('state', '=', 'diseño')]}">
 							<field name="maniobras_ids" nolabel="1" >
 								<tree editable="bottom">
-									<field name="activo" />
+									<field name="elemento" />
 									<field name="accion" />
 									<field name="notas" />
 								</tree>

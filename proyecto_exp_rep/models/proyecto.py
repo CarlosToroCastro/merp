@@ -149,7 +149,7 @@ class maniobras(models.Model):
 	_description = 'Maniobras necesarias para desenergizar tramo de red'
 
 
-	activo = fields.Many2one('ct.activo_poste','Elemento', required=True)
+	elemento = fields.Char('Elemento', required=True)
 	accion = fields.Selection([('abrir', 'ABRIR'), ('cerra', 'CERRAR'), ('abrir puentes','ABRIR PUENTES')], string='Acción', required=True)
 	notas = fields.Text('Observación')
 	proyecto_id = fields.Many2one('ct.proyecto', 'name')

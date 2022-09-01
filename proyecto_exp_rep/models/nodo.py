@@ -19,8 +19,8 @@ class Nodo(models.Model):
 	estado_revision = fields.Selection([('conforme', 'CONFORME'),('no conforme', 'NO CONFORME')])
 	no_conformidad_ids = fields.Many2many('ct.no_conformidades', string='No conformidad')
 	notas = fields.Text('Observación')
-	activo_poste_ids = fields.One2many('ct.nodo_activo','nodo1_id', string="Activos", ondelete="cascade")
-	tipo_activo_id = fields.Many2one(related='activo_poste_ids.tipo_activo_id')
+	activo_nodo_ids = fields.One2many('ct.activo_nodo','nodo_id', string="Activos", ondelete="cascade")
+	tipo_activo_id = fields.Many2one(related='activo_nodo_ids.tipo_activo_id')
 	luminaria_ids = fields.One2many('ct.luminaria','nodo_id', string="Luminaria")
 	usuario_ids = fields.One2many('ct.usuario','nodo_id', string="Usuario")
 	proyecto_id = fields.Many2one('ct.proyecto', 'Proyecto')
@@ -31,7 +31,7 @@ class Nodo(models.Model):
 	activos_count = fields.Integer('Activos', compute='compute_count')
 
 	def compute_count(self):
-		self.activos_count = len(self.activo_poste_ids.filtered(lambda a: a.state == self.state))
+		self.activos_count = len(self.activo_nodo_ids.filtered(lambda a: a.state == self.state))
 
 
 	def action_activos(self):
@@ -40,9 +40,9 @@ class Nodo(models.Model):
 			'type': 'ir.actions.act_window',
 			'name': 'Activo(s) del nodo: ' + self.name,
 			'view_mode': 'tree,form',
-			'res_model': 'ct.nodo_activo',
-			'domain': [('nodo1_id', '=', self.id), ('state', '=', self.state)],
-			'context': "{'default_nodo1_id': %d, 'default_state': '%s', 'can_edit': True}" % (self.id, self.state),
+			'res_model': 'ct.activo_nodo',
+			'domain': [('nodo_id', '=', self.id), ('state', '=', self.state)],
+			'context': "{'default_nodo_id': %d, 'default_state': '%s', 'can_edit': True}" % (self.id, self.state),
 		}
 
 	_sql_constraints = [
@@ -75,7 +75,7 @@ class Nodo(models.Model):
 				lista_productos.append((0,0, linea_producto))			
 
 			nueva_linea = {
-					'nodo1_id': activo.nodo1_id.id,
+					'nodo_id': activo.nodo_id.id,
 					'a_poste_id': activo.a_poste_id.id,
 					'state1': activo.state1,
 					'tarea': activo.tarea,
@@ -91,7 +91,7 @@ class Nodo(models.Model):
 			self.state = 'replanteo'
 				
 
-
+"""
 class ActivoPosteNodo(models.Model):
 #realacion  entre activos y nodos. 
 	_name = 'ct.nodo_activo'
@@ -175,7 +175,7 @@ class ActivoPosteNodo(models.Model):
 				materiales_agrupados_id.append((0,0, m))
 			self.product_mn_ids = materiales_agrupados_id
 
-
+"""
 
 class productActivo(models.Model):
 	#cantidad de mano de obra que se puede realizar en un activo.
@@ -184,7 +184,7 @@ class productActivo(models.Model):
 	_description = 'Mano de obra y materiales que se utilizada en un activo'
 
 
-	activo_nodo_id = fields.Many2one('ct.nodo_activo', 'Activo')
+	activo_nodo_id = fields.Many2one('ct.activo_nodo', 'Activo')
 	tipo_activo_code = fields.Char(related='activo_nodo_id.tipo_activo_code')
 	product_id = fields.Many2one('product.template',string='Producto')
 	estructura_product_ids = fields.Many2many(related='product_id.estructura_ids')
@@ -251,4 +251,7 @@ class fasesRed(models.Model):
 
 	code = fields.Char('Código', required=True)
 	name = fields.Char('Fase', required=True)
+
+
+
 	
