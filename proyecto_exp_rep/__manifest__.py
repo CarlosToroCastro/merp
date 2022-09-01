@@ -33,6 +33,7 @@
 		'views/pot_trans_views.xml',
 		'views/anexos_views.xml',
 		'views/no_conformidades_views.xml',	
+		'views/fases_views.xml',
 	],
 	'installable': True,
 	'assets': {

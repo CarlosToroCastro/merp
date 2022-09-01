@@ -40,22 +40,54 @@ class Proyecto(models.Model):
 	state = fields.Selection([('diseño', 'Diseño'), ('replanteo', 'Replanteo'), ('ejecucion', 'Ejecución')], string='Etapa', default='diseño')
 	notas = fields.Text('Observación')
 	nodo_ids = fields.One2many('ct.nodo', 'proyecto_id', string="Nodos")
+	valor_mo_diseno = fields.Float('valor mano de obra diseño', compute='compute_valor', default = 0)
+	valor_mn_diseno = fields.Float('valor material nuevo diseño', compute='compute_valor', default = 0)
+	valor_mo_replanteo = fields.Float('valor mano de obra replanteo', compute='compute_valor', default = 0)
+	valor_mn_replanteo = fields.Float('valor material nuevo replanteo', compute='compute_valor', default = 0)
+	valor_mo_ejecucion = fields.Float('valor mano de obra ejecucion', compute='compute_valor', default = 0)
+	valor_mn_ejecucion = fields.Float('valor material nuevo ejecucion', compute='compute_valor', default = 0)
 	seg_cont_ids = fields.One2many('ct.seguimiento_control', 'proyecto_id', string="Seguimiento y control" )
 	maniobras_ids = fields.One2many('ct.maniobra', 'proyecto_id', string="Maniobras" )
 	anexos_ids = fields.One2many('ct.archivo_proyecto', 'proyecto_id', string="Archivos")
-
 	nodos_count = fields.Integer('Nodos', compute='compute_count')
+
+	def btn_replanteo(self):
+		if len(nodo_ids.activo_poste_ids.product_ids) == 0:
+			raise ValidationError("No hay productos en el diseño")
+
+		lista_productos = []
+		for p in self.nodo_ids.activo_poste_ids.product_ids.filtered(lambda a: a.state == 'diseño'):
+			linea_producto = {
+				'product_id': p.product_id.id,
+				'cantidad': p.cantidad,
+				'bodega' : p.bodega,
+				'tipo_product': p.tipo_product,
+				'state': 'replanteo'
+			}
+			lista_productos.append((0,0, linea_producto))
+
+
+
+
+
+
 
 
 	def compute_count(self):
 		self.nodos_count = len(self.nodo_ids)
 
 
+
+	def compute_valor(self):
+		self.nodos_count = len(self.nodo_ids)
+
+
+
 	def action_nodos(self):
 		self.ensure_one()
 		return {
 			'type': 'ir.actions.act_window',
-			'name': 'Nodo(s) del proyecto: ' + self.name,
+			'name': 'Nodo(s): ' + self.name,
 			'view_mode': 'tree,form',
 			'res_model': 'ct.nodo',
 			'domain': [('proyecto_id', '=', self.id)],

@@ -1,39 +1,53 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
-    <record id="product_template_only_form_view_ct" model="ir.ui.view">
-        <field name="name">product.template.product.form.ct</field>
-        <field name="model">product.template</field>
-        <field name="inherit_id" ref="product.product_template_only_form_view"/>        
-        <field name="arch" type="xml">        	
-        	<field name="uom_id" position="before">
-        		<field name="name2" />
-        	</field>
+	<!-- Vista Lista -->
+	<record id="product_template_only_tree_view_ct" model="ir.ui.view">	
+		<field name="name">product.template.product.tree.ct</field>
+		<field name="model">product.template</field>
+		<field name="inherit_id" ref="product.product_template_tree_view"/>        
+		<field name="arch" type="xml">        	
+			<field name="name" position="after">
+				<field name="name2" optional="hide"/>
+			</field>
+		</field>
+	</record>
 
-            <xpath expr="//page[@name='general_information']" position="after">
-                 <page name="MERP" string="M.E.R.P." attrs="{'invisible': [('detailed_type', '!=', 'service')]}">
-                    <group>
-                        <field name="tipo_obra_id" /> 
-                        <field name="nivel_tension_ids" widget="many2many_tags" />
-                        <field name="tipo_activo_ids" widget="many2many_tags" />                           
-                    </group>
-                    <group string="Estructura">
-                        <field name="estructura_ids" options="{'no_create_edit': True, 'no_create': True}" nolabel="1">
-                                <field name="estructura_ids" options="{'no_create_edit': True, 'no_create': True}"/>
-                        </field>
-                    </group>
-                 </page>
-            </xpath>
-        </field>
-    </record>
+	<!-- Vista Formulario -->
+	<record id="product_template_only_form_view_ct" model="ir.ui.view">
+		<field name="name">product.template.product.form.ct</field>
+		<field name="model">product.template</field>
+		<field name="inherit_id" ref="product.product_template_only_form_view"/>        
+		<field name="arch" type="xml">        	
+			<field name="uom_id" position="before">
+				<field name="name2" />
+			</field>
 
-    <record id="ct_material_mo_action" model="ir.actions.act_window">
-        <field name="name">MATERIAL MO</field>
-        <field name="type">ir.actions.act_window</field>
-        <field name="res_model">product.template</field>
-        <field name="view_mode">tree,form</field>
-    </record>
+			<xpath expr="//page[@name='general_information']" position="after">
+				 <page name="MERP" string="M.E.R.P." attrs="{'invisible': [('detailed_type', '!=', 'service')]}">
+					<group>
+						<field name="tipo_obra_id" /> 
+						<field name="nivel_tension_ids" widget="many2many_tags" />
+						<field name="tipo_activo_ids" widget="many2many_tags" />                           
+					</group>
+					<group string="Estructura">
+						<field name="estructura_ids" options="{'no_create_edit': True, 'no_create': True}" nolabel="1">
+								<field name="estructura_ids" options="{'no_create_edit': True, 'no_create': True}"/>
+						</field>
+					</group>
+				 </page>
+			</xpath>
+		</field>
+	</record>
 
-    <menuitem id="ct_material_mo" name="Materiales y MO" parent="merp_config_menu" action="ct_material_mo_action" />
+	<!-- Accion del formulario -->
+	<record id="ct_material_mo_action" model="ir.actions.act_window">
+		<field name="name">MATERIAL MO</field>
+		<field name="type">ir.actions.act_window</field>
+		<field name="res_model">product.template</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+	<!-- menu de acceso -->
+	<menuitem id="ct_material_mo" name="Materiales y MO" parent="merp_config_menu" action="ct_material_mo_action" />
 
 </odoo>

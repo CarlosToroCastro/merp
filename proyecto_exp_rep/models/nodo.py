@@ -58,7 +58,7 @@ class Nodo(models.Model):
 
 		# Solo debe pasar a estado replanteo cuando se seleccione al menos un activo
 		if len(self.activo_poste_ids) == 0:
-			raise ValidationError("Debe seleccior al menso un Activo para pasar de estado")
+			raise ValidationError("Debe seleccior al menos un Activo para pasar de estado")
 
 		lineas_replanteo =[]
 		for activo in self.activo_poste_ids.filtered(lambda a: a.state == 'diseño'):
@@ -109,16 +109,20 @@ class ActivoPosteNodo(models.Model):
 	product_ids = fields.One2many('ct.product_activo', 'activo_nodo_id', ondelete="cascade", domain=[('tipo_product', '=', 'mo')]) # Mano de Obra
 	product_mn_ids = fields.One2many('ct.product_activo', 'activo_nodo_id', ondelete="cascade", domain=[('tipo_product', '=', 'nuevo')]) # Material Nuevo (mn)
 	product_mr_ids = fields.One2many('ct.product_activo', 'activo_nodo_id', ondelete="cascade", domain=[('tipo_product', '=', 'retirado')]) # Material Retirado (mr)
+	secu_fase = fields.Many2many('ct.fases_red', string='Secuencia de Fases')
 	state=fields.Selection(related='nodo1_id.state')
 	can_edit = fields.Boolean(string='Puede editar', compute='_can_edit')
 	bloq_encabe = fields.Boolean(default=False)
 
+	_sql_constraints = [
+		('tarea_uniq', 'unique(tarea)', 'La tarea ya existe en el proyecto'),
+	]
 	
 
 	#Si existe un material o mano de obra bloquea el encabezado de activo. 
-	@api.onchange("product_ids")
+	@api.onchange("product_ids", "product_mn_ids")
 	def onchange_len_product(self):
-		if len(self.product_ids) != 0:
+		if len(self.product_ids) != 0 | len(self.product_mn_ids) != 0 :
 			self.bloq_encabe = True 
 		else: 
 			self.bloq_encabe = False
@@ -192,7 +196,7 @@ class productActivo(models.Model):
 	vali_len_estruc = fields.Boolean(default=False)
 	bodega=fields.Char('Bodega')
 	tipo_product = fields.Selection([('mo', 'Mano de Obra'), ('nuevo', 'Nuevo'), ('retirado', 'Retirado'),('reutilizado','Reutilizado')], required=True)
-	state = fields.Selection(related='activo_nodo_id.state')
+	state = fields.Selection([('diseño', 'Diseño'), ('replanteo', 'Replanteo'), ('ejecucion', 'Ejecución')], string='Etapa')
 
 	@api.constrains("cantidad")
 	def _constrain_cantidad(self):
@@ -213,6 +217,7 @@ class productActivo(models.Model):
 	@api.onchange("product_id")
 	def onchange_valor_uni(self):
 		if self.product_id:
+			self.state = self.activo_nodo_id.state
 			self.valor_uni = self.product_id.list_price
 		if self.product_id.detailed_type == 'service':
 			self.tipo_product = 'mo'
@@ -231,11 +236,19 @@ class productActivo(models.Model):
 		self.estructura_ids = False
 		if len(self.product_id.estructura_ids) != 0:
 			self.vali_len_estruc = True 
-		elif len(self.product_id.estructura_ids) == 1:
-			self.estructura_ids = self.product_id.estructura_ids
+			if len(self.product_id.estructura_ids) == 1: # Si solo hay una estructura queda por defecto. 
+				self.estructura_ids = self.product_id.estructura_ids
 		else: 
 			self.vali_len_estruc = False
 
 
+class fasesRed(models.Model):
+	#Secuencia de fases.
+
+	_name = 'ct.fases_red' 
+	_description = 'Secuencia de fases'
+
+
+	code = fields.Char('Código', required=True)
+	name = fields.Char('Fase', required=True)
 	
-			

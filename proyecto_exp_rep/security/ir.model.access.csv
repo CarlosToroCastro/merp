@@ -2,6 +2,7 @@ id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 proyecto_exp_rep.access_ct_subestacion,access_ct_subestacion,proyecto_exp_rep.model_ct_subestacion,base.group_user,1,1,1,1
 proyecto_exp_rep.access_ct_circuito,access_ct_circuito,proyecto_exp_rep.model_ct_circuito,base.group_user,1,1,1,0
 proyecto_exp_rep.access_ct_nivel_tension,access_ct_nivel_tension,proyecto_exp_rep.model_ct_nivel_tension,base.group_user,1,1,1,0
+proyecto_exp_rep.access_ct_fases_red,access_ct_fases_red,proyecto_exp_rep.model_ct_fases_red,base.group_user,1,1,1,1
 proyecto_exp_rep.access_ct_tipo_activo_electrico,access_ct_tipo_activo_electrico,proyecto_exp_rep.model_ct_tipo_activo_electrico,base.group_user,1,1,1,1
 proyecto_exp_rep.access_ct_activo_poste,access_ct_activo_poste,proyecto_exp_rep.model_ct_activo_poste,base.group_user,1,1,1,0
 proyecto_exp_rep.access_ct_contrato,access_ct_contrato,proyecto_exp_rep.model_ct_contrato,base.group_user,1,1,1,0

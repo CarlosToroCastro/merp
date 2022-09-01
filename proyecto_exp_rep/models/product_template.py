@@ -19,7 +19,6 @@ class ProductTemplate(models.Model):
 	tipo_activo_ids = fields.Many2many('ct.tipo_activo_electrico', string='Activo')
 	tipo_obra_id = fields.Selection([('electrica','ELECTRICA'), ('civil', 'OBRA CIVIL')])
 	nivel_tension_ids = fields.Many2many('ct.nivel_tension', string='Nivel Tensión')
-	#estructura_ids = fields.One2many('product.template.estructura', 'product_id')
 	estructura_ids = fields.Many2many('ct.estructura', string='Estructuras')
 
 

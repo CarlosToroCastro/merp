@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<!-- Vista de Busqueda -->
+	
+	<record id="ct_fases_red_search_view" model="ir.ui.view">
+		<field name="name">ct.fases_red.search</field>
+		<field name="model">ct.fases_red</field>
+		<field name="arch" type="xml">
+			<search>
+					<field name="code" />
+					<field name="name" />
+			</search>			
+		</field>
+	</record>
+
+
+	<!-- Vista Lista -->
+	<record id="ct_fases_red_tree_view" model="ir.ui.view">
+		<field name="name">ct.fases_red.tree</field>
+		<field name="model">ct.fases_red</field>
+		<field name="arch" type="xml">
+			<tree editable="bottom" >
+				<field name="code" />
+				<field name="name" />	
+			</tree>
+		</field>
+	</record>
+
+
+	
+
+	<!-- Accion del formulario -->
+	<record id="ct_fases_red_action" model="ir.actions.act_window">
+		<field name="name">FASES</field>
+		<field name="type">ir.actions.act_window</field>
+		<field name="res_model">ct.fases_red</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+
+	<!-- menu de acceso -->
+	 <menuitem id="ct_fases_red_menu" name="Fases" parent="merp_config_menu" action="ct_fases_red_action" />
+
+</odoo>
