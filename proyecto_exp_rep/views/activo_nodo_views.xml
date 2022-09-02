@@ -65,14 +65,14 @@
 								<field name="product_id" domain="[('tipo_activo_ids', '=', parent.tipo_activo_id)]" required="1" options="{'no_create_edit': True, 'no_create': True}"/>
 								<field name="estructura_ids" attrs="{'required': [('vali_len_estruc', '=', True)] }" domain="[('id', 'in', estructura_product_ids)]" options="{'no_create_edit': True, 'no_create': True}"/>	
 								<field name="valor_uni" optional="hide" readonly="1"/>
-								<field name="distancia" attrs="{'readonly': [('tipo_activo_code', '!=', 'red')]}"/>
-								<field name="can_lineas" attrs="{'readonly': [('tipo_activo_code', '!=', 'red')]}"/>
+								<field name="distancia" attrs="{'column_invisible': [('parent.tipo_activo_code', '!=', 'red')]}"/>	
+								<field name="can_lineas" attrs="{'column_invisible': [('parent.tipo_activo_code', '!=', 'red')]}"/>
 								<field name="cantidad" attrs="{'readonly': [('tipo_activo_code', '=', 'red')]}"/>						
 								<field name="vali_len_estruc" invisible = "1"/>
 								<field name="tipo_activo_code" invisible = "1"/>
 								<field name="tipo_product" invisible="1"/>
 								<field name="estructura_product_ids" invisible="1" />
-								<field name="state" invisible="1"/>
+								<field name="state" />
 							</tree>
 						</field>
 						<newline />
@@ -86,7 +86,7 @@
 								<field name="product_id" domain="[('detailed_type', '=', 'product')]" options="{'no_create_edit': True, 'no_create': True}" required="1"/>
 								<field name="valor_uni" optional="hide"/>
 								<field name="cantidad" />	
-								<field name="bodega" attrs="{'invisible': [('state','!=', 'ejecucion')]}"/>	
+								<field name="bodega" attrs="{'column_invisible': [('parent.state','!=', 'ejecucion')]}"/>	
 								<field name="tipo_product" invisible="1"/>
 								<field name="state" />							
 							</tree>

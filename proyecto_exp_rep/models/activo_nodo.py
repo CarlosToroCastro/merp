@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
-
+import logging
 from odoo import api, fields, models
+
+_logger = logging.getLogger(__name__)
 
 class ActivoPoste(models.Model):
 
@@ -30,7 +32,7 @@ class ActivoPoste(models.Model):
 	bloq_encabe = fields.Boolean(default=False)
 
 	_sql_constraints = [
-		('activo_uniq', 'unique(proyecto_id.name, name)', 'Activo ya existe'),
+		('activo_nodo_uniq', 'unique(proyecto_id_name, name)', 'Activo ya existe'),
 	]
 
 	@api.onchange('voltaje', 'tipo')

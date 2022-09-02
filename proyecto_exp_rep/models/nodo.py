@@ -200,8 +200,9 @@ class productActivo(models.Model):
 
 	@api.constrains("cantidad")
 	def _constrain_cantidad(self):
-		if self.cantidad <= 0:
-			raise ValidationError('Debe especificar una cantidad')
+		for record in self:
+			if record.cantidad <= 0:
+				raise ValidationError('Debe especificar una cantidad')
 
 	 # Si la cantidad es 0 o un numero negativo se convierte en 1
 	@api.onchange("can_lineas" , "distancia")

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="merp_admin" model="res.groups">
+            <field name="name">M.E.R.P: Administrador</field>
+        </record>
+        <record id="merp_disenador" model="res.groups">
+            <field name="name">M.E.R.P: Diseñador</field>
+        </record>
+        <record id="merp_interventor" model="res.groups">
+            <field name="name">M.E.R.P: Interventor</field>
+        </record>
+        <record id="merp_analista" model="res.groups">
+            <field name="name">M.E.R.P: Analista</field>
+        </record>        
+    </data>
+</odoo>

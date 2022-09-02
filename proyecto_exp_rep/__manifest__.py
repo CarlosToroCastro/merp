@@ -6,6 +6,7 @@
 	'summary': 'Gestión de Proyectos en Sector Electrico',
 	'depends': ['base_address_city', 'product','contacts'],
 	'data': [
+		'security/merp_security.xml',
 		'security/ir.model.access.csv',				
 		'views/menu.xml',
 		'views/product_template_views.xml',
