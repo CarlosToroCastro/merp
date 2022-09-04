@@ -198,11 +198,12 @@ class productActivo(models.Model):
 	tipo_product = fields.Selection([('mo', 'Mano de Obra'), ('nuevo', 'Nuevo'), ('retirado', 'Retirado'),('reutilizado','Reutilizado')], required=True)
 	state = fields.Selection([('diseño', 'Diseño'), ('replanteo', 'Replanteo'), ('ejecucion', 'Ejecución')], string='Etapa')
 
-	@api.constrains("cantidad")
+	"""@api.constrains("cantidad")
 	def _constrain_cantidad(self):
 		for record in self:
 			if record.cantidad <= 0:
 				raise ValidationError('Debe especificar una cantidad')
+				"""
 
 	 # Si la cantidad es 0 o un numero negativo se convierte en 1
 	@api.onchange("can_lineas" , "distancia")

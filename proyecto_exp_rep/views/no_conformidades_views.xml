@@ -38,6 +38,6 @@
 	
 
 	<!-- menu de acceso -->
-	 <menuitem id="ct_no_conformidades_menu" name="No conformidades" parent="merp_config_menu" action="ct_no_conformidades_action" />
+	<menuitem id="ct_no_conformidades_menu" name="No conformidades" parent="merp_config_menu" action="ct_no_conformidades_action" />
 
 </odoo>

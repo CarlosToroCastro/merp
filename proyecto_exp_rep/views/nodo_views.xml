@@ -107,6 +107,6 @@
 	</record>
 
 	<!-- menu de acceso -->
-	 <menuitem id="ct_nodo_menu" name="Nodo" action="ct_nodo_action" />
+	 <!--<menuitem id="ct_nodo_menu" name="Nodo" action="ct_nodo_action" />-->
 
 </odoo>
