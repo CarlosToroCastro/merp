@@ -51,21 +51,42 @@ class Proyecto(models.Model):
 	anexos_ids = fields.One2many('ct.archivo_proyecto', 'proyecto_id', string="Archivos")
 	nodos_count = fields.Integer('Nodos', compute='compute_count')
 
+	
+
 	def btn_replanteo(self):
-		if len(nodo_ids.activo_poste_ids.product_ids) == 0:
-			raise ValidationError("No hay productos en el diseño")
+		if len(self.nodo_ids) == 0:
+			raise ValidationError("No hay nodos en este proyecto")
 
-		lista_productos = []
-		for p in self.nodo_ids.activo_poste_ids.product_ids.filtered(lambda a: a.state == 'diseño'):
-			linea_producto = {
-				'product_id': p.product_id.id,
-				'cantidad': p.cantidad,
-				'bodega' : p.bodega,
-				'tipo_product': p.tipo_product,
-				'state': 'replanteo'
-			}
-			lista_productos.append((0,0, linea_producto))
+		for nodo in self.nodo_ids:
+			for activo in nodo.activo_nodo_ids:
+				lista_productos = []
+				for p in activo.product_ids:
+					linea_producto = {
+					'product_id': p.product_id.id,
+					'cantidad': p.cantidad,
+					#'estructura_ids': p.estructura_ids,
+					'distancia': p.distancia,
+					'can_lineas': p.can_lineas,
+					'tipo_product': p.tipo_product,
+					'valor_uni': p.valor_uni,
+					'state': 'replanteo'
+					}
+					lista_productos.append((0,0, linea_producto))
+				if lista_productos:
+					activo.product_ids = lista_productos
 
+				lista_productos_mn = []
+				for mn in activo.product_mn_ids:
+					linea_producto_mn = {
+					'product_id': mn.product_id.id,
+					'cantidad': mn.cantidad,
+					'tipo_product': mn.tipo_product,
+					'valor_uni': mn.valor_uni,
+					'state': 'replanteo'
+					}
+					lista_productos_mn.append((0,0, linea_producto_mn))
+				if lista_productos_mn:
+					activo.product_mn_ids = lista_productos_mn
 
 
 
@@ -76,12 +97,8 @@ class Proyecto(models.Model):
 	def compute_count(self):
 		self.nodos_count = len(self.nodo_ids)
 
-
-
 	def compute_valor(self):
 		self.nodos_count = len(self.nodo_ids)
-
-
 
 	def action_nodos(self):
 		self.ensure_one()
@@ -94,11 +111,7 @@ class Proyecto(models.Model):
 			'context': "{'default_proyecto_id': %d}" % (self.id),
 		}
 
-	#maniobras
-	#SEGUIMIENTO Y CONTROL 
-	#GPS
-	#NO CONFORMIDADES
-
+	
 	_sql_constraints = [
 		('proyecto_name_uniq', 'unique(name)', 'El código del proyecto ya existe'),
 	]

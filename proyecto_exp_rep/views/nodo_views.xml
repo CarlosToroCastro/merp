@@ -41,7 +41,7 @@
 		<field name="arch" type="xml">
 			<form>
 				<header>
-					<button name="btn_replanteo" class="oe_highlight" string="Pasar a Replanteo." type="object" states="diseño"/>
+					
 					<field name="state" widget="statusbar"/>
 				</header>
 				<sheet>

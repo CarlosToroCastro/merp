@@ -88,15 +88,10 @@ class ActivoPoste(models.Model):
 		if len(self.product_ids) == 0:
 				# Mensaje de error para el usuario		
 			pass
-		"""
-		for mn in self.product_mn_ids:
-			if mn.state == self.state:
-				mn = False
-				"""
 
 		if self.product_ids:
 
-			self.product_mn_ids = False
+			self.product_mn_ids.filtered(lambda mn: mn.state == self.state).unlink ()
 
 			material_ids = []
 			for mo in self.product_ids:

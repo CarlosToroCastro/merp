@@ -44,7 +44,7 @@
 				<sheet>
 					<group string ="Activos" col="4">
 						<field name="tipo_activo_id" options="{'no_create_edit': True, 'no_create': True}" attrs="{'readonly': [('bloq_encabe', '=', True)]}"/>
-						<field name="name" attrs="{'readonly': [('tipo_activo_code', '=', 'poste')], 'readonly': [('bloq_encabe', '=', True)]}"/>
+						<field name="name" attrs="{'readonly': [ '|', ('tipo_activo_code', '=', 'poste'), ('bloq_encabe', '=', True)]}"/>
 						<field name="state_activo" attrs="{'readonly': [('bloq_encabe', '=', True)]}"/>
 						<field name= "tarea" attrs="{'readonly': [('bloq_encabe', '=', True)]}"/>
 						<field name="serie" attrs="{'invisible': [('tipo_activo_code', '!=', 'transformador')]}"/> 

@@ -31,7 +31,8 @@ class Nodo(models.Model):
 	activos_count = fields.Integer('Activos', compute='compute_count')
 
 	def compute_count(self):
-		self.activos_count = len(self.activo_nodo_ids.filtered(lambda a: a.state == self.state))
+		self.activos_count = len(self.activo_nodo_ids)
+		#self.activos_count = len(self.activo_nodo_ids.filtered(lambda a: a.state == self.state))
 
 
 	def action_activos(self):
@@ -53,7 +54,7 @@ class Nodo(models.Model):
 	def onchange_tipo(self):
 		if self.estado_revision == 'conforme':
 			self.no_conformidad_ids = False
-
+	"""
 	def btn_replanteo(self):
 
 		# Solo debe pasar a estado replanteo cuando se seleccione al menos un activo
@@ -89,6 +90,7 @@ class Nodo(models.Model):
 		if lineas_replanteo:
 			self.activo_poste_ids = lineas_replanteo
 			self.state = 'replanteo'
+			"""
 				
 
 
@@ -136,7 +138,7 @@ class productActivo(models.Model):
 	def onchange_valor_uni(self):
 		if self.product_id:
 			self.state = self.activo_nodo_id.state
-			self.valor_uni = self.product_id.list_price
+			self.valor_uni = self.product_id.list_price 
 		if self.product_id.detailed_type == 'service':
 			self.tipo_product = 'mo'
 		elif self.product_id.detailed_type == 'product':
