@@ -61,18 +61,10 @@ class ActivoPoste(models.Model):
 			self.potencia = False
 			self.voltaje = False
 			self.tipo = False
-			self.tipo = False
 			self.tarea = False
 		if self.tipo_activo_id.code == 'poste':
 			self.name = self.nodo_id.name
 
-
-	@api.onchange("product_ids", "product_mn_ids")
-	def onchange_len_product(self):
-		if len(self.product_ids) != 0 or len(self.product_mn_ids) != 0 :
-			self.bloq_encabe = True 
-		else: 
-			self.bloq_encabe = False
 
 	def buscarMaterial(self, lista, product_id):		
 		pos = 1

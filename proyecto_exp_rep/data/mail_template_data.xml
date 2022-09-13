@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <!-- Mail templates -->
+    <record id="mail_asignacion_proyecto" model="mail.template">
+        <field name="name">MERP: Asignacion Proyecto</field>
+        <field name="model_id" ref="proyecto_exp_rep.model_ct_proyecto_personal"/>
+        <field name="subject">[MERP] Asignación Proyecto</field>
+        <field name="email_from">Sistema MERP sistema.merp@gmail.com</field>
+        <field name="email_to">{{ object.partner_id.email }}</field>        
+        <field name="body_html" type="html">
+        <div>
+            <p>Hola <t t-out="object.partner_id.name"/></p>
+            <p>Has sido asignado en el proyecto <b><t t-out="object.proyecto_id.name"/></b> para cumplir el rol de <t t-out="object.rol.name"/></p>
+        </div>
+        </field>
+    </record>
+</odoo>

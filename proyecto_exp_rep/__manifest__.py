@@ -7,7 +7,8 @@
 	'depends': ['base_address_city', 'product','contacts'],
 	'data': [
 		'security/merp_security.xml',
-		'security/ir.model.access.csv',				
+		'security/ir.model.access.csv',
+		'data/mail_template_data.xml',				
 		'views/menu.xml',
 		'views/product_template_views.xml',
 		'views/rol_views.xml',
@@ -34,6 +35,7 @@
 		'views/anexos_views.xml',
 		'views/no_conformidades_views.xml',	
 		'views/fases_views.xml',
+		'views/actividades_views.xml',
 	],
 	'installable': True,
 	'assets': {

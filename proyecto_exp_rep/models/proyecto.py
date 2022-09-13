@@ -1,21 +1,8 @@
 # -*- coding: utf-8 -*-
-
+import logging
 from odoo import api, fields, models
+from odoo.exceptions import ValidationError
 
-
-class Rol(models.Model):
-
-	_name = 'ct.rol'
-	_description = 'Cargo que desempeñan las pesronas'
-
-	code = fields.Char('Código interno', required=True)
-	name = fields.Char('Rol', required=True)
-	notas = fields.Char('Observación')
-
-	_sql_constraints = [
-		('rol_code_uniq', 'unique(code)', 'Informacion Repetida'),
-		('rol_name_uniq', 'unique(name)', 'Informacion Repetida'),
-	]
 
 
 class Proyecto(models.Model):
@@ -120,6 +107,7 @@ class Proyecto(models.Model):
 class ProyectoPersonal(models.Model):
 
 	_name = 'ct.proyecto_personal'
+	_inherit = ['mail.thread']
 	_description = 'Personas que intervienen en el ciclo del proyecto'
 
 	proyecto_id = fields.Many2one('ct.proyecto', 'name')
@@ -127,6 +115,14 @@ class ProyectoPersonal(models.Model):
 	partner_id = fields.Many2one('res.partner', 'Contacto')
 	f_inicio = fields.Date('Fecha de Inicio')
 	f_fin = fields.Date('Fecha de Fin')
+
+
+
+	def send_mail(self):
+		# search the email template based on external id
+		template_id = self.env.ref('proyecto_exp_rep.mail_asignacion_proyecto', raise_if_not_found=False)		
+		if template_id:
+			template_id.send_mail(self.env.user.id)			
 	
 
 
@@ -154,8 +150,6 @@ class PersonalVisita(models.Model):
 	partner_id = fields.Many2one('res.partner', 'Contacto')
 	
 
-
-
 class maniobras(models.Model):
 
 	_name = 'ct.maniobra'
@@ -166,3 +160,17 @@ class maniobras(models.Model):
 	accion = fields.Selection([('abrir', 'ABRIR'), ('cerra', 'CERRAR'), ('abrir puentes','ABRIR PUENTES')], string='Acción', required=True)
 	notas = fields.Text('Observación')
 	proyecto_id = fields.Many2one('ct.proyecto', 'name')
+
+class Rol(models.Model):
+
+	_name = 'ct.rol'
+	_description = 'Cargo que desempeñan las pesronas'
+
+	code = fields.Char('Código interno', required=True)
+	name = fields.Char('Rol', required=True)
+	notas = fields.Char('Observación')
+
+	_sql_constraints = [
+		('rol_code_uniq', 'unique(code)', 'Informacion Repetida'),
+		('rol_name_uniq', 'unique(name)', 'Informacion Repetida'),
+	]

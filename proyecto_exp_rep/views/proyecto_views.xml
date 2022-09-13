@@ -79,6 +79,7 @@
 									<field name="partner_id" domain="[('parent_id', '!=', False), ('is_company', '=', False)]" required="1"/>
 									<field name="f_inicio" required="1"/>
 									<field name="f_fin" />
+									<button name="send_mail" string="Notificar" type="object" icon="fa-paper-plane"/>
 								</tree>
 							</field>
 						</page>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+<!-- Vista de Busqueda -->
+	<record id="ct_product_activo_search_view" model="ir.ui.view">
+		<field name="name">ct.product_activo.search</field>
+		<field name="model">ct.product_activo</field>
+		<field name="arch" type="xml">
+			<search>
+				<field name="nodo_id" />
+				<field name="activo_nodo_id" />
+				<field name="product_id" />	
+				<field name="estructura_ids" />
+				<field name="distancia" />
+				<field name="can_lineas" />
+				<field name="cantidad" />
+				<separator/>
+				<filter string="Mano de Obra" name="filter_product_mo" domain="[('tipo_product','=', 'mo')]"/>				
+				<separator/>
+				<group expand="0" string="Group By">
+					<filter string="Proyecto" name="filter_proyecto" domain="[]" context="{'group_by':'proyecto_id'}"/>
+					<filter string="Nodo" name="filter_nodo" domain="[]" context="{'group_by':'nodo_id'}"/>
+					<filter string="Tipo Producto" name="filter_tipo" domain="[]" context="{'group_by':'tipo_product'}"/>
+					<filter string="Estado" name="filter_state" domain="[]" context="{'group_by':'state'}"/>
+				</group>					
+			</search>
+		</field>
+	</record>
+
+
+<!-- Vista Lista -->
+	<record id="ct_product_activo_tree_view" model="ir.ui.view">
+		<field name="name">ct.product_activo.tree</field>
+		<field name="model">ct.product_activo</field>
+		<field name="arch" type="xml">
+			<tree create="0">
+				<field name="proyecto_id" />
+				<field name="nodo_id" />
+				<field name="activo_nodo_id" />
+				<field name="product_id" />	
+				<field name="tipo_product" />
+				<field name="estructura_ids" />
+				<field name="distancia" />
+				<field name="can_lineas" />
+				<field name="cantidad" sum="Cantidad"/>
+			</tree>
+		</field>
+	</record>	
+
+
+
+	<!-- Accion del formulario -->
+	<record id="ct_product_activo_action" model="ir.actions.act_window">
+		<field name="name">ACTIVIDADES</field>
+		<field name="type">ir.actions.act_window</field>
+		<field name="res_model">ct.product_activo</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+	
+
+	<!-- menu de acceso -->
+	 <menuitem id="ct_product_activo_menu" name="Actividades" parent="merp_report_menu" action="ct_product_activo_action" />
+
+</odoo>
