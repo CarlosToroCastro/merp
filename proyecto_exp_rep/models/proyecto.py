@@ -26,7 +26,7 @@ class Proyecto(models.Model):
 	area = fields.Selection([('rural', 'Rural'), ('urbano', 'Urbano')], string='Área', required=True)
 	state = fields.Selection([('diseño', 'Diseño'), ('replanteo', 'Replanteo'), ('ejecucion', 'Ejecución')], string='Etapa', default='diseño')
 	notas = fields.Text('Observación')
-	nodo_ids = fields.One2many('ct.nodo', 'proyecto_id', string="Nodos")
+	nodo_ids = fields.One2many('ct.nodo', 'proyecto_id', string="Nodos", ondelete="cascade")
 	valor_mo_diseno = fields.Float('valor mano de obra diseño', compute='compute_valor', default = 0)
 	valor_mn_diseno = fields.Float('valor material nuevo diseño', compute='compute_valor', default = 0)
 	valor_mo_replanteo = fields.Float('valor mano de obra replanteo', compute='compute_valor', default = 0)
