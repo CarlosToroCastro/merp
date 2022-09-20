@@ -8,15 +8,14 @@
 		<field name="model">ct.product_activo</field>
 		<field name="arch" type="xml">
 			<search>
+				<field name="proyecto_id" />
 				<field name="nodo_id" />
 				<field name="activo_nodo_id" />
 				<field name="product_id" />	
-				<field name="estructura_ids" />
-				<field name="distancia" />
-				<field name="can_lineas" />
-				<field name="cantidad" />
 				<separator/>
-				<filter string="Mano de Obra" name="filter_product_mo" domain="[('tipo_product','=', 'mo')]"/>				
+				<filter string="Mano de Obra" name="filter_product_mo" domain="[('tipo_product','=', 'mo')]"/>
+				<filter string="Material Nuevo" name="filter_product_mn" domain="[('tipo_product','=', 'nuevo')]"/>		
+				<filter string="Metas físicas" name="filter_metas_fisicas" domain="[('tipo_activo_code', '=', 'red'),('state', '=', 'ejecucion'),('cat_product', '=', 'INSTALACIÓN')]"/>			
 				<separator/>
 				<group expand="0" string="Group By">
 					<filter string="Proyecto" name="filter_proyecto" domain="[]" context="{'group_by':'proyecto_id'}"/>
@@ -38,7 +37,7 @@
 				<field name="proyecto_id" optional="hide"/>
 				<field name="nodo_id" optional="hide"/>
 				<field name="activo_nodo_id" />
-				<field name="product_id" />	
+				<field name="product_id" optional="hide"/>	
 				<field name="cat_product" optional="hide" />
 				<field name="tipo_product" optional="hide"/>
 				<field name="estructura_ids" />
@@ -46,7 +45,7 @@
 				<field name="can_lineas" optional="hide"/>
 				<field name="cantidad" />
 				<field name="valor_uni" optional="hide"/>
-				<field name="valor_tot" optional="hide" sum="Cantidad" />
+				<field name="valor_tot" optional="hide" sum="valor_tot" />
 			</tree>
 		</field>
 	</record>	

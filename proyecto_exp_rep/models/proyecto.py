@@ -51,11 +51,12 @@ class Proyecto(models.Model):
 					linea_producto = {
 					'product_id': p.product_id.id,
 					'cantidad': p.cantidad,
-					#'estructura_ids': p.estructura_ids,
 					'distancia': p.distancia,
 					'can_lineas': p.can_lineas,
 					'tipo_product': p.tipo_product,
 					'valor_uni': p.valor_uni,
+					'valor_tot': p.valor_tot,
+					'estructura_ids': p.estructura_ids.id,
 					'state': 'replanteo'
 					}
 					lista_productos.append((0,0, linea_producto))
@@ -69,6 +70,7 @@ class Proyecto(models.Model):
 					'cantidad': mn.cantidad,
 					'tipo_product': mn.tipo_product,
 					'valor_uni': mn.valor_uni,
+					'valor_tot': mn.valor_tot,
 					'state': 'replanteo'
 					}
 					lista_productos_mn.append((0,0, linea_producto_mn))

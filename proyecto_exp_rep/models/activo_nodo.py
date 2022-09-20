@@ -96,7 +96,7 @@ class ActivoPoste(models.Model):
 							_logger.info(' POSICION %s - tipo %s', index, type(index))
 							material_ids[index-1]['cantidad'] = material_ids[index-1]['cantidad'] + cantidad
 						else:
-							vals = {'product_id': material.product_id.id, 'cantidad' : cantidad, 'tipo_product': 'nuevo', 'valor_uni': material.product_id.list_price, 'valor_tot': material.product_id.list_price * cantidad}
+							vals = {'state': mo.state, 'product_id': material.product_id.id, 'cantidad' : cantidad, 'tipo_product': 'nuevo', 'valor_uni': material.product_id.list_price, 'valor_tot': material.product_id.list_price * cantidad}
 							material_ids.append(vals)
 
 

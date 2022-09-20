@@ -36,6 +36,7 @@
 		'views/no_conformidades_views.xml',	
 		'views/fases_views.xml',
 		'views/actividades_views.xml',
+		#'views/metas_fisicas_views.xml',
 	],
 	'installable': True,
 	'assets': {
