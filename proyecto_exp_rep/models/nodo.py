@@ -16,6 +16,7 @@ class Nodo(models.Model):
 	gps_latitud = fields.Float('Latitud')
 	gps_longitud =fields.Float('Longitud')
 	direccion = fields.Char('Dirección', required=True)
+	
 	estado_revision = fields.Selection([('conforme', 'CONFORME'),('no conforme', 'NO CONFORME')])
 	no_conformidad_ids = fields.Many2many('ct.no_conformidades', string='No conformidad')
 	notas = fields.Text('Observación')

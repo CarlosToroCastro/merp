@@ -10,9 +10,10 @@ class productActivo(models.Model):
 
 	_name = 'ct.product_activo' 
 	_description = 'Mano de obra y materiales que se utilizada en un activo'
+	_order = 'proyecto_id, nodo_id, activo_nodo_id, product_id'
 
 
-	activo_nodo_id = fields.Many2one('ct.activo_nodo', 'Activo')
+	activo_nodo_id = fields.Many2one('ct.activo_nodo', 'Activo', required=True)
 	nodo_id = fields.Many2one(related='activo_nodo_id.nodo_id', store=True, string = "Nodo")
 	proyecto_id = fields.Many2one(related='activo_nodo_id.nodo_id.proyecto_id', store=True)
 	tipo_activo_code = fields.Char(related='activo_nodo_id.tipo_activo_code')

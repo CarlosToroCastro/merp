@@ -20,6 +20,3 @@ class ProductTemplate(models.Model):
 	tipo_obra_id = fields.Selection([('electrica','ELECTRICA'), ('civil', 'OBRA CIVIL')])
 	nivel_tension_ids = fields.Many2many('ct.nivel_tension', string='Nivel Tensión')
 	estructura_ids = fields.Many2many('ct.estructura', string='Estructuras')
-
-
-	

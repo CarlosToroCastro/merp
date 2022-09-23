@@ -28,11 +28,11 @@ class Proyecto(models.Model):
 	notas = fields.Text('Observación')
 	nodo_ids = fields.One2many('ct.nodo', 'proyecto_id', string="Nodos", ondelete="cascade")
 	valor_mo_diseno = fields.Float('valor mano de obra diseño', compute='compute_valor', default = 0)
-	valor_mn_diseno = fields.Float('valor material nuevo diseño', compute='compute_valor', default = 0)
-	valor_mo_replanteo = fields.Float('valor mano de obra replanteo', compute='compute_valor', default = 0)
-	valor_mn_replanteo = fields.Float('valor material nuevo replanteo', compute='compute_valor', default = 0)
-	valor_mo_ejecucion = fields.Float('valor mano de obra ejecucion', compute='compute_valor', default = 0)
-	valor_mn_ejecucion = fields.Float('valor material nuevo ejecucion', compute='compute_valor', default = 0)
+	#valor_mn_diseno = fields.Float('valor material nuevo diseño', compute='compute_valor', default = 0)
+	#valor_mo_replanteo = fields.Float('valor mano de obra replanteo', compute='compute_valor', default = 0)
+	#valor_mn_replanteo = fields.Float('valor material nuevo replanteo', compute='compute_valor', default = 0)
+	#valor_mo_ejecucion = fields.Float('valor mano de obra ejecucion', compute='compute_valor', default = 0)
+	#valor_mn_ejecucion = fields.Float('valor material nuevo ejecucion', compute='compute_valor', default = 0)
 	seg_cont_ids = fields.One2many('ct.seguimiento_control', 'proyecto_id', string="Seguimiento y control" )
 	maniobras_ids = fields.One2many('ct.maniobra', 'proyecto_id', string="Maniobras" )
 	anexos_ids = fields.One2many('ct.archivo_proyecto', 'proyecto_id', string="Archivos")
@@ -87,7 +87,15 @@ class Proyecto(models.Model):
 		self.nodos_count = len(self.nodo_ids)
 
 	def compute_valor(self):
-		self.nodos_count = len(self.nodo_ids)
+		for record in self:		
+			suma = 0.0
+			for nodo in record.nodo_ids:
+				for activo in nodo.activo_nodo_ids:
+					suma += sum(activo.product_ids.filtered(lambda p: p.state == 'diseño').mapped('valor_tot'))
+
+			record.valor_mo_diseno = suma
+
+
 
 	def action_nodos(self):
 		self.ensure_one()

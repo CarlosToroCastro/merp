@@ -13,6 +13,8 @@
 				<field name="activo_nodo_id" />
 				<field name="product_id" />	
 				<separator/>
+				<filter string="Fecha" name="filter_fecha" date="create_date"/>
+				<separator/>
 				<filter string="Mano de Obra" name="filter_product_mo" domain="[('tipo_product','=', 'mo')]"/>
 				<filter string="Material Nuevo" name="filter_product_mn" domain="[('tipo_product','=', 'nuevo')]"/>		
 				<filter string="Metas físicas" name="filter_metas_fisicas" domain="[('tipo_activo_code', '=', 'red'),('state', '=', 'ejecucion'),('cat_product', '=', 'INSTALACIÓN')]"/>			
@@ -22,6 +24,7 @@
 					<filter string="Nodo" name="filter_nodo" domain="[]" context="{'group_by':'nodo_id'}"/>
 					<filter string="Tipo Producto" name="filter_tipo" domain="[]" context="{'group_by':'tipo_product'}"/>
 					<filter string="Estado" name="filter_state" domain="[]" context="{'group_by':'state'}"/>
+					<filter string="Fecha" name="filter_agr_fecha" domain="[]" context="{'group_by':'create_date'}"/>
 				</group>					
 			</search>
 		</field>

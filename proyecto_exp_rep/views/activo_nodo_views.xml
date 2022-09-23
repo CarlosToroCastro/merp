@@ -66,7 +66,8 @@
 
 					<group string="Mano de Obra"  attrs="{'invisible': ['|',('tipo_activo_code', '=', False), ('name','=', False)]}">
 						<field name="product_ids" nolabel="1" context="{'tipo_product' : 'mo'}" >
-							<tree editable="buttom" >							
+							<tree editable="buttom" >
+								<field name="activo_nodo_id" invisible="1" />							
 								<field name="product_id" domain="[('tipo_activo_ids', '=', parent.tipo_activo_id)]" required="1" options="{'no_create_edit': True, 'no_create': True}"/>
 								<field name="estructura_ids" attrs="{'required': [('vali_len_estruc', '=', True)] }" domain="[('id', 'in', estructura_product_ids)]" options="{'no_create_edit': True, 'no_create': True}"/>	
 								<field name="distancia" attrs="{'column_invisible': [('parent.tipo_activo_code', '!=', 'red')]}"/>	
@@ -78,7 +79,7 @@
 								<field name="tipo_activo_code" invisible = "1"/>
 								<field name="tipo_product" invisible="1"/>
 								<field name="estructura_product_ids" invisible="1" />
-								<field name="state" />
+								<field name="state" optional="hide"/>
 							</tree>
 						</field>
 						<newline />
@@ -95,7 +96,7 @@
 								<field name="valor_uni" optional="hide" readonly="1" force_save="1"/>
 								<field name="valor_tot"	optional="hide" readonly="1" force_save="1" sum="valor_tot"/>
 								<field name="tipo_product" invisible="1"/>
-								<field name="state" />							
+								<field name="state" optional="hide"/>							
 							</tree>
 						</field>
 				</group>
