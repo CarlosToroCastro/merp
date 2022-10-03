@@ -30,6 +30,11 @@
 				<field name="fecha_replanteo" optional="hide"/>
 				<field name="fecha_ejecucion" optional="hide"/>
 				<field name="valor_mo_diseno" optional="hide"/>
+				<field name="valor_mn_diseno" optional="hide"/>
+				<field name="valor_mo_replanteo" optional="hide"/>
+				<field name="valor_mn_replanteo" optional="hide"/>
+				<field name="valor_mo_ejecucion" optional="hide"/>
+				<field name="valor_mn_ejecucion" optional="hide"/>
 				<field name="notas" optional="hide"/>
 				<field name="state" optional="hide"/>
 			</tree>
@@ -69,7 +74,6 @@
 							<field name="fecha_replanteo" attrs="{'invisible': [('state', '=', 'diseño')], 'required': [('state', '!=', 'diseño')], 'readonly': [('state', '!=', 'replanteo')]}"/>
 							<field name="fecha_ejecucion" attrs="{'invisible': [('state', '!=', 'ejecucion')], 'required': [('state', '=', 'ejecucion')]}"/>
 							<field name="contrato_id"  attrs="{'invisible': [('state', '=', 'diseño')], 'required': [('state', '!=', 'diseño')]}" options="{'no_create_edit': True, 'no_create': True}" />
-							<field name="valor_mo_diseno"/>
 							<field name="notas" />
 					</group>
 
