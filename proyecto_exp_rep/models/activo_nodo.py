@@ -44,7 +44,7 @@ class ActivoPoste(models.Model):
 	#Si existe un material o mano de obra bloquea el encabezado de activo. 
 	@api.onchange("product_ids", "product_mn_ids")
 	def onchange_len_product(self):
-		if len(self.product_ids) != 0 or len(self.product_mn_ids) != 0 :
+		if len(self.product_ids) != 0 or len(self.product_mn_ids) != 0:
 			self.bloq_encabe = True 
 		else: 
 			self.bloq_encabe = False

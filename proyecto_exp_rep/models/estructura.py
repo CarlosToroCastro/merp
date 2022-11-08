@@ -40,11 +40,11 @@ class MaterialesEstructura(models.Model):
 	product_id = fields.Many2one('product.template', 'Material',ondelete="cascade", required=True)
 	cantidad = fields.Float('Cantidad',default=1, required=True)
 	
-
-	@api.constrains("cantidad")
-	def _constrain_cantidad(self):
-		if self.cantidad <= 0:
-			raise ValidationError('Debe especificar una cantidad')
+    
+	#@api.constrains("cantidad")
+	#def _constrain_cantidad(self):
+		#if self.cantidad <= 0:
+			#raise ValidationError('Debe especificar una cantidad')
 
 	 # Si la cantidad es 0 o un numero negativo se convierte en 1
 	@api.onchange("cantidad")
