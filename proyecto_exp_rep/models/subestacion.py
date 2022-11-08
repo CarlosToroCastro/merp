@@ -5,7 +5,7 @@ from odoo import api, fields, models
 class Subestacion(models.Model):
 
 	_name = 'ct.subestacion'
-	_description = 'Subestaciones de electricidad'
+	_description = 'Subestaciones eléctrica'
 
 
 	def name_get(self):

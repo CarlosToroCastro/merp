@@ -6,6 +6,7 @@ class Circuito(models.Model):
 
 	_name = 'ct.circuito'
 	_description = 'Circuito'
+	_rec_name = 'codigo'
 
 	def name_get(self):
 		""" Personalizar nombre a mostrar en campos de seleccion"""

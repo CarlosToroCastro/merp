@@ -53,11 +53,11 @@
 						<field name="tipo" attrs="{'invisible': [('tipo_activo_code', '!=', 'transformador')]}"/>
 						<field name="voltaje" attrs="{'invisible': [('tipo_activo_code', '!=', 'transformador')], 'readonly': [('tipo', '!=', '1')]}"/>
 						<field name="notes" />
-						<field name="secu_fase" attrs="{'invisible': [('tipo_activo_code', '!=', 'red')], 'required': [('tipo_activo_code', '=', 'red')]}" options="{'color_field': 'color', 'no_create_edit': True, 'no_create': True}">
-							<tree editable="bottom" default_order="sequence ASC">
+						<field name="secu_fase" attrs="{'invisible': [('tipo_activo_code', '!=', 'red')], 'required': [('tipo_activo_code', '=', 'red')]}" options="{'no_create_edit': True, 'no_create': True}" widget="many2many_tags">
+							<!--<tree editable="bottom" default_order="sequence ASC">
 								<field name="sequence" widget="handle"/>
 								<field name="name" />
-							</tree>
+							</tree>-->
 						</field>
 						<field name="tipo_activo_code" invisible="1" />
 						<field name="bloq_encabe" invisible="1" />

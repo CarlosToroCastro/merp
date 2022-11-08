@@ -21,6 +21,8 @@ class Estructura(models.Model):
 	tipo = fields.Selection([('retencion', 'Retención'), ('suspension', 'Suspensión')])
 	nivel_tension_id = fields.Many2many('ct.nivel_tension', string='Nivel tensión', ondelete="cascade", required=True)
 	materiales_ids = fields.One2many('ct.materiales_estructura', 'estructura_id', ondelete="cascade", string="Material de la estructura")
+	product_activo_id = fields.One2many('ct.product_activo', 'estructura_ids')
+	
 
 	_sql_constraints = [
 		('estructuras_uniq', 'unique(name)', 'Esta estructura ya existe'),
@@ -37,13 +39,14 @@ class MaterialesEstructura(models.Model):
 	estructura_id = fields.Many2one('ct.estructura', 'name',required=True)
 	product_id = fields.Many2one('product.template', 'Material',ondelete="cascade", required=True)
 	cantidad = fields.Float('Cantidad',default=1, required=True)
+	
 
 	@api.constrains("cantidad")
 	def _constrain_cantidad(self):
 		if self.cantidad <= 0:
 			raise ValidationError('Debe especificar una cantidad')
 
-     # Si la cantidad es 0 o un numero negativo se convierte en 1
+	 # Si la cantidad es 0 o un numero negativo se convierte en 1
 	@api.onchange("cantidad")
 	def onchange_cantidad(self):
 		if self.cantidad <= 0:
