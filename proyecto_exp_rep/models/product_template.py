@@ -16,9 +16,9 @@ class ProductTemplate(models.Model):
 		return result
 
     
-	name2 = fields.Char('Descripción 2')
+	name2 = fields.Char(string='Descripción 2')
 	tipo_activo_ids = fields.Many2many('ct.tipo_activo_electrico', string='Activo')
-	tipo_obra_id = fields.Selection([('electrica','ELECTRICA'), ('civil', 'OBRA CIVIL')])
+	tipo_obra_id = fields.Selection([('electrica','ELECTRICA'), ('civil', 'OBRA CIVIL')], string="Tipo")
 	nivel_tension_ids = fields.Many2many('ct.nivel_tension', string='Nivel Tensión')
 	estructura_ids = fields.Many2many('ct.estructura', string='Estructuras', required=True)
 	name_estructura_ids = fields.Char(related = 'estructura_ids.name')

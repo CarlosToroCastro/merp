@@ -2,7 +2,7 @@
 <odoo>
 
 	<!-- Acceso a Informacion Municipios -->
-	<menuitem id="res_city_menu" name="Ciudades" parent="contacts.menu_localisation" action="base_address_city.action_res_city_tree"/>
+	<menuitem id="res_city_menu" name="Ciudades" parent="contacts.menu_localisation" action="base_address_extended.action_res_city_tree"/>
 
 
 	<!-- Menus Principales App -->

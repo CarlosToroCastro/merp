@@ -66,16 +66,13 @@
 					</group>
 
 					<notebook colspan="6" name="info_complementaria">
-						<page string="Luminaria" name="luminaria" attrs="{'invisible': [('state', '!=', 'ejecucion')]}">
-							<field name="luminaria_ids" nolabel="1">
-								<field name="luminaria_ids" />
-							</field>
+						<page string="Luminaria" name="luminaria" attrs="{'invisible': [('state', '!=', 'ejecucion')]}">	
+								<field name="luminaria_ids" />	
 						</page>
-						<page string="Usuarios" name="usuarios" attrs="{'invisible': [('state', '!=', 'ejecucion')]}">
-							<field name="usuario_ids" nolabel="1">
-								<field name="usuario_ids" />
-							</field>
+						<page string="Usuarios" name="usuarios" attrs="{'invisible': [('state', '!=', 'ejecucion')]}">							
+								<field name="usuario_ids" />							
 						</page>
+
 						<page string="Registro Fotografico1" attrs="{'invisible': [('state', '!=', 'diseño')]}">
 							<!--<field name="imagen_ids" widget="many2many_binary" nolabel="1" options="{'accepted_file_extensions': 'image/*'}" cols="8"/> -->
 							<field name="imagen_diseno_ids" class="ct_nodo_image_list" context="{'default_name': name, 'default_state': state}" mode="kanban" add-label="Agregar Fotografia" nolabel="1" domain="[('state', '=', 'diseño')]"/>

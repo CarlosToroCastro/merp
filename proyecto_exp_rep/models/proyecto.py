@@ -11,32 +11,32 @@ class Proyecto(models.Model):
 	_description = 'Proyecto'
 
 
-	name = fields.Char('Código del Proyecto', required=True)
+	name = fields.Char(string='Código del Proyecto', required=True)
 	tipo_proyecto_id = fields.Many2one('ct.tipo_proyecto', string='Tipo de Proyecto', required=True)
-	direccion = fields.Char('Dirección', required=True)
+	direccion = fields.Char(string='Dirección', required=True)
 	city_id = fields.Many2one('res.city', string='Municipio', required=True)
 	circuito_id = fields.Many2one('ct.circuito', string="Circuito", required=True)	
 	subestacion_id = fields.Many2one(related='circuito_id.subestacion_id')
 	nivel_tension_id = fields.Many2one('ct.nivel_tension', string='Nivel Tensión',required=True)
 	contrato_id = fields.Many2one('ct.contrato', string='Contrato')
 	personal_ids = fields.One2many('ct.proyecto_personal', 'proyecto_id', string="Equipo de Trabajo")
-	fecha_diseño = fields.Date('Fecha Diseño')
-	fecha_replanteo = fields.Date('Fecha Replanteo')
-	fecha_ejecucion = fields.Date('Fecha Ejecución')
+	fecha_diseno = fields.Date(string='Fecha Diseño')
+	fecha_replanteo = fields.Date(string='Fecha Replanteo')
+	fecha_ejecucion = fields.Date(string='Fecha Ejecución')
 	area = fields.Selection([('rural', 'Rural'), ('urbano', 'Urbano')], string='Área', required=True)
 	state = fields.Selection([('diseño', 'Diseño'), ('replanteo', 'Replanteo'), ('ejecucion', 'Ejecución')], string='Etapa', default='diseño')
-	notas = fields.Text('Observación')
-	nodo_ids = fields.One2many('ct.nodo', 'proyecto_id', string="Nodos", ondelete="cascade")
-	valor_mo_diseno = fields.Float('Valor MO diseño', compute='compute_valor', default = 0)
-	valor_mn_diseno = fields.Float('Valor MN diseño', compute='compute_valor', default = 0)
-	valor_mo_replanteo = fields.Float('valor MO replanteo', compute='compute_valor', default = 0)
-	valor_mn_replanteo = fields.Float('valor MN replanteo', compute='compute_valor', default = 0)
-	valor_mo_ejecucion = fields.Float('valor MO ejecucion', compute='compute_valor', default = 0)
-	valor_mn_ejecucion = fields.Float('valor MN ejecucion', compute='compute_valor', default = 0)
+	notas = fields.Text(string='Observación')
+	nodo_ids = fields.One2many('ct.nodo', 'proyecto_id', string="Nodos")
+	valor_mo_diseno = fields.Float(string='Valor MO diseño', compute='compute_valor', default = 0)
+	valor_mn_diseno = fields.Float(string='Valor MN diseño', compute='compute_valor', default = 0)
+	valor_mo_replanteo = fields.Float(string='valor MO replanteo', compute='compute_valor', default = 0)
+	valor_mn_replanteo = fields.Float(string='valor MN replanteo', compute='compute_valor', default = 0)
+	valor_mo_ejecucion = fields.Float(string='valor MO ejecucion', compute='compute_valor', default = 0)
+	valor_mn_ejecucion = fields.Float(string='valor MN ejecucion', compute='compute_valor', default = 0)
 	seg_cont_ids = fields.One2many('ct.seguimiento_control', 'proyecto_id', string="Seguimiento y control" )
 	maniobras_ids = fields.One2many('ct.maniobra', 'proyecto_id', string="Maniobras" )
 	anexos_ids = fields.One2many('ct.archivo_proyecto', 'proyecto_id', string="Archivos")
-	nodos_count = fields.Integer('Nodos', compute='compute_count')
+	nodos_count = fields.Integer(string='Nodos', compute='compute_count')
 
 	
 
@@ -134,11 +134,11 @@ class ProyectoPersonal(models.Model):
 	_inherit = ['mail.thread']
 	_description = 'Personas que intervienen en el ciclo del proyecto'
 
-	proyecto_id = fields.Many2one('ct.proyecto', 'name')
-	rol = fields.Many2one('ct.rol', 'Rol')
-	partner_id = fields.Many2one('res.partner', 'Contacto')
-	f_inicio = fields.Date('Fecha de Inicio')
-	f_fin = fields.Date('Fecha de Fin')
+	proyecto_id = fields.Many2one('ct.proyecto', string='name')
+	rol = fields.Many2one('ct.rol', string='Rol')
+	partner_id = fields.Many2one('res.partner', string='Contacto')
+	f_inicio = fields.Date(string='Fecha de Inicio')
+	f_fin = fields.Date(string='Fecha de Fin')
 
 
 
@@ -155,11 +155,11 @@ class SeguimientoControl(models.Model):
 	_name = 'ct.seguimiento_control'
 	_description ='Visitas y actas que hacen los involucrados en las difrentes etapas del proyecto'
 
-	f_visita = fields.Date('Fecha de la visita', required=True)
-	proyecto_id = fields.Many2one('ct.proyecto', 'name')
-	notas = fields.Text('Observación', required=True)
-	notas1 = fields.Text('Conclusión')
-	notas2 = fields.Text('No conformidades')
+	f_visita = fields.Date(string='Fecha de la visita', required=True)
+	proyecto_id = fields.Many2one('ct.proyecto', string='name')
+	notas = fields.Text(string='Observación', required=True)
+	notas1 = fields.Text(string='Conclusión')
+	notas2 = fields.Text(string='No conformidades')
 	personal_ids = fields.One2many('ct.personal_visita', 'seguimiento_id', string="Personas que intervienen")
 
 
@@ -169,9 +169,9 @@ class PersonalVisita(models.Model):
 	_name = 'ct.personal_visita'
 	_description = 'Personas que interviene en una visita'
 
-	seguimiento_id = fields.Many2one('ct.seguimiento_control', 'notas')
-	rol = fields.Many2one('ct.rol', 'Rol')
-	partner_id = fields.Many2one('res.partner', 'Contacto')
+	seguimiento_id = fields.Many2one('ct.seguimiento_control', string='notas')
+	rol = fields.Many2one('ct.rol', string='Rol')
+	partner_id = fields.Many2one('res.partner', string='Contacto')
 	
 
 class maniobras(models.Model):
@@ -180,19 +180,19 @@ class maniobras(models.Model):
 	_description = 'Maniobras necesarias para desenergizar tramo de red'
 
 
-	elemento = fields.Char('Elemento', required=True)
+	elemento = fields.Char(string='Elemento', required=True)
 	accion = fields.Selection([('abrir', 'ABRIR'), ('cerra', 'CERRAR'), ('abrir puentes','ABRIR PUENTES')], string='Acción', required=True)
-	notas = fields.Text('Observación')
-	proyecto_id = fields.Many2one('ct.proyecto', 'name')
+	notas = fields.Text(string='Observación')
+	proyecto_id = fields.Many2one('ct.proyecto', string='name')
 
 class Rol(models.Model):
 
 	_name = 'ct.rol'
 	_description = 'Cargo que desempeñan las pesronas'
 
-	code = fields.Char('Código interno', required=True)
-	name = fields.Char('Rol', required=True)
-	notas = fields.Char('Observación')
+	code = fields.Char(string='Código interno', required=True)
+	name = fields.Char(string='Rol', required=True)
+	notas = fields.Char(string='Observación')
 
 	_sql_constraints = [
 		('rol_code_uniq', 'unique(code)', 'Informacion Repetida'),

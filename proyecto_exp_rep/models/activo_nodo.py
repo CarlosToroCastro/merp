@@ -26,9 +26,9 @@ class ActivoPoste(models.Model):
 	notes = fields.Text('Observación')
 	state=fields.Selection(related='nodo_id.state')
 	secu_fase = fields.Many2many('ct.fases_red', string='Secuencia de Fases')
-	product_ids = fields.One2many('ct.product_activo', 'activo_nodo_id', ondelete="cascade", domain=[('tipo_product', '=', 'mo')]) # Mano de Obra
-	product_mn_ids = fields.One2many('ct.product_activo', 'activo_nodo_id', ondelete="cascade", domain=[('tipo_product', '=', 'nuevo')]) # Material Nuevo (mn)
-	product_mr_ids = fields.One2many('ct.product_activo', 'activo_nodo_id', ondelete="cascade", domain=[('tipo_product', '=', 'retirado')]) # Material Retirado (mr)
+	product_ids = fields.One2many('ct.product_activo', 'activo_nodo_id', domain=[('tipo_product', '=', 'mo')]) # Mano de Obra
+	product_mn_ids = fields.One2many('ct.product_activo', 'activo_nodo_id', domain=[('tipo_product', '=', 'nuevo')]) # Material Nuevo (mn)
+	product_mr_ids = fields.One2many('ct.product_activo', 'activo_nodo_id', domain=[('tipo_product', '=', 'retirado')]) # Material Retirado (mr)
 	bloq_encabe = fields.Boolean(default=False)
 
 	_sql_constraints = [

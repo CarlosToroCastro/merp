@@ -11,24 +11,24 @@ class Nodo(models.Model):
 	_description = 'Poste, camara de inspeción u otro tipo de nodo' 
 
 
-	name = fields.Char('Nodo', required=True)
-	gps_altura = fields.Float('Altitud m.s.n.m')
-	gps_latitud = fields.Float('Latitud')
-	gps_longitud =fields.Float('Longitud')
-	direccion = fields.Char('Dirección', required=True)
-	estado_revision = fields.Selection([('conforme', 'CONFORME'),('no conforme', 'NO CONFORME')])
+	name = fields.Char(string='Nodo', required=True)
+	gps_altura = fields.Float(string='Altitud m.s.n.m')
+	gps_latitud = fields.Float(string='Latitud')
+	gps_longitud =fields.Float(string='Longitud')
+	direccion = fields.Char(string='Dirección', required=True)
+	estado_revision = fields.Selection([('conforme', 'CONFORME'),('no conforme', 'NO CONFORME')], string='Conformidad')
 	no_conformidad_ids = fields.Many2many('ct.no_conformidades', string='No conformidad')
-	notas = fields.Text('Observación')
-	activo_nodo_ids = fields.One2many('ct.activo_nodo','nodo_id', string="Activos", ondelete="cascade")
+	notas = fields.Text(string='Observación')
+	activo_nodo_ids = fields.One2many('ct.activo_nodo','nodo_id', string="Activos")
 	tipo_activo_id = fields.Many2one(related='activo_nodo_ids.tipo_activo_id')
 	luminaria_ids = fields.One2many('ct.luminaria','nodo_id', string="Luminaria")
 	usuario_ids = fields.One2many('ct.usuario','nodo_id', string="Usuario")
-	proyecto_id = fields.Many2one('ct.proyecto', 'Proyecto')
+	proyecto_id = fields.Many2one('ct.proyecto', string='Proyecto')
 	state = fields.Selection(related='proyecto_id.state')
 	imagen_diseno_ids = fields.One2many('ct.nodo_image', 'nodo_id', string='Fotos Diseño', domain=[('state', '=', 'diseño')])
 	imagen_replanteo_ids = fields.One2many('ct.nodo_image', 'nodo_id', string='Fotos Replanteo', domain=[('state', '=', 'replanteo')])
 	imagen_ejecucion_ids = fields.One2many('ct.nodo_image', 'nodo_id', string='Fotos Ejecucion', domain=[('state', '=', 'ejecucion')])
-	activos_count = fields.Integer('Activos', compute='compute_count')
+	activos_count = fields.Integer(string='Activos', compute='compute_count')
 
 	_sql_constraints = [
 		('nodo_name_uniq', 'unique(proyecto_id, name)', 'El nodo ya existe en el proyecto'),
@@ -101,9 +101,9 @@ class fasesRed(models.Model):
 	_description = 'Secuencia de fases'
 
 
-	code = fields.Char('Código', required=True)
-	name = fields.Char('Fase', required=True)
-	sequence = fields.Integer('sequence', help="Sequence for the handle.")
+	code = fields.Char(string='Código', required=True)
+	name = fields.Char(string='Fase', required=True)
+	sequence = fields.Integer(string='sequence', help="Sequence for the handle.")
 
 
 

@@ -43,7 +43,7 @@
 				<field name="product_id" optional="hide"/>	
 				<field name="cat_product" optional="hide" />
 				<field name="tipo_product" optional="hide"/>
-				<field name="estructura_ids" />
+				<field name="estructura_ids" optional="hide"/>
 				<field name="distancia" optional="hide"/>
 				<field name="can_lineas" optional="hide"/>
 				<field name="cantidad" />

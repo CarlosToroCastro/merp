@@ -4,7 +4,7 @@
 	'version': '0.0.2',
 	'author': 'Carlos Julio Toro Castro',
 	'summary': 'Gestión de Proyectos en Sector Electrico',
-	'depends': ['base_address_city', 'product','contacts','stock'],
+	'depends': ['base_address_extended', 'product','contacts','stock'],
 	'data': [
 		'security/merp_security.xml',
 		'security/ir.model.access.csv',
@@ -44,5 +44,6 @@
         'web.assets_backend': [
             'proyecto_exp_rep/static/src/scss/nodo_image_kanban.scss',
         ],	
-	},
+	},	
+
 }
