@@ -38,6 +38,7 @@ class MaterialesEstructura(models.Model):
 
 	estructura_id = fields.Many2one('ct.estructura', 'name',required=True)
 	product_id = fields.Many2one('product.template', 'Material', required=True)
+	#unidad_m = fields.Many2one(related='product_id.')
 	cantidad = fields.Float('Cantidad',default=1, required=True)
 	
     

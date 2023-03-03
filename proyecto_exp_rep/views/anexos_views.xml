@@ -39,6 +39,6 @@
 	
 
 	<!-- menu de acceso -->
-	 <!--<menuitem id="ct_tipo_archvivo_menu" name="Anexos" parent="merp_config_menu" action="ct_tipo_archvivo_action" />-->
+	 <menuitem id="ct_tipo_archvivo_menu" name="Anexos" parent="merp_config_menu" action="ct_tipo_archvivo_action" />
 
 </odoo>
