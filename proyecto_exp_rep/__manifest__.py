@@ -36,7 +36,7 @@
 		'views/no_conformidades_views.xml',	
 		'views/fases_views.xml',
 		'views/actividades_views.xml',
-		'views/carga_estructuras_view.xml',
+		
 		
 	],
 	'installable': True,

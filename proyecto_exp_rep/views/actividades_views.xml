@@ -54,7 +54,6 @@
 	</record>	
 
 
-
 	<!-- Accion del formulario -->
 	<record id="ct_product_activo_action" model="ir.actions.act_window">
 		<field name="name">ACTIVIDADES</field>
@@ -65,6 +64,6 @@
 	
 
 	<!-- menu de acceso -->
-	 <menuitem id="ct_product_activo_menu" name="Actividades" parent="merp_report_menu" action="ct_product_activo_action" />
+	 <menuitem id="ct_product_activo_menu" name="Actividades" parent="merp_menu" action="ct_product_activo_action" />
 
 </odoo>

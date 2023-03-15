@@ -45,7 +45,7 @@
 								
 					</group>
 					<group string="Involucrados" >
-						<field name="personal_ids" nolabel="1">
+						<field name="personal_ids" nolabel="1" colspan="2">
 							<tree editable ="bottom">
 								<field name="partner_id" domain="[('parent_id', '!=', False), ('is_company', '=', False)]" options="{'no_create_edit': True, 'no_create': True}"/>
 								<field name="rol" options="{'no_create_edit': True, 'no_create': True}"/>
@@ -56,6 +56,7 @@
 			</form>
 		</field>
 	</record>
+
 
 
 <!-- Accion del formulario -->
