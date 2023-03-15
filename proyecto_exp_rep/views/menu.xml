@@ -8,8 +8,8 @@
 	<!-- Menus Principales App -->
 	<menuitem id="merp_root_menu" name="Gestión de Proyectos" sequence="8" web_icon="proyecto_exp_rep,static/description/icon.png"/>
 	<menuitem id="merp_menu" name="MERP" sequence="7" parent="merp_root_menu"/>
-	<menuitem id="merp_config_menu" name="Configuración" sequence="8" parent="merp_root_menu"/>
-	<menuitem id="merp_report_menu" name="Reportes" sequence="9" parent="merp_root_menu"/>
+	<menuitem id="merp_config_menu" name="Configuración" sequence="8" parent="merp_root_menu" groups="merp_admin"/>
+	<!--<menuitem id="merp_report_menu" name="Reportes" sequence="9" parent="merp_root_menu"/>-->
 
 
 
