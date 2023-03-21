@@ -55,7 +55,7 @@ class Nodo(models.Model):
 		if self.estado_revision == 'conforme':
 			self.no_conformidad_ids = False
 	
-	"""def btn_replanteo(self):
+	def btn_replanteo(self):
 
 		# Solo debe pasar a estado replanteo cuando se seleccione al menos un activo
 		if len(self.activo_poste_ids) == 0:
@@ -90,7 +90,7 @@ class Nodo(models.Model):
 		if lineas_replanteo:
 			self.activo_poste_ids = lineas_replanteo
 			self.state = 'replanteo'
-			"""
+			
 			
 				
 class fasesRed(models.Model):

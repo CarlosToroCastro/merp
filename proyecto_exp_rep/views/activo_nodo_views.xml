@@ -21,11 +21,11 @@
 		<field name="model">ct.activo_nodo</field>
 		<field name="arch" type="xml">
 			<tree>
-				<field name="name" />
-				<field name="tipo_activo_id"/>
-				<field name="state_activo"/>
+				<field name= "name" widget="text"/>
+				<field name= "tipo_activo_id" />
+				<field name= "state_activo"/>
 				<field name= "tarea" />
-				<field name="notes"/>
+				<field name= "notes"/>
 				<field name= "state" />
 			</tree>
 		</field>
@@ -43,7 +43,7 @@
 				</header>
 				<sheet>
 					<group string ="Activos" col="4">
-						<field name="tipo_activo_id" options="{'no_create_edit': True, 'no_create': True}" attrs="{'readonly': [('bloq_encabe', '=', True)]}"/>
+						<field name="tipo_activo_id" options="{'no_create_edit': True, 'no_create': True}" attrs="{'readonly': [('bloq_encabe', '=', True)]}" widget="text" />
 						<field name="name" attrs="{'readonly': [ '|', ('tipo_activo_code', '=', 'poste'), ('bloq_encabe', '=', True)]} " force_save="1"/>
 						<field name="state_activo" attrs="{'readonly': [('bloq_encabe', '=', True)]}"/>
 						<field name="tarea" attrs="{'readonly': [('bloq_encabe', '=', True)]}"/>

@@ -29,7 +29,7 @@
 				<field name="fecha_diseno" optional="hide"/>
 				<field name="fecha_replanteo" optional="hide"/>
 				<field name="fecha_ejecucion" optional="hide"/>
-				<field name="valor_mo_diseno" optional="hide"/>
+				<field name="valor_mo_diseno" optional="hide" widget="monetary"/>
 				<field name="valor_mn_diseno" optional="hide"/>
 				<field name="valor_mo_replanteo" optional="hide"/>
 				<field name="valor_mn_replanteo" optional="hide"/>
@@ -61,7 +61,7 @@
                             </div>
                         </button>
                     </div>					
-					<group col="4">
+					<group string="Proyecto" col="4">
 							<field name="name" attrs="{'readonly': [('state', '!=', 'diseño')]}" />
 							<field name="tipo_proyecto_id" attrs="{'readonly': [('state', '!=', 'diseño')]}" options="{'no_create_edit': True, 'no_create': True}" />
 							<field name="direccion" attrs="{'readonly': [('state', '!=', 'diseño')]}" />
