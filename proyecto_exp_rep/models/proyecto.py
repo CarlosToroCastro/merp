@@ -62,6 +62,7 @@ class Proyecto(models.Model):
 					lista_productos.append((0,0, linea_producto))
 				if lista_productos:
 					activo.product_ids = lista_productos
+					
 
 				lista_productos_mn = []
 				for mn in activo.product_mn_ids:
@@ -76,6 +77,8 @@ class Proyecto(models.Model):
 					lista_productos_mn.append((0,0, linea_producto_mn))
 				if lista_productos_mn:
 					activo.product_mn_ids = lista_productos_mn
+		self.state = 'replanteo'
+
 
 
 
